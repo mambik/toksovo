@@ -1,5 +1,0 @@
-meta:
-  environment: nginx
-  toolchain:
-    name: nginx
-    version: "1.25"
