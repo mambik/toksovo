@@ -3,1071 +3,242 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Токсово — городское поселение</title>
+  <title>Токсово — природный гид и городское поселение</title>
+  <meta
+    name="description"
+    content="Современный гид по Токсово: карта, места, спорт, отдых, маршруты и полезная информация для жителей и туристов."
+  />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="Токсово — на главную">
+        <img src="logo.svg" alt="Логотип Токсово" class="brand-logo" />
+        <div class="brand-copy">
+          <strong>Токсово</strong>
+          <span>природа · маршруты · места</span>
+        </div>
+      </a>
 
-  <!-- НАВИГАЦИЯ -->
-  <header class="header">
-    <div class="container nav-inner">
-      <div class="logo">
-        <span class="logo-icon">&#9775;</span>
-        <span class="logo-text">Токсово</span>
-      </div>
-      <button class="burger" id="burger" aria-label="Меню">&#9776;</button>
-      <nav class="nav" id="nav">
-        <a href="#about">О поселении</a>
-        <a href="#sights">Достопримечательности</a>
-        <a href="#kids">Детям</a>
-        <a href="#sport">Спорт</a>
-        <a href="#hidden">Места</a>
-        <a href="#news">Новости</a>
-        <a href="#events">События</a>
-        <a href="#tourists">Туристам</a>
-        <a href="#contacts">Контакты</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="#about">О Токсово</a>
+        <a href="#categories">Категории</a>
+        <a href="#featured">Рекомендации</a>
+        <a href="#map-preview">Карта</a>
+        <a href="#guide">Гид</a>
+        <a href="map.html" class="nav-cta">Открыть карту</a>
       </nav>
     </div>
   </header>
 
-  <!-- ГЕРОЙ -->
-  <section class="hero" id="home">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <div class="hero-top">
-        <div class="hero-text">
-          <h1>Токсово</h1>
-          <p class="hero-sub">Городское поселение Ленинградской области</p>
-          <p class="hero-desc">Сосновые леса, чистые озёра и живописные холмы в 30 км от Санкт-Петербурга</p>
-          <a href="#about" class="btn">Узнать больше</a>
-        </div>
-        <div class="hero-map">
-          <iframe
-            src="https://www.openstreetmap.org/export/embed.html?bbox=30.47%2C60.13%2C30.57%2C60.18&amp;layer=mapnik&amp;marker=60.153%2C30.517"
-            title="Карта Токсово"
-            allowfullscreen
-          ></iframe>
-          <a class="map-link" href="https://www.openstreetmap.org/?mlat=60.153&mlon=30.517#map=13/60.153/30.517" target="_blank" rel="noopener">
-            Открыть на большой карте ↗
-          </a>
-        </div>
-      </div>
-
-      <!-- Разделы сайта -->
-      <div class="hero-sections">
-        <a href="#about" class="hero-sec">
-          <span>🏘️</span>
-          <strong>О поселении</strong>
-          <small>История и факты</small>
-        </a>
-        <a href="#sights" class="hero-sec">
-          <span>🏔️</span>
-          <strong>Достопримечательности</strong>
-          <small>Что посмотреть</small>
-        </a>
-        <a href="#kids" class="hero-sec">
-          <span>👦</span>
-          <strong>Детям</strong>
-          <small>Кружки и секции</small>
-        </a>
-        <a href="#sport" class="hero-sec">
-          <span>🏅</span>
-          <strong>Спорт</strong>
-          <small>Для взрослых</small>
-        </a>
-        <a href="#hidden" class="hero-sec">
-          <span>🗺️</span>
-          <strong>Скрытые места</strong>
-          <small>Малоизвестное</small>
-        </a>
-        <a href="#news" class="hero-sec">
-          <span>📰</span>
-          <strong>Новости</strong>
-          <small>События</small>
-        </a>
-        <a href="#events" class="hero-sec">
-          <span>📅</span>
-          <strong>Мероприятия</strong>
-          <small>Афиша</small>
-        </a>
-        <a href="#tourists" class="hero-sec">
-          <span>🧭</span>
-          <strong>Туристам</strong>
-          <small>Как добраться</small>
-        </a>
-        <a href="#contacts" class="hero-sec">
-          <span>📞</span>
-          <strong>Контакты</strong>
-          <small>Администрация</small>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- О ПОСЕЛЕНИИ -->
-  <section class="section" id="about">
-    <div class="container">
-      <h2 class="section-title">О поселении</h2>
-      <div class="about-grid">
-        <div class="about-text">
-          <p>
-            Токсово — городское поселение во Всеволожском районе Ленинградской области.
-            Расположено на Карельском перешейке среди холмистой местности с множеством озёр и лесов.
+  <main>
+    <section class="hero hero-home">
+      <div class="hero-backdrop"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Ленинградская область · рядом с Петербургом</span>
+          <h1>Новый сайт Токсово как цифровой гид по озёрам, холмам и жизни посёлка</h1>
+          <p class="lead">
+            Вместо перегруженного портала здесь чистая главная, быстрый вход в карту, подборки мест,
+            карточки активностей и понятная структура для жителей, туристов и семей.
           </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="map.html">Перейти к карте</a>
+            <a class="btn btn-secondary" href="#featured">Смотреть места</a>
+          </div>
+
+          <div class="hero-metrics">
+            <div class="metric-card">
+              <strong id="metricTotal">0</strong>
+              <span>точек в каталоге</span>
+            </div>
+            <div class="metric-card">
+              <strong id="metricCoords">0</strong>
+              <span>объектов на карте</span>
+            </div>
+            <div class="metric-card">
+              <strong id="metricCategories">4</strong>
+              <span>основные категории</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-panel glass-card">
+          <div class="hero-panel-head">
+            <span class="panel-kicker">Быстрый старт</span>
+            <h2>Главные сценарии</h2>
+          </div>
+
+          <div class="quick-links">
+            <a href="#categories" class="quick-link">
+              <span>🏞️</span>
+              <div>
+                <strong>Категории</strong>
+                <small>места, спорт, детям и локальные жемчужины</small>
+              </div>
+            </a>
+            <a href="#featured" class="quick-link">
+              <span>✨</span>
+              <div>
+                <strong>Подборки</strong>
+                <small>карточки, рейтинги и быстрые переходы</small>
+              </div>
+            </a>
+            <a href="#map-preview" class="quick-link">
+              <span>🗺️</span>
+              <div>
+                <strong>Карта</strong>
+                <small>главный путь в каталог в один клик</small>
+              </div>
+            </a>
+            <a href="#guide" class="quick-link">
+              <span>🚉</span>
+              <div>
+                <strong>Как пользоваться</strong>
+                <small>для туристов, жителей и администрации</small>
+              </div>
+            </a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-heading left">
+          <span class="eyebrow">Концепция редизайна</span>
+          <h2>Меньше шума, больше пользы и быстрых сценариев</h2>
           <p>
-            Посёлок известен с середины XIX века как дачное место петербуржцев.
-            Сегодня это популярный курорт и комфортное место для постоянного проживания.
-          </p>
-          <p>
-            Благодаря развитой инфраструктуре, школам, медицинским учреждениям и удобному
-            транспортному сообщению с Санкт-Петербургом, Токсово привлекает тысячи новых жителей.
+            Главная страница теперь работает как удобная обложка района: объясняет, зачем сюда ехать,
+            даёт мгновенный доступ к карте и показывает живой каталог мест из существующей базы данных.
+            Вместо длинных разрозненных блоков интерфейс собран вокруг маршрутов, категорий и карточек.
           </p>
         </div>
-        <div class="about-stats">
-          <div class="stat">
-            <span class="stat-num">~15 000</span>
-            <span class="stat-label">жителей</span>
-          </div>
-          <div class="stat">
-            <span class="stat-num">30 км</span>
-            <span class="stat-label">до Петербурга</span>
-          </div>
-          <div class="stat">
-            <span class="stat-num">XIX в.</span>
-            <span class="stat-label">основан как курорт</span>
-          </div>
-          <div class="stat">
-            <span class="stat-num">100+</span>
-            <span class="stat-label">озёр рядом</span>
-          </div>
+
+        <div class="value-grid">
+          <article class="value-card">
+            <span class="value-icon">01</span>
+            <h3>Главная как витрина района</h3>
+            <p>Крупный hero, понятный оффер и акцент на природе Токсово вместо перегруженной навигации.</p>
+          </article>
+          <article class="value-card">
+            <span class="value-icon">02</span>
+            <h3>Каталог как продукт</h3>
+            <p>Данные из <code>data.js</code> автоматически заполняют статистику, категории и подборки мест.</p>
+          </article>
+          <article class="value-card">
+            <span class="value-icon">03</span>
+            <h3>Карта как главный вход</h3>
+            <p>Переход в полноэкранную карту стал основным сценарием для изучения района и поиска мест рядом.</p>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ДОСТОПРИМЕЧАТЕЛЬНОСТИ -->
-  <section class="section section-alt" id="sights">
-    <div class="container">
-      <h2 class="section-title">Достопримечательности</h2>
-      <div class="cards">
-        <div class="card">
-          <div class="card-icon">🏖️</div>
-          <div class="card-badge">Озеро / отдых</div>
-          <h3>Кавголовское озеро</h3>
-          <p>Главное озеро района — пляжи, прогулки, SUP, виндсерфинг.</p>
-          <div class="card-foot"><span class="card-rating">★ 4.8</span></div>
+    <section class="section section-alt" id="categories">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Навигация по контенту</span>
+          <h2>Четыре понятные категории вместо перегруженного меню</h2>
         </div>
-        <div class="card">
-          <div class="card-icon">🏖️</div>
-          <div class="card-badge">Озеро / туризм</div>
-          <h3>Озеро Хепоярви</h3>
-          <p>Крупное лесное озеро, популярное для прогулок, походов и рыбалки.</p>
-          <div class="card-foot"><span class="card-rating">★ 4.9</span></div>
-        </div>
-        <div class="card">
-          <div class="card-icon">🦌</div>
-          <div class="card-badge">Экопарк</div>
-          <h3>Зубровник</h3>
-          <p>Питомник зубров — можно увидеть животных вблизи.</p>
-          <div class="card-foot"><span class="card-rating">★ 4.7</span></div>
-        </div>
-        <div class="card">
-          <div class="card-icon">🏔️</div>
-          <div class="card-badge">Холмы / панорамы</div>
-          <h3>Кавголовские / Токсовские высоты</h3>
-          <p>Живописные холмы, виды, лыжи зимой, прогулки летом.</p>
-          <div class="card-foot"><span class="card-rating">★ 4.8</span><a class="act-link" href="https://ooptlo.ru/toksovskie-vyisotyi.html" target="_blank" rel="noopener">Сайт ↗</a></div>
-        </div>
-        <div class="card">
-          <div class="card-icon">🔭</div>
-          <div class="card-badge">Видовая точка</div>
-          <h3>Станция Кавголово (видовая)</h3>
-          <p>Красивые виды на озеро и лес с платформы.</p>
-          <div class="card-foot"><span class="card-rating">★ 4.6</span></div>
-        </div>
-        <div class="card">
-          <div class="card-icon">🌿</div>
-          <div class="card-badge">Маршруты</div>
-          <h3>Экотропы Токсово</h3>
-          <p>Маршруты для прогулок, бега, велосипедов.</p>
-          <div class="card-foot"><span class="card-rating">★ 4.8</span><a class="act-link" href="https://ooptlo.ru/ecotoksovskie-vyisotyi.html" target="_blank" rel="noopener">Сайт ↗</a></div>
-        </div>
-        <div class="card">
-          <div class="card-icon">⛪</div>
-          <div class="card-badge">Храм</div>
-          <h3>Церковь Архангела Михаила</h3>
-          <p>Православный храм, историческое место.</p>
-          <div class="card-foot"><span class="card-rating">★ 4.7</span></div>
-        </div>
-        <div class="card">
-          <div class="card-icon">🏋️</div>
-          <div class="card-badge">Спорткомплекс</div>
-          <h3>УТЦ Кавголово</h3>
-          <p>Крупный центр лыжных и спортивных тренировок.</p>
-          <div class="card-foot"><span class="card-rating">★ 4.8</span><a class="act-link" href="http://www.utc-kavgolovo.ru" target="_blank" rel="noopener">Сайт ↗</a></div>
-        </div>
-        <div class="card">
-          <div class="card-icon">⛷️</div>
-          <div class="card-badge">Курорт</div>
-          <h3>Северный склон</h3>
-          <p>Круглогодичная зона отдыха и спорта.</p>
-          <div class="card-foot"><span class="card-rating">★ 4.3</span><a class="act-link" href="https://severny-sklon.ru" target="_blank" rel="noopener">Сайт ↗</a></div>
-        </div>
-        <div class="card">
-          <div class="card-icon">🌲</div>
-          <div class="card-badge">Экотропа</div>
-          <h3>Еловые холмы — старт</h3>
-          <p>Официальная стартовая точка экотропы.</p>
-          <div class="card-foot"><a class="act-link" href="https://ooptlo.ru/ecotoksovskie-vyisotyi.html" target="_blank" rel="noopener">Сайт ↗</a></div>
-        </div>
-        <div class="card">
-          <div class="card-icon">🌲</div>
-          <div class="card-badge">Экотропа</div>
-          <h3>Малиновая гора — старт</h3>
-          <p>Официальная стартовая точка экотропы.</p>
-          <div class="card-foot"><a class="act-link" href="https://ooptlo.ru/ekomarshrut-malinovaya-gora.html" target="_blank" rel="noopener">Сайт ↗</a></div>
-        </div>
-        <div class="card">
-          <div class="card-icon">🪵</div>
-          <div class="card-badge">Этнотропа</div>
-          <h3>Курголовская этнотропа — старт</h3>
-          <p>Официальная стартовая точка этнотропы.</p>
-          <div class="card-foot"><a class="act-link" href="https://ooptlo.ru/kurgolovskaya-tropa.html" target="_blank" rel="noopener">Сайт ↗</a></div>
-        </div>
+        <div class="category-grid" id="categoryGrid"></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- НОВОСТИ -->
-  <section class="section" id="news">
-    <div class="container">
-      <h2 class="section-title">Новости</h2>
-      <div class="news-list">
-        <article class="news-item">
-          <span class="news-date">28 марта 2026</span>
-          <h3>Открытие велосезона</h3>
-          <p>В апреле горнолыжный комплекс Токсово переходит на летний режим работы. Открываются велодорожки и прокат велосипедов.</p>
-        </article>
-        <article class="news-item">
-          <span class="news-date">15 марта 2026</span>
-          <h3>Ремонт дорог в поселении</h3>
-          <p>В этом году запланирован ремонт центральных улиц посёлка. Работы начнутся в мае после схода снега.</p>
-        </article>
-        <article class="news-item">
-          <span class="news-date">1 марта 2026</span>
-          <h3>Новый детский сад</h3>
-          <p>Администрация поселения объявила о начале строительства нового детского сада на 120 мест в микрорайоне Токсово-2.</p>
-        </article>
-        <article class="news-item">
-          <span class="news-date">14 февраля 2026</span>
-          <h3>Итоги лыжного сезона</h3>
-          <p>Горнолыжный сезон 2025–2026 установил рекорд по посещаемости — более 50 000 гостей за зимние месяцы.</p>
-        </article>
+    <section class="section" id="featured">
+      <div class="container">
+        <div class="section-heading between">
+          <div>
+            <span class="eyebrow">Подборка из каталога</span>
+            <h2>Рекомендуемые места</h2>
+          </div>
+          <a class="text-link" href="map.html">Смотреть все на карте →</a>
+        </div>
+        <div class="featured-grid" id="featuredGrid"></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-
-  <!-- ДЕТЯМ -->
-  <section class="section" id="kids">
-    <div class="container">
-      <h2 class="section-title">Детям</h2>
-      <p class="section-sub">Кружки, секции и занятия для детей в Токсово и рядом</p>
-      <div class="act-grid">
-
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">⭐</span>
-              <span class="act-badge">Комплексный центр</span>
-            </div>
-            <h3>Академия Супергероев</h3>
-            <p>Центр детского развития: английский, подготовка к школе, логопед, рисование, театр, танцы, айкидо, капоэйра.</p>
-            <div class="act-meta">
-              <span class="meta-age">👶 3–14</span>
-              <span class="meta-price">3000–7000 ₽/мес</span>
-            </div>
-            <div class="act-links"><a class="act-link" href="https://vk.com/superherovtoksovo" target="_blank" rel="noopener">Сайт ↗</a></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">🏛️</span>
-              <span class="act-badge">Муниципальный центр</span>
-            </div>
-            <h3>КДЦ Токсово</h3>
-            <p>Муниципальные кружки: рисование, вокал, танцы, мероприятия.</p>
-            <div class="act-meta">
-              <span class="meta-age">👶 4–16</span>
-              <span class="meta-price">бесплатно / 1000–3000 ₽</span>
-            </div>
-            <div class="act-links"><a class="act-phone" href="tel:+7 (81370) 5-56-63">+7 (81370) 5-56-63</a><a class="act-link" href="https://vk.com/kdctoksovo" target="_blank" rel="noopener">Сайт ↗</a></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">🩰</span>
-              <span class="act-badge">Балет</span>
-            </div>
-            <h3>Балетная группа</h3>
-            <p>Занятия балетом с профессиональным педагогом, небольшие группы.</p>
-            <div class="act-meta">
-              <span class="meta-age">👶 4–7</span>
-              <span class="meta-price">3000–5000 ₽</span>
-            </div>
-            <div class="act-links"></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">🤸</span>
-              <span class="act-badge">Телесные практики</span>
-            </div>
-            <h3>Семейная мягкая школа</h3>
-            <p>Занятия для детей и родителей, развитие через движение и взаимодействие.</p>
-            <div class="act-meta">
-              <span class="meta-age">👶 3–10</span>
-              <span class="meta-price">3000–6000 ₽</span>
-            </div>
-            <div class="act-links"><a class="act-link" href="https://vk.com/wall-58536241_3478" target="_blank" rel="noopener">Сайт ↗</a></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">🏀</span>
-              <span class="act-badge">Баскетбол</span>
-            </div>
-            <h3>Баскетбол (школьная секция)</h3>
-            <p>Детская секция баскетбола при школе.</p>
-            <div class="act-meta">
-              <span class="meta-age">👶 7–16</span>
-              <span class="meta-price">бесплатно / символическая</span>
-            </div>
-            <div class="act-links"></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">⛷️</span>
-              <span class="act-badge">Горные лыжи / сноуборд</span>
-            </div>
-            <h3>Северный склон — детская школа</h3>
-            <p>Обучение горным лыжам и сноуборду, индивидуальные и групповые занятия.</p>
-            <div class="act-meta">
-              <span class="meta-age">👶 4–16</span>
-              <span class="meta-price">2000–6000 ₽/занятие</span>
-            </div>
-            <div class="act-links"><a class="act-phone" href="tel:+7 (911) 924-81-81">+7 (911) 924-81-81</a><a class="act-link" href="https://severny-sklon.ru" target="_blank" rel="noopener">Сайт ↗</a></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">⛷️</span>
-              <span class="act-badge">Горные лыжи</span>
-            </div>
-            <h3>Kanaev Ski Club</h3>
-            <p>Горнолыжная школа с тренировками и выездами.</p>
-            <div class="act-meta">
-              <span class="meta-age">👶 5–16</span>
-              <span class="meta-price">5000–15000 ₽</span>
-            </div>
-            <div class="act-links"><a class="act-phone" href="tel:+7 (981) 122-10-00">+7 (981) 122-10-00</a><a class="act-link" href="https://kanaevskiclub.ru" target="_blank" rel="noopener">Сайт ↗</a></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">🥋</span>
-              <span class="act-badge">Единоборства</span>
-            </div>
-            <h3>Айкидо</h3>
-            <p>Тренировки по айкидо для детей.</p>
-            <div class="act-meta">
-              <span class="meta-age">👶 5–14</span>
-              <span class="meta-price">3000–5000 ₽</span>
-            </div>
-            <div class="act-links"></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">🥋</span>
-              <span class="act-badge">Единоборства / танец</span>
-            </div>
-            <h3>Капоэйра</h3>
-            <p>Бразильское боевое искусство с элементами танца.</p>
-            <div class="act-meta">
-              <span class="meta-age">👶 5–14</span>
-              <span class="meta-price">3000–5000 ₽</span>
-            </div>
-            <div class="act-links"></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">🎨</span>
-              <span class="act-badge">Рисование</span>
-            </div>
-            <h3>Художественная студия (КДЦ)</h3>
-            <p>Рисование, лепка, творческие занятия.</p>
-            <div class="act-meta">
-              <span class="meta-age">👶 4–14</span>
-              <span class="meta-price">2000–4000 ₽</span>
-            </div>
-            <div class="act-links"><a class="act-phone" href="tel:+7 (81370) 5-56-63">+7 (81370) 5-56-63</a><a class="act-link" href="https://vk.com/kdctoksovo" target="_blank" rel="noopener">Сайт ↗</a></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">🌍</span>
-              <span class="act-badge">Языки</span>
-            </div>
-            <h3>Английский язык</h3>
-            <p>Групповые занятия английским для детей.</p>
-            <div class="act-meta">
-              <span class="meta-age">👶 4–14</span>
-              <span class="meta-price">3000–7000 ₽</span>
-            </div>
-            <div class="act-links"></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">🗣️</span>
-              <span class="act-badge">Логопед</span>
-            </div>
-            <h3>Логопедические занятия</h3>
-            <p>Индивидуальные занятия по речи и подготовка к школе.</p>
-            <div class="act-meta">
-              <span class="meta-age">👶 3–10</span>
-              <span class="meta-price">1000–3000 ₽/занятие</span>
-            </div>
-            <div class="act-links"></div>
-          </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- СПОРТ -->
-  <section class="section section-alt" id="sport">
-    <div class="container">
-      <h2 class="section-title">Спорт для взрослых</h2>
-      <p class="section-sub">Клубы, школы и секции для взрослых на любой вкус</p>
-      <div class="act-grid">
-
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">⛷️</span>
-              <span class="act-badge">Горные лыжи / сноуборд</span>
-            </div>
-            <h3>Северный склон</h3>
-            <p>Курорт с обучением, прокатом и трассами.</p>
-            <div class="act-meta">
-              <span class="meta-age">🔞 16+</span>
-              <span class="meta-price">2000–6000 ₽/занятие</span>
-              <span class="meta-rating">★ 4.3</span>
-            </div>
-            <div class="act-links"><a class="act-phone" href="tel:+7 (911) 924-81-81">+7 (911) 924-81-81</a><a class="act-link" href="https://severny-sklon.ru" target="_blank" rel="noopener">Сайт ↗</a></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">⛷️</span>
-              <span class="act-badge">Горные лыжи</span>
-            </div>
-            <h3>Kanaev Ski Club</h3>
-            <p>Школа горных лыж, тренировки и обучение.</p>
-            <div class="act-meta">
-              <span class="meta-age">🔞 18+</span>
-              <span class="meta-price">5000–15000 ₽</span>
-              <span class="meta-rating">★ 5.0</span>
-            </div>
-            <div class="act-links"><a class="act-phone" href="tel:+7 (981) 122-10-00">+7 (981) 122-10-00</a><a class="act-link" href="https://kanaevskiclub.ru" target="_blank" rel="noopener">Сайт ↗</a></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">⛷️</span>
-              <span class="act-badge">Горные лыжи</span>
-            </div>
-            <h3>Yukki Sport Club</h3>
-            <p>Горнолыжные занятия и тренировки.</p>
-            <div class="act-meta">
-              <span class="meta-age">🔞 16+</span>
-              <span class="meta-price">по запросу</span>
-              
-            </div>
-            <div class="act-links"><a class="act-phone" href="tel:+7 (911) 271-86-96">+7 (911) 271-86-96</a></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">🎿</span>
-              <span class="act-badge">Лыжная база</span>
-            </div>
-            <h3>База СКА Токсово</h3>
-            <p>Спортивная база, лыжная подготовка.</p>
-            <div class="act-meta">
-              <span class="meta-age">🔞 16+</span>
-              <span class="meta-price">по запросу</span>
-              <span class="meta-rating">★ 4.3</span>
-            </div>
-            <div class="act-links"><a class="act-phone" href="tel:+7 (921) 424-26-59">+7 (921) 424-26-59</a></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">⛷️</span>
-              <span class="act-badge">Горные лыжи</span>
-            </div>
-            <h3>Горнолыжная школа СКА</h3>
-            <p>Тренировки по лыжам.</p>
-            <div class="act-meta">
-              <span class="meta-age">🔞 16+</span>
-              <span class="meta-price">по запросу</span>
-              <span class="meta-rating">★ 3.6</span>
-            </div>
-            <div class="act-links"><a class="act-phone" href="tel:+7 (921) 939-71-14">+7 (921) 939-71-14</a><a class="act-link" href="http://sca-ski.ru" target="_blank" rel="noopener">Сайт ↗</a></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">🎿</span>
-              <span class="act-badge">Лыжный клуб</span>
-            </div>
-            <h3>Nikels Club</h3>
-            <p>Лыжный клуб.</p>
-            <div class="act-meta">
-              <span class="meta-age">🔞 16+</span>
-              <span class="meta-price">по запросу</span>
-              <span class="meta-rating">★ 5.0</span>
-            </div>
-            <div class="act-links"><a class="act-phone" href="tel:+7 (911) 844-48-15">+7 (911) 844-48-15</a><a class="act-link" href="https://nikels.club" target="_blank" rel="noopener">Сайт ↗</a></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">🎿</span>
-              <span class="act-badge">Лыжный клуб</span>
-            </div>
-            <h3>Skillon</h3>
-            <p>Спортивный клуб, лыжи.</p>
-            <div class="act-meta">
-              <span class="meta-age">🔞 16+</span>
-              <span class="meta-price">по запросу</span>
-              <span class="meta-rating">★ 5.0</span>
-            </div>
-            <div class="act-links"><a class="act-phone" href="tel:+7 (909) 585-77-01">+7 (909) 585-77-01</a><a class="act-link" href="https://skillon.ru" target="_blank" rel="noopener">Сайт ↗</a></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">🏋️</span>
-              <span class="act-badge">Спорткомплекс</span>
-            </div>
-            <h3>УТЦ Кавголово</h3>
-            <p>Крупный спортивный центр.</p>
-            <div class="act-meta">
-              <span class="meta-age">🔞 16+</span>
-              <span class="meta-price">по запросу</span>
-              <span class="meta-rating">★ 4.8</span>
-            </div>
-            <div class="act-links"><a class="act-phone" href="tel:+7 (812) 383-70-60">+7 (812) 383-70-60</a><a class="act-link" href="http://www.utc-kavgolovo.ru" target="_blank" rel="noopener">Сайт ↗</a></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">💪</span>
-              <span class="act-badge">Фитнес / единоборства</span>
-            </div>
-            <h3>Тай Бо</h3>
-            <p>Групповые тренировки в зале на Северном склоне.</p>
-            <div class="act-meta">
-              <span class="meta-age">🔞 16+</span>
-              <span class="meta-price">~600 ₽/занятие</span>
-              
-            </div>
-            <div class="act-links"></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">🧘</span>
-              <span class="act-badge">Йога</span>
-            </div>
-            <h3>Йога</h3>
-            <p>Групповые и индивидуальные занятия йогой.</p>
-            <div class="act-meta">
-              <span class="meta-age">🔞 18+</span>
-              <span class="meta-price">500–1500 ₽</span>
-              
-            </div>
-            <div class="act-links"></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">💪</span>
-              <span class="act-badge">Фитнес</span>
-            </div>
-            <h3>Пилатес</h3>
-            <p>Укрепление мышц, работа с осанкой.</p>
-            <div class="act-meta">
-              <span class="meta-age">🔞 18+</span>
-              <span class="meta-price">800–2000 ₽</span>
-              
-            </div>
-            <div class="act-links"></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">💪</span>
-              <span class="act-badge">Фитнес</span>
-            </div>
-            <h3>Функциональные тренировки</h3>
-            <p>Групповые тренировки для силы и выносливости.</p>
-            <div class="act-meta">
-              <span class="meta-age">🔞 18+</span>
-              <span class="meta-price">500–1500 ₽</span>
-              
-            </div>
-            <div class="act-links"></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">🏃</span>
-              <span class="act-badge">Бег</span>
-            </div>
-            <h3>Бег / трейлраннинг</h3>
-            <p>Лесные маршруты, озера, самостоятельные тренировки.</p>
-            <div class="act-meta">
-              <span class="meta-age">🔞 16+</span>
-              <span class="meta-price">бесплатно</span>
-              
-            </div>
-            <div class="act-links"></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">🏀</span>
-              <span class="act-badge">Командный спорт</span>
-            </div>
-            <h3>Баскетбол (любительский)</h3>
-            <p>Игры в школьных залах.</p>
-            <div class="act-meta">
-              <span class="meta-age">🔞 16+</span>
-              <span class="meta-price">бесплатно</span>
-              
-            </div>
-            <div class="act-links"></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">🏓</span>
-              <span class="act-badge">Игровые виды</span>
-            </div>
-            <h3>Настольный теннис</h3>
-            <p>Возможность играть и тренироваться.</p>
-            <div class="act-meta">
-              <span class="meta-age">🔞 16+</span>
-              <span class="meta-price">300–1000 ₽</span>
-              
-            </div>
-            <div class="act-links"></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">🥋</span>
-              <span class="act-badge">Единоборства</span>
-            </div>
-            <h3>Айкидо</h3>
-            <p>Занятия айкидо.</p>
-            <div class="act-meta">
-              <span class="meta-age">🔞 16+</span>
-              <span class="meta-price">3000–5000 ₽</span>
-              
-            </div>
-            <div class="act-links"></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">🥋</span>
-              <span class="act-badge">Единоборства</span>
-            </div>
-            <h3>Бокс</h3>
-            <p>Индивидуальные и групповые тренировки.</p>
-            <div class="act-meta">
-              <span class="meta-age">🔞 18+</span>
-              <span class="meta-price">1000–3000 ₽</span>
-              
-            </div>
-            <div class="act-links"></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">🏄</span>
-              <span class="act-badge">Водный спорт</span>
-            </div>
-            <h3>Виндсерфинг</h3>
-            <p>Обучение и катание на воде.</p>
-            <div class="act-meta">
-              <span class="meta-age">🔞 16+</span>
-              <span class="meta-price">2000–5000 ₽</span>
-              
-            </div>
-            <div class="act-links"></div>
-          </div>
-          <div class="act-card">
-            <div class="act-head">
-              <span class="act-icon">🏄</span>
-              <span class="act-badge">Водный спорт</span>
-            </div>
-            <h3>SUP</h3>
-            <p>Прокат и тренировки на сапах.</p>
-            <div class="act-meta">
-              <span class="meta-age">🔞 16+</span>
-              <span class="meta-price">1000–3000 ₽</span>
-              
-            </div>
-            <div class="act-links"></div>
-          </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- СКРЫТЫЕ МЕСТА -->
-  <section class="section" id="hidden">
-    <div class="container">
-      <h2 class="section-title">Скрытые места</h2>
-      <p class="section-sub">Малоизвестные, но красивые локации — для тех, кто любит исследовать</p>
-      <div class="hidden-grid">
-
-        <div class="hidden-card">
-          <span class="hid-icon">📸</span>
-          <div class="hid-body">
-            <strong>Песчаная коса Кавголово</strong>
-            <span class="hid-tag">Фотоспот</span>
-            <p>Песчаный берег для закатов. Нужна полевая проверка перед публичным запуском.</p>
-          </div>
-        </div>
-        <div class="hidden-card">
-          <span class="hid-icon">📸</span>
-          <div class="hid-body">
-            <strong>Тихий залив Кавголово</strong>
-            <span class="hid-tag">Фотоспот</span>
-            <p>Уединённый берег. Нужна полевая проверка.</p>
-          </div>
-        </div>
-        <div class="hidden-card">
-          <span class="hid-icon">📸</span>
-          <div class="hid-body">
-            <strong>Закатная поляна</strong>
-            <span class="hid-tag">Фотоспот</span>
-            <p>Открытое поле для закатов. Нужна полевая проверка.</p>
-          </div>
-        </div>
-        <div class="hidden-card">
-          <span class="hid-icon">📸</span>
-          <div class="hid-body">
-            <strong>Лесные скалы</strong>
-            <span class="hid-tag">Фотоспот</span>
-            <p>Каменные массивы в лесу. Нужна полевая проверка.</p>
-          </div>
-        </div>
-        <div class="hidden-card">
-          <span class="hid-icon">🥾</span>
-          <div class="hid-body">
-            <strong>Сосновые тропы Хепоярви</strong>
-            <span class="hid-tag">Маршрут</span>
-            <p>Тихие лесные тропы. Нужна полевая проверка.</p>
-          </div>
-        </div>
-        <div class="hidden-card">
-          <span class="hid-icon">📸</span>
-          <div class="hid-body">
-            <strong>Дикий берег Хепоярви</strong>
-            <span class="hid-tag">Фотоспот</span>
-            <p>Тихий берег без инфраструктуры. Нужна полевая проверка.</p>
-          </div>
-        </div>
-        <div class="hidden-card">
-          <span class="hid-icon">🌿</span>
-          <div class="hid-body">
-            <strong>Лесная поляна для пикника</strong>
-            <span class="hid-tag">Отдых</span>
-            <p>Поляна для пикника. Нужна полевая проверка.</p>
-          </div>
-        </div>
-        <div class="hidden-card">
-          <span class="hid-icon">📸</span>
-          <div class="hid-body">
-            <strong>Берёзовая роща</strong>
-            <span class="hid-tag">Фотоспот</span>
-            <p>Красивое место весной и осенью. Нужна полевая проверка.</p>
-          </div>
-        </div>
-        <div class="hidden-card">
-          <span class="hid-icon">🏔️</span>
-          <div class="hid-body">
-            <strong>Песчаные холмы у тропы</strong>
-            <span class="hid-tag">Ландшафт</span>
-            <p>Необычный рельеф. Нужна полевая проверка.</p>
-          </div>
-        </div>
-        <div class="hidden-card">
-          <span class="hid-icon">🌌</span>
-          <div class="hid-body">
-            <strong>Точка для звёздного неба</strong>
-            <span class="hid-tag">Астроспот</span>
-            <p>Точка для наблюдения звёзд. Нужна полевая проверка.</p>
-          </div>
-        </div>
-        <div class="hidden-card">
-          <span class="hid-icon">💧</span>
-          <div class="hid-body">
-            <strong>Узкий лесной спуск к воде</strong>
-            <span class="hid-tag">Вода</span>
-            <p>Небольшой спуск к воде. Нужна полевая проверка.</p>
-          </div>
-        </div>
-        <div class="hidden-card">
-          <span class="hid-icon">🔭</span>
-          <div class="hid-body">
-            <strong>Высокий холм у Кавголово</strong>
-            <span class="hid-tag">Видовая</span>
-            <p>Видовой холм. Нужна полевая проверка.</p>
-          </div>
-        </div>
-        <div class="hidden-card">
-          <span class="hid-icon">🌲</span>
-          <div class="hid-body">
-            <strong>Старый сосновый массив</strong>
-            <span class="hid-tag">Лес</span>
-            <p>Массив старых сосен. Нужна полевая проверка.</p>
-          </div>
-        </div>
-        <div class="hidden-card">
-          <span class="hid-icon">🚴</span>
-          <div class="hid-body">
-            <strong>Велотропа без трафика</strong>
-            <span class="hid-tag">Веломаршрут</span>
-            <p>Тихая лесная велотропа. Нужна полевая проверка.</p>
-          </div>
-        </div>
-        <div class="hidden-card">
-          <span class="hid-icon">📸</span>
-          <div class="hid-body">
-            <strong>Поле у кромки леса</strong>
-            <span class="hid-tag">Фотоспот</span>
-            <p>Открытое пространство для фото. Нужна полевая проверка.</p>
-          </div>
-        </div>
-        <div class="hidden-card">
-          <span class="hid-icon">🦊</span>
-          <div class="hid-body">
-            <strong>Лесная тропа следов животных</strong>
-            <span class="hid-tag">Природа</span>
-            <p>Тропа со следами животных. Нужна полевая проверка.</p>
-          </div>
-        </div>
-        <div class="hidden-card">
-          <span class="hid-icon">💧</span>
-          <div class="hid-body">
-            <strong>Безымянный берег для SUP</strong>
-            <span class="hid-tag">Вода</span>
-            <p>Спокойный берег. Нужна полевая проверка.</p>
-          </div>
-        </div>
-        <div class="hidden-card">
-          <span class="hid-icon">🔭</span>
-          <div class="hid-body">
-            <strong>Малая смотровая на насыпь</strong>
-            <span class="hid-tag">Видовая</span>
-            <p>Малая видовая точка. Нужна полевая проверка.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- СОБЫТИЯ -->
-  <section class="section section-alt" id="events">
-    <div class="container">
-      <h2 class="section-title">Предстоящие события</h2>
-      <div class="events-list">
-
-        <div class="event-card">
-          <div class="event-date">
-            <span class="event-day">12</span>
-            <span class="event-month">апр</span>
-          </div>
-          <div class="event-body">
-            <span class="event-tag tag-sport">Спорт</span>
-            <h3>Открытие велосезона на горнолыжном комплексе</h3>
-            <p>Торжественное открытие летнего сезона: демонстрационные заезды, прокат велосипедов, конкурсы для детей.</p>
-            <div class="event-meta">
-              <span>🕐 11:00</span>
-              <span>📍 Горнолыжный комплекс «Токсово»</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="event-card">
-          <div class="event-date">
-            <span class="event-day">19</span>
-            <span class="event-month">апр</span>
-          </div>
-          <div class="event-body">
-            <span class="event-tag tag-culture">Культура</span>
-            <h3>День рождения посёлка</h3>
-            <p>Ежегодный праздник с концертной программой, ярмаркой местных мастеров, полевой кухней и фейерверком.</p>
-            <div class="event-meta">
-              <span>🕐 14:00</span>
-              <span>📍 Центральная площадь</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="event-card">
-          <div class="event-date">
-            <span class="event-day">26</span>
-            <span class="event-month">апр</span>
-          </div>
-          <div class="event-body">
-            <span class="event-tag tag-eco">Экология</span>
-            <h3>Субботник «Чистый берег»</h3>
-            <p>Общегородская уборка берегов озера Кавголовского. Инвентарь предоставляется, участникам — горячий чай и сувениры.</p>
-            <div class="event-meta">
-              <span>🕐 10:00</span>
-              <span>📍 оз. Кавголовское, южный берег</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="event-card">
-          <div class="event-date">
-            <span class="event-day">3</span>
-            <span class="event-month">мая</span>
-          </div>
-          <div class="event-body">
-            <span class="event-tag tag-sport">Спорт</span>
-            <h3>Весенний кросс «Токсово — 2026»</h3>
-            <p>Открытые соревнования по кроссу среди любителей и профессионалов. Дистанции 5, 10 и 21 км по лесным тропам.</p>
-            <div class="event-meta">
-              <span>🕐 09:00</span>
-              <span>📍 Стадион «Токсово»</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="event-card">
-          <div class="event-date">
-            <span class="event-day">9</span>
-            <span class="event-month">мая</span>
-          </div>
-          <div class="event-body">
-            <span class="event-tag tag-culture">Культура</span>
-            <h3>День Победы — торжественный митинг</h3>
-            <p>Возложение венков к мемориалу, торжественный марш, концерт военных песен. Минута молчания в 12:00.</p>
-            <div class="event-meta">
-              <span>🕐 10:00</span>
-              <span>📍 Мемориал воинской славы</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="event-card">
-          <div class="event-date">
-            <span class="event-day">17</span>
-            <span class="event-month">мая</span>
-          </div>
-          <div class="event-body">
-            <span class="event-tag tag-kids">Дети</span>
-            <h3>Фестиваль детского творчества</h3>
-            <p>Выставка рисунков, поделок и театральных постановок воспитанников детских садов и школ поселения.</p>
-            <div class="event-meta">
-              <span>🕐 12:00</span>
-              <span>📍 Дом культуры «Токсово»</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ТУРИСТАМ -->
-  <section class="section section-alt" id="tourists">
-    <div class="container">
-      <h2 class="section-title">Туристам</h2>
-      <div class="tourist-grid">
-        <div class="tourist-block">
-          <h3>🚗 Как добраться</h3>
-          <ul>
-            <li><strong>На автомобиле:</strong> Приозерское шоссе (А121) от Петербурга, ~40 минут.</li>
-            <li><strong>На электричке:</strong> с Финляндского вокзала до ст. Токсово, ~1 час.</li>
-            <li><strong>На маршрутке:</strong> от ст. м. «Девяткино», ~30 минут.</li>
+    <section class="section section-alt" id="map-preview">
+      <div class="container map-preview-grid">
+        <div class="section-heading left compact">
+          <span class="eyebrow">Главный сценарий</span>
+          <h2>Карта как отдельный цифровой продукт</h2>
+          <p>
+            На карте можно фильтровать категории, видеть только объекты с координатами и открывать карточки мест.
+            Это самый быстрый способ пройти от вдохновения к конкретной точке и построить свой маршрут по Токсово.
+          </p>
+          <ul class="feature-list">
+            <li>фильтры по категориям</li>
+            <li>только объекты с координатами</li>
+            <li>быстрый переход в карточку места</li>
           </ul>
+          <a class="btn btn-primary" href="map.html">Открыть полноэкранную карту</a>
         </div>
-        <div class="tourist-block">
-          <h3>🏨 Где остановиться</h3>
-          <ul>
-            <li>Загородные отели и пансионаты на берегах озёр</li>
-            <li>Коттеджи и базы отдыха в сосновом лесу</li>
-            <li>Апартаменты для краткосрочной аренды</li>
-          </ul>
-        </div>
-        <div class="tourist-block">
-          <h3>🍽️ Где поесть</h3>
-          <ul>
-            <li>Кафе и рестораны в центре посёлка</li>
-            <li>Ресторан горнолыжного комплекса</li>
-            <li>Уютные кофейни с домашней выпечкой</li>
-          </ul>
-        </div>
-        <div class="tourist-block">
-          <h3>📅 Лучшее время</h3>
-          <ul>
-            <li><strong>Зима (дек–март):</strong> горные лыжи, сноуборд, катание на коньках</li>
-            <li><strong>Лето (июн–авг):</strong> купание, велопрогулки, пеший туризм</li>
-            <li><strong>Осень:</strong> грибы, ягоды, золотые леса</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- КОНТАКТЫ -->
-  <section class="section" id="contacts">
-    <div class="container">
-      <h2 class="section-title">Контакты</h2>
-      <div class="contacts-grid">
-        <div class="contact-info">
-          <div class="contact-item">
-            <span class="contact-icon">📍</span>
-            <div>
-              <strong>Адрес администрации</strong>
-              <p>188663, Ленинградская область, Всеволожский район, пос. Токсово, ул. Советская, д. 5</p>
-            </div>
+        <div class="map-mock glass-card">
+          <div class="map-mock-toolbar">
+            <span class="chip active">Все</span>
+            <span class="chip">Достопримечательности</span>
+            <span class="chip">Детям</span>
+            <span class="chip">Спорт</span>
           </div>
-          <div class="contact-item">
-            <span class="contact-icon">📞</span>
-            <div>
-              <strong>Телефон</strong>
-              <p>+7 (813-70) 7-00-00</p>
-            </div>
+          <div class="map-surface">
+            <div class="map-wave map-wave-a"></div>
+            <div class="map-wave map-wave-b"></div>
+            <div class="map-hill map-hill-a"></div>
+            <div class="map-hill map-hill-b"></div>
+            <span class="map-pin pin-a"></span>
+            <span class="map-pin pin-b"></span>
+            <span class="map-pin pin-c"></span>
+            <span class="map-pin pin-d"></span>
           </div>
-          <div class="contact-item">
-            <span class="contact-icon">✉️</span>
-            <div>
-              <strong>Электронная почта</strong>
-              <p>admin@toksovo.ru</p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <span class="contact-icon">🕐</span>
-            <div>
-              <strong>Часы приёма</strong>
-              <p>Пн–Пт: 9:00 – 17:00<br>Перерыв: 13:00 – 14:00</p>
-            </div>
-          </div>
-        </div>
-        <div class="map-placeholder">
-          <div class="map-inner">
-            <span>🗺️</span>
-            <p>Карта поселения</p>
-            <small>Токсово, Всеволожский район,<br>Ленинградская область</small>
+          <div class="map-mock-foot">
+            <strong id="mapObjectsCount">0 объектов на карте</strong>
+            <span>интерактивный слой на базе существующей интеграции</span>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ФУТЕР -->
-  <footer class="footer">
-    <div class="container">
-      <p>© 2026 Администрация городского поселения Токсово</p>
-      <p class="footer-sub">Всеволожский район, Ленинградская область</p>
+    <section class="section" id="guide">
+      <div class="container guide-grid">
+        <div class="guide-card accent-card">
+          <span class="eyebrow">Для туристов</span>
+          <h2>Приехать на день и быстро собрать маршрут</h2>
+          <p>Озёра, лес, панорамы, зимний спорт и прогулки собраны в одном сценарии с быстрым стартом от карты.</p>
+          <a class="text-link text-link-light" href="map.html">Собрать маршрут →</a>
+        </div>
+        <div class="guide-card">
+          <span class="eyebrow">Для жителей</span>
+          <h2>Найти секции, активности и места рядом</h2>
+          <p>Категории для детей, спорта и повседневных точек помогают быстрее ориентироваться в районе.</p>
+        </div>
+        <div class="guide-card">
+          <span class="eyebrow">Для администрации</span>
+          <h2>Поддерживать один источник данных</h2>
+          <p>Карточки, подборки и карта синхронизируются из единого массива и масштабируются без ручной сборки страниц.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>Токсово</strong>
+        <p>Природный гид, каталог мест и карта района в одном интерфейсе.</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Главная</a>
+        <a href="map.html">Карта</a>
+      </div>
     </div>
   </footer>
 
+  <script src="data.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

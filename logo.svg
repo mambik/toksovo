@@ -1,0 +1,12 @@
+<svg viewBox="0 0 64 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Озеро — круг внизу -->
+  <circle cx="32" cy="60" r="10" fill="#2d5a3d" opacity="0.22"/>
+  <circle cx="32" cy="60" r="10" fill="none" stroke="#2d5a3d" stroke-width="1.5"/>
+
+  <!-- Холм — большой треугольник -->
+  <polygon points="32,8 60,54 4,54" fill="#2d5a3d"/>
+
+  <!-- Сосна — три ярусных треугольника на вершине -->
+  <polygon points="32,0 36,9 28,9" fill="#1a3a2a"/>
+  <polygon points="32,5 37,13 27,13" fill="#1a3a2a" opacity="0.6"/>
+</svg>

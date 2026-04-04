@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Карта — Токсово</title>
+  <style>
+    :root {
+      --bg: #eef2ef;
+      --text: #173229;
+      --muted: #63766d;
+      --green-900: #17362c;
+      --green-700: #2b5a47;
+      --blue-500: #4d8db7;
+      --orange-500: #d68e53;
+      --violet-500: #8c70c8;
+      --line: rgba(23, 50, 41, 0.1);
+      --shadow: 0 18px 40px rgba(17, 38, 30, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Manrope", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    .page {
+      height: 100vh;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+    }
+
+    .sidebar {
+      display: grid;
+      grid-template-rows: auto auto auto 1fr auto;
+      gap: 18px;
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.84);
+      backdrop-filter: blur(16px);
+      border-right: 1px solid var(--line);
+    }
+
+    .backlink {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      min-height: 42px;
+      padding: 0 14px;
+      border-radius: 999px;
+      text-decoration: none;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--green-700);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+      letter-spacing: -0.04em;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .filters {
+      display: grid;
+      gap: 10px;
+    }
+
+    .filter-btn {
+      min-height: 44px;
+      padding: 0 14px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      background: rgba(23, 50, 41, 0.06);
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .filter-btn.active {
+      color: #fff;
+      transform: translateX(2px);
+    }
+
+    .filter-btn[data-cat="all"].active {
+      background: var(--green-900);
+    }
+
+    .filter-btn[data-cat="attractions"].active {
+      background: var(--green-700);
+    }
+
+    .filter-btn[data-cat="children"].active {
+      background: var(--blue-500);
+    }
+
+    .filter-btn[data-cat="sport"].active {
+      background: var(--orange-500);
+    }
+
+    .filter-btn[data-cat="hidden"].active {
+      background: var(--violet-500);
+    }
+
+    .places-list {
+      overflow: auto;
+      display: grid;
+      gap: 10px;
+      padding-right: 4px;
+    }
+
+    .place-link {
+      display: block;
+      padding: 14px;
+      border-radius: 16px;
+      text-decoration: none;
+      background: #fff;
+      border: 1px solid rgba(23, 50, 41, 0.08);
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease;
+    }
+
+    .place-link:hover {
+      transform: translateY(-2px);
+    }
+
+    .place-link strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .place-link span {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .stats {
+      padding: 16px;
+      border-radius: 18px;
+      background: linear-gradient(160deg, rgba(23, 54, 44, 0.96), rgba(77, 141, 183, 0.78));
+      color: #fff;
+    }
+
+    .stats strong {
+      display: block;
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+    }
+
+    #map {
+      height: 100%;
+      width: 100%;
+    }
+
+    @media (max-width: 900px) {
+      .page {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+      }
+
+      .sidebar {
+        grid-template-rows: auto auto auto auto auto;
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .places-list {
+        max-height: 220px;
+      }
+
+      #map {
+        min-height: 50vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <a class="backlink" href="index.html">← Главная</a>
+      <div>
+        <div class="eyebrow">Интерактивный режим</div>
+        <h1>Карта Токсово</h1>
+        <p>Фильтруйте категории, изучайте районы и переходите в карточки мест без лишних шагов.</p>
+      </div>
+      <div class="filters">
+        <button class="filter-btn active" data-cat="all">Все</button>
+        <button class="filter-btn" data-cat="attractions">Достопримечательности</button>
+        <button class="filter-btn" data-cat="children">Детям</button>
+        <button class="filter-btn" data-cat="sport">Спорт</button>
+        <button class="filter-btn" data-cat="hidden">Скрытые места</button>
+      </div>
+      <div class="places-list" id="placesList"></div>
+      <div class="stats">
+        <strong id="statsCount">0</strong>
+        <span>объектов с координатами</span>
+      </div>
+    </aside>
+    <div id="map"></div>
+  </div>
+
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=8e92e0f0-e860-4047-9d12-7a329837fd4e&lang=ru_RU" type="text/javascript"></script>
+  <script src="data.js"></script>
+  <script>
+    const CAT_PRESET = {
+      attractions: 'islands#darkGreenCircleDotIcon',
+      children: 'islands#blueCircleDotIcon',
+      sport: 'islands#orangeCircleDotIcon',
+      hidden: 'islands#violetCircleDotIcon',
+    };
+
+    const CAT_LABELS = {
+      attractions: 'Достопримечательности',
+      children: 'Детям',
+      sport: 'Спорт',
+      hidden: 'Скрытые места',
+    };
+
+    const places = Array.isArray(PLACES) ? PLACES.filter((place) => place.lat && place.lng) : [];
+    const listRoot = document.getElementById('placesList');
+    const statsCount = document.getElementById('statsCount');
+    statsCount.textContent = places.length;
+
+    let activeFilter = 'all';
+    let collections = {};
+    let map;
+
+    function filteredPlaces() {
+      return activeFilter === 'all'
+        ? places
+        : places.filter((place) => place.categoryId === activeFilter);
+    }
+
+    function renderList() {
+      const filtered = filteredPlaces();
+      listRoot.innerHTML = filtered.map((place) => `
+        <a class="place-link" href="place.html?slug=${place.slug}">
+          <strong>${place.name}</strong>
+          <span>${CAT_LABELS[place.categoryId] || place.category} · ${place.subcategory || place.district || 'Токсово'}</span>
+        </a>
+      `).join('');
+    }
+
+    function updateCollections() {
+      ['attractions', 'children', 'sport', 'hidden'].forEach((cat) => {
+        if (!collections[cat]) return;
+        if (activeFilter === 'all' || activeFilter === cat) {
+          map.geoObjects.add(collections[cat]);
+        } else {
+          map.geoObjects.remove(collections[cat]);
+        }
+      });
+    }
+
+    document.querySelectorAll('.filter-btn').forEach((button) => {
+      button.addEventListener('click', () => {
+        activeFilter = button.dataset.cat;
+        document.querySelectorAll('.filter-btn').forEach((btn) => {
+          btn.classList.toggle('active', btn === button);
+        });
+        renderList();
+        if (map) updateCollections();
+      });
+    });
+
+    renderList();
+
+    if (places.length > 0) {
+      ymaps.ready(() => {
+        const lats = places.map((place) => place.lat);
+        const lngs = places.map((place) => place.lng);
+        const center = [
+          (Math.min(...lats) + Math.max(...lats)) / 2,
+          (Math.min(...lngs) + Math.max(...lngs)) / 2,
+        ];
+
+        map = new ymaps.Map('map', {
+          center,
+          zoom: 13,
+          controls: ['zoomControl', 'fullscreenControl'],
+        }, { suppressMapOpenBlock: true });
+
+        ['attractions', 'children', 'sport', 'hidden'].forEach((cat) => {
+          collections[cat] = new ymaps.GeoObjectCollection();
+          map.geoObjects.add(collections[cat]);
+        });
+
+        places.forEach((place) => {
+          const mark = new ymaps.Placemark([place.lat, place.lng], {
+            balloonContentHeader: place.name,
+            balloonContentBody: `${CAT_LABELS[place.categoryId] || place.category}<br><a href="place.html?slug=${place.slug}" style="color:#17362c;font-weight:700">Открыть карточку →</a>`,
+            hintContent: place.name,
+          }, {
+            preset: CAT_PRESET[place.categoryId] || 'islands#grayCircleDotIcon',
+          });
+
+          collections[place.categoryId]?.add(mark);
+        });
+
+        map.setBounds(map.geoObjects.getBounds(), { checkZoomRange: true, zoomMargin: 40 });
+      });
+    }
+  </script>
+</body>
+</html>

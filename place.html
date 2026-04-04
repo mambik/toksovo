@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Токсово — место</title>
+  <style>
+    :root {
+      --bg: #f6f7f3;
+      --text: #173229;
+      --muted: #63766d;
+      --green-900: #17362c;
+      --green-700: #2b5a47;
+      --blue-500: #4d8db7;
+      --line: rgba(23, 50, 41, 0.1);
+      --surface: rgba(255, 255, 255, 0.92);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --shadow: 0 18px 50px rgba(17, 38, 30, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Manrope", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(108, 170, 129, 0.14), transparent 25%),
+        var(--bg);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 24px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      min-height: 72px;
+      backdrop-filter: blur(16px);
+      background: rgba(246, 247, 243, 0.8);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner {
+      width: min(1100px, calc(100% - 24px));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .backlink {
+      text-decoration: none;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid var(--line);
+    }
+
+    .crumb {
+      color: var(--muted);
+      font-size: 0.95rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg, rgba(18, 53, 43, 0.98), rgba(43, 90, 71, 0.86) 54%, rgba(77, 141, 183, 0.78));
+      color: #fff;
+      padding: 56px 0 44px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      left: -10%;
+      right: 24%;
+      bottom: -16%;
+      height: 220px;
+      background: rgba(17, 44, 34, 0.4);
+      border-radius: 50%;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: 30%;
+      right: -10%;
+      bottom: -8%;
+      height: 160px;
+      background: rgba(95, 165, 120, 0.22);
+      border-radius: 50%;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      align-items: end;
+    }
+
+    .tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .subtitle {
+      margin-top: 14px;
+      color: rgba(255, 255, 255, 0.74);
+      font-size: 1.02rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: #fff;
+      color: var(--green-900);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .hero-panel {
+      padding: 22px;
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero-panel h2 {
+      margin: 0 0 14px;
+      font-size: 1.2rem;
+    }
+
+    .hero-panel p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.74);
+      line-height: 1.7;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 22px;
+      padding: 28px 0 60px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+    }
+
+    .content-card {
+      padding: 28px;
+    }
+
+    .content-card p {
+      color: var(--muted);
+      line-height: 1.85;
+      margin: 0;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .info-card {
+      padding: 18px;
+      border-radius: var(--radius-lg);
+      background: #fff;
+      border: 1px solid rgba(23, 50, 41, 0.07);
+    }
+
+    .info-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .info-value {
+      font-weight: 700;
+      line-height: 1.6;
+      word-break: break-word;
+    }
+
+    .info-value a {
+      color: var(--green-700);
+      text-decoration: none;
+    }
+
+    #place-map {
+      height: 340px;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+
+    .empty {
+      color: var(--muted);
+    }
+
+    .stack {
+      display: grid;
+      gap: 22px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner,
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .content-card {
+        padding: 22px;
+      }
+
+      .topbar-inner {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <a href="index.html" class="backlink">← На главную</a>
+      <div class="crumb" id="breadcrumb">Карточка места</div>
+    </div>
+  </div>
+
+  <div id="app"></div>
+
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=8e92e0f0-e860-4047-9d12-7a329837fd4e&lang=ru_RU" type="text/javascript"></script>
+  <script src="data.js"></script>
+  <script>
+    const CAT_LABELS = {
+      attractions: 'Достопримечательности',
+      children: 'Детям',
+      sport: 'Спорт',
+      hidden: 'Скрытые места',
+    };
+
+    const STATUS_LABELS = {
+      verified_public: 'Проверено',
+      candidate: 'Требует проверки',
+      chat_only: 'Локальный источник',
+    };
+
+    const params = new URLSearchParams(location.search);
+    const slug = params.get('slug');
+    const place = Array.isArray(PLACES) ? PLACES.find((item) => item.slug === slug) : null;
+    const root = document.getElementById('app');
+
+    function infoCard(label, value, isLink = false) {
+      if (!value) return '';
+      const content = isLink
+        ? `<a href="${value}" target="_blank" rel="noopener">${value.replace(/^https?:\/\//, '').replace(/\/$/, '')}</a>`
+        : value;
+
+      return `
+        <div class="info-card">
+          <div class="info-label">${label}</div>
+          <div class="info-value">${content}</div>
+        </div>
+      `;
+    }
+
+    if (!place) {
+      root.innerHTML = `
+        <div class="container" style="padding:48px 0 80px">
+          <div class="card content-card">
+            <h1 style="font-size:2rem;color:var(--text);margin-bottom:12px">Место не найдено</h1>
+            <p class="empty">Проверьте slug в адресной строке.</p>
+          </div>
+        </div>
+      `;
+    } else {
+      const category = CAT_LABELS[place.categoryId] || place.category || 'Каталог';
+      const status = STATUS_LABELS[place.status] || place.status || 'Каталог';
+      const subtitle = [place.subcategory, place.age ? `${place.age} лет` : '', place.district].filter(Boolean).join(' · ');
+
+      document.title = `${place.name} — Токсово`;
+      document.getElementById('breadcrumb').textContent = place.name;
+
+      root.innerHTML = `
+        <section class="hero">
+          <div class="container hero-inner">
+            <div>
+              <div class="tags">
+                <span class="tag">${category}</span>
+                <span class="tag">${status}</span>
+              </div>
+              <h1>${place.name}</h1>
+              ${subtitle ? `<div class="subtitle">${subtitle}</div>` : ''}
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="map.html">Открыть карту</a>
+                ${place.website ? `<a class="btn btn-secondary" href="${place.website}" target="_blank" rel="noopener">Перейти на сайт</a>` : ''}
+              </div>
+            </div>
+            <aside class="hero-panel">
+              <h2>О месте</h2>
+              <p>${place.description || 'Описание пока не заполнено.'}</p>
+            </aside>
+          </div>
+        </section>
+
+        <div class="container layout">
+          <section class="stack">
+            <div class="card content-card">
+              <h2 style="margin:0 0 14px;font-size:1.4rem">Описание</h2>
+              <p>${place.description || 'Подробное описание пока отсутствует.'}</p>
+            </div>
+            ${place.lat && place.lng ? `<div class="card content-card"><h2 style="margin:0 0 14px;font-size:1.4rem">Место на карте</h2><div id="place-map"></div></div>` : ''}
+          </section>
+          <aside class="stack">
+            <div class="card content-card">
+              <h2 style="margin:0 0 16px;font-size:1.4rem">Детали</h2>
+              <div class="info-grid">
+                ${infoCard('Адрес', place.address)}
+                ${infoCard('Район', place.district)}
+                ${infoCard('Цена', place.price)}
+                ${infoCard('Возраст', place.age)}
+                ${infoCard('Формат', place.format)}
+                ${infoCard('Телефон', place.phone)}
+                ${infoCard('Рейтинг', place.rating)}
+                ${infoCard('Сайт', place.website, true)}
+                ${infoCard('Источник', place.source)}
+              </div>
+            </div>
+          </aside>
+        </div>
+      `;
+
+      if (place.lat && place.lng) {
+        ymaps.ready(() => {
+          const map = new ymaps.Map('place-map', {
+            center: [place.lat, place.lng],
+            zoom: 15,
+            controls: ['zoomControl'],
+          }, { suppressMapOpenBlock: true });
+
+          map.geoObjects.add(new ymaps.Placemark([place.lat, place.lng], {
+            balloonContent: place.name,
+            hintContent: place.name,
+          }, { preset: 'islands#darkGreenCircleDotIcon' }));
+        });
+      }
+    }
+  </script>
+</body>
+</html>
