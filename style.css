@@ -738,14 +738,21 @@ code {
   padding: 0 14px;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.14);
   font-size: 0.92rem;
+  color: #fff;
 }
 
 .chip.active {
   background: rgba(255, 255, 255, 0.22);
+}
+
+.chip-filter {
+  cursor: pointer;
+  font: inherit;
 }
 
 .map-surface {
@@ -754,73 +761,6 @@ code {
   overflow: hidden;
   border-radius: 22px;
   background: linear-gradient(160deg, rgba(16, 43, 34, 0.96), rgba(37, 84, 66, 0.88) 50%, rgba(77, 141, 183, 0.78));
-}
-
-.map-wave,
-.map-hill {
-  position: absolute;
-  border-radius: 50%;
-}
-
-.map-wave-a {
-  left: -8%;
-  right: 12%;
-  bottom: -20px;
-  height: 120px;
-  background: rgba(112, 188, 230, 0.76);
-}
-
-.map-wave-b {
-  left: 26%;
-  right: -10%;
-  bottom: 36px;
-  height: 76px;
-  background: rgba(70, 137, 187, 0.56);
-}
-
-.map-hill-a {
-  left: -2%;
-  right: 30%;
-  bottom: 112px;
-  height: 160px;
-  background: rgba(15, 45, 35, 0.72);
-}
-
-.map-hill-b {
-  left: 40%;
-  right: -6%;
-  bottom: 88px;
-  height: 136px;
-  background: rgba(18, 53, 43, 0.9);
-}
-
-.map-pin {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.12);
-}
-
-.pin-a {
-  left: 28%;
-  top: 34%;
-}
-
-.pin-b {
-  left: 56%;
-  top: 42%;
-}
-
-.pin-c {
-  left: 70%;
-  top: 28%;
-}
-
-.pin-d {
-  left: 44%;
-  top: 58%;
 }
 
 .map-mock-foot {
@@ -969,5 +909,9 @@ code {
   .footer-inner {
     align-items: start;
     flex-direction: column;
+  }
+
+  .map-surface {
+    min-height: 300px;
   }
 }

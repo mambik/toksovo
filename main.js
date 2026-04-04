@@ -27,6 +27,13 @@ const STATUS_LABELS = {
   chat_only: 'Из локальных источников',
 };
 
+const MAP_PRESET = {
+  attractions: 'islands#darkGreenCircleDotIcon',
+  children: 'islands#blueCircleDotIcon',
+  sport: 'islands#orangeCircleDotIcon',
+  hidden: 'islands#violetCircleDotIcon',
+};
+
 function initNavigation() {
   const toggle = document.getElementById('navToggle');
   const nav = document.getElementById('mainNav');
@@ -170,11 +177,81 @@ function renderFeatured(places) {
   }).join('');
 }
 
+function initHomeMap(places) {
+  const mapRoot = document.getElementById('home-map');
+  if (!mapRoot || typeof ymaps === 'undefined') return;
+
+  const mapPlaces = places.filter((place) => place.lat && place.lng);
+  if (!mapPlaces.length) return;
+
+  const filters = [...document.querySelectorAll('[data-map-filter]')];
+  const collections = {};
+  let activeFilter = 'all';
+  let map;
+
+  function syncCollections() {
+    ['attractions', 'children', 'sport', 'hidden'].forEach((cat) => {
+      if (!collections[cat]) return;
+      if (activeFilter === 'all' || activeFilter === cat) {
+        map.geoObjects.add(collections[cat]);
+      } else {
+        map.geoObjects.remove(collections[cat]);
+      }
+    });
+  }
+
+  ymaps.ready(() => {
+    const lats = mapPlaces.map((place) => place.lat);
+    const lngs = mapPlaces.map((place) => place.lng);
+    const center = [
+      (Math.min(...lats) + Math.max(...lats)) / 2,
+      (Math.min(...lngs) + Math.max(...lngs)) / 2,
+    ];
+
+    map = new ymaps.Map('home-map', {
+      center,
+      zoom: 12,
+      controls: ['zoomControl'],
+    }, { suppressMapOpenBlock: true });
+
+    ['attractions', 'children', 'sport', 'hidden'].forEach((cat) => {
+      collections[cat] = new ymaps.GeoObjectCollection();
+      map.geoObjects.add(collections[cat]);
+    });
+
+    mapPlaces.forEach((place) => {
+      const mark = new ymaps.Placemark([place.lat, place.lng], {
+        balloonContentHeader: place.name,
+        balloonContentBody: `${CATEGORY_META[place.categoryId]?.label || place.category}<br><a href="place.html?slug=${place.slug}" style="color:#17362c;font-weight:700">Открыть карточку →</a>`,
+        hintContent: place.name,
+      }, {
+        preset: MAP_PRESET[place.categoryId] || 'islands#grayCircleDotIcon',
+      });
+
+      collections[place.categoryId]?.add(mark);
+    });
+
+    map.setBounds(map.geoObjects.getBounds(), {
+      checkZoomRange: true,
+      zoomMargin: [24, 24, 24, 24],
+    });
+
+    filters.forEach((button) => {
+      button.addEventListener('click', () => {
+        activeFilter = button.dataset.mapFilter;
+        filters.forEach((item) => item.classList.toggle('active', item === button));
+        syncCollections();
+      });
+    });
+  });
+}
+
 function initHome() {
   if (typeof PLACES === 'undefined' || !Array.isArray(PLACES)) return;
   renderCounts(PLACES);
   renderCategories(PLACES);
   renderFeatured(PLACES);
+  initHomeMap(PLACES);
 }
 
 initNavigation();

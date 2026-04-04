@@ -8,13 +8,13 @@
     name="description"
     content="Современный гид по Токсово: карта, места, спорт, отдых, маршруты и полезная информация для жителей и туристов."
   />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=20260404-ymaps-1" />
 </head>
 <body>
   <header class="site-header" id="top">
     <div class="container header-inner">
       <a href="index.html" class="brand" aria-label="Токсово — на главную">
-        <img src="logo.svg" alt="Логотип Токсово" class="brand-logo" />
+        <img src="logo.svg?v=20260404-ymaps-1" alt="Логотип Токсово" class="brand-logo" />
         <div class="brand-copy">
           <strong>Токсово</strong>
           <span>природа · маршруты · места</span>
@@ -180,21 +180,13 @@
         </div>
         <div class="map-mock glass-card">
           <div class="map-mock-toolbar">
-            <span class="chip active">Все</span>
-            <span class="chip">Достопримечательности</span>
-            <span class="chip">Детям</span>
-            <span class="chip">Спорт</span>
+            <button class="chip chip-filter active" type="button" data-map-filter="all">Все</button>
+            <button class="chip chip-filter" type="button" data-map-filter="attractions">Достопримечательности</button>
+            <button class="chip chip-filter" type="button" data-map-filter="children">Детям</button>
+            <button class="chip chip-filter" type="button" data-map-filter="sport">Спорт</button>
+            <button class="chip chip-filter" type="button" data-map-filter="hidden">Скрытые места</button>
           </div>
-          <div class="map-surface">
-            <div class="map-wave map-wave-a"></div>
-            <div class="map-wave map-wave-b"></div>
-            <div class="map-hill map-hill-a"></div>
-            <div class="map-hill map-hill-b"></div>
-            <span class="map-pin pin-a"></span>
-            <span class="map-pin pin-b"></span>
-            <span class="map-pin pin-c"></span>
-            <span class="map-pin pin-d"></span>
-          </div>
+          <div class="map-surface" id="home-map" aria-label="Интерактивная карта Токсово"></div>
           <div class="map-mock-foot">
             <strong id="mapObjectsCount">0 объектов на карте</strong>
             <span>интерактивный слой на базе существующей интеграции</span>
@@ -238,7 +230,8 @@
     </div>
   </footer>
 
-  <script src="data.js"></script>
-  <script src="main.js"></script>
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=8e92e0f0-e860-4047-9d12-7a329837fd4e&lang=ru_RU" type="text/javascript"></script>
+  <script src="data.js?v=20260404-ymaps-1"></script>
+  <script src="main.js?v=20260404-ymaps-1"></script>
 </body>
 </html>
