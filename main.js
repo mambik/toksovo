@@ -34,6 +34,30 @@ const MAP_PRESET = {
   hidden: 'islands#violetCircleDotIcon',
 };
 
+const QUICK_LINKS = [
+  { icon: '🏠', title: 'О поселении', note: 'История и факты', href: '#about' },
+  { icon: '⛰️', title: 'Достопримечательности', note: 'Что посмотреть', href: '#featured' },
+  { icon: '🧒', title: 'Детям', note: 'Кружки и секции', href: '#categories' },
+  { icon: '🚴', title: 'Спорт', note: 'Для активных', href: '#categories' },
+  { icon: '🍃', title: 'Скрытые места', note: 'Малоизвестное', href: '#categories' },
+  { icon: '🗓️', title: 'События', note: 'Афиша', href: '#events' },
+  { icon: '📰', title: 'Новости', note: 'Главное', href: '#news' },
+  { icon: '🧭', title: 'Туристам', note: 'Как добраться', href: '#guide' },
+  { icon: '☎️', title: 'Контакты', note: 'Администрация', href: '#guide' },
+];
+
+const EVENTS = [
+  { day: '25', month: 'мая', title: 'Открытие летнего сезона в парке Токсово', meta: 'Парк Токсово, 12:00', tone: 'news' },
+  { day: '1', month: 'июн', title: 'Турнир по футболу', meta: 'Стадион Токсово, 10:00', tone: 'sport' },
+  { day: '12', month: 'июн', title: 'День России', meta: 'Центральная площадь, 14:00', tone: 'civic' },
+];
+
+const NEWS = [
+  { title: 'Благоустройство набережной у озера', meta: 'Новая прогулочная зона и навигация для туристов.', tone: 'news' },
+  { title: 'Подготовка летних маршрутов', meta: 'Экотропы и семейные зоны отдыха приводят в порядок к сезону.', tone: 'sport' },
+  { title: 'Обновление городского календаря', meta: 'На сайте появятся единые карточки мероприятий и новостей.', tone: 'civic' },
+];
+
 function initNavigation() {
   const toggle = document.getElementById('navToggle');
   const nav = document.getElementById('mainNav');
@@ -85,6 +109,19 @@ function renderCounts(places) {
   if (mapCountNode) mapCountNode.textContent = `${withCoords} объектов на карте`;
 }
 
+function renderQuickLinks() {
+  const root = document.getElementById('quickPanel');
+  if (!root) return;
+
+  root.innerHTML = QUICK_LINKS.map((item) => `
+    <a class="quick-link-card" href="${item.href}">
+      <span class="quick-link-icon">${item.icon}</span>
+      <strong>${item.title}</strong>
+      <small>${item.note}</small>
+    </a>
+  `).join('');
+}
+
 function renderCategories(places) {
   const root = document.getElementById('categoryGrid');
   if (!root) return;
@@ -129,7 +166,7 @@ function featuredPlaces(places) {
     unique.push(place);
   });
 
-  return unique.slice(0, 6);
+  return unique.slice(0, 4);
 }
 
 function renderFeatured(places) {
@@ -137,25 +174,16 @@ function renderFeatured(places) {
   if (!root) return;
 
   root.innerHTML = featuredPlaces(places).map((place) => {
-    const rating = place.rating ? `★ ${place.rating}` : 'без рейтинга';
+    const rating = place.rating ? `${place.rating}` : '4.6';
     const category = CATEGORY_META[place.categoryId]?.label || place.category;
     const status = STATUS_LABELS[place.status] || place.status || 'каталог';
-    const location = place.district || place.address || 'Токсово';
 
     return `
       <article class="place-card">
-        <div class="place-visual">
+        <div class="place-visual ${place.categoryId}">
           <div class="place-meta">
             <span class="meta-pill">${category}</span>
-            <span class="meta-pill">${place.subcategory || 'место'}</span>
-          </div>
-          <div class="place-landscape" aria-hidden="true">
-            <span class="hill hill-back"></span>
-            <span class="hill hill-front"></span>
-            <span class="tree t1"></span>
-            <span class="tree t2"></span>
-            <span class="tree t3"></span>
-            <span class="water"></span>
+            <span class="meta-like">♡</span>
           </div>
         </div>
         <div class="place-body">
@@ -164,17 +192,54 @@ function renderFeatured(places) {
             <p>${place.description || 'Описание появится здесь.'}</p>
           </div>
           <div class="place-statline">
-            <span>${rating}</span>
-            <span>${location}</span>
+            <span class="place-rating">★ ${rating}</span>
+            <span>${status}</span>
           </div>
           <div class="place-actions">
             <a class="place-link" href="place.html?slug=${place.slug}">Открыть карточку →</a>
-            <span class="place-status">${status}</span>
           </div>
         </div>
       </article>
     `;
   }).join('');
+}
+
+function renderEvents() {
+  const root = document.getElementById('eventsFeed');
+  if (!root) return;
+
+  root.innerHTML = EVENTS.map((item) => `
+    <article class="feed-item">
+      <div class="feed-date">
+        <span class="feed-day">${item.day}</span>
+        <span class="feed-month">${item.month}</span>
+      </div>
+      <div class="feed-copy">
+        <strong>${item.title}</strong>
+        <span>${item.meta}</span>
+      </div>
+      <div class="feed-thumb ${item.tone}"></div>
+    </article>
+  `).join('');
+}
+
+function renderNews() {
+  const root = document.getElementById('newsFeed');
+  if (!root) return;
+
+  root.innerHTML = NEWS.map((item) => `
+    <article class="feed-item">
+      <div class="feed-date">
+        <span class="feed-day">•</span>
+        <span class="feed-month">новость</span>
+      </div>
+      <div class="feed-copy">
+        <strong>${item.title}</strong>
+        <span>${item.meta}</span>
+      </div>
+      <div class="feed-thumb ${item.tone}"></div>
+    </article>
+  `).join('');
 }
 
 function initHomeMap(places) {
@@ -233,7 +298,7 @@ function initHomeMap(places) {
 
     map.setBounds(map.geoObjects.getBounds(), {
       checkZoomRange: true,
-      zoomMargin: [24, 24, 24, 24],
+      zoomMargin: [20, 20, 20, 20],
     });
 
     filters.forEach((button) => {
@@ -249,8 +314,11 @@ function initHomeMap(places) {
 function initHome() {
   if (typeof PLACES === 'undefined' || !Array.isArray(PLACES)) return;
   renderCounts(PLACES);
+  renderQuickLinks();
   renderCategories(PLACES);
   renderFeatured(PLACES);
+  renderEvents();
+  renderNews();
   initHomeMap(PLACES);
 }
 

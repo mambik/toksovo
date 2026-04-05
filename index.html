@@ -8,210 +8,189 @@
     name="description"
     content="Современный гид по Токсово: карта, места, спорт, отдых, маршруты и полезная информация для жителей и туристов."
   />
-  <link rel="stylesheet" href="style.css?v=20260404-ymaps-1" />
+  <link rel="stylesheet" href="style.css?v=20260404-home-2" />
 </head>
 <body>
-  <header class="site-header" id="top">
+  <header class="site-header site-header-overlay" id="top">
     <div class="container header-inner">
       <a href="index.html" class="brand" aria-label="Токсово — на главную">
-        <img src="logo.svg?v=20260404-ymaps-1" alt="Логотип Токсово" class="brand-logo" />
-        <div class="brand-copy">
+        <img src="logo.svg?v=20260404-home-2" alt="Логотип Токсово" class="brand-logo" />
+        <div class="brand-copy brand-copy-light">
           <strong>Токсово</strong>
-          <span>природа · маршруты · места</span>
+          <span>городское поселение</span>
         </div>
       </a>
 
-      <button class="nav-toggle" id="navToggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
+      <button class="nav-toggle nav-toggle-light" id="navToggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
 
-      <nav class="main-nav" id="mainNav">
-        <a href="#about">О Токсово</a>
-        <a href="#categories">Категории</a>
-        <a href="#featured">Рекомендации</a>
-        <a href="#map-preview">Карта</a>
-        <a href="#guide">Гид</a>
-        <a href="map.html" class="nav-cta">Открыть карту</a>
+      <nav class="main-nav main-nav-light" id="mainNav">
+        <a href="#about">О поселении</a>
+        <a href="#featured">Чем заняться</a>
+        <a href="#categories">Места</a>
+        <a href="#events">События</a>
+        <a href="#news">Новости</a>
+        <a href="#guide">Туристам</a>
+        <a href="map.html" class="nav-cta nav-cta-soft">Карта</a>
       </nav>
     </div>
   </header>
 
-  <main>
-    <section class="hero hero-home">
-      <div class="hero-backdrop"></div>
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <span class="eyebrow">Ленинградская область · рядом с Петербургом</span>
-          <h1>Новый сайт Токсово как цифровой гид по озёрам, холмам и жизни посёлка</h1>
-          <p class="lead">
-            Вместо перегруженного портала здесь чистая главная, быстрый вход в карту, подборки мест,
-            карточки активностей и понятная структура для жителей, туристов и семей.
+  <main class="page-shell">
+    <section class="hero hero-resort" id="map-preview">
+      <div class="hero-photo"></div>
+      <div class="hero-shade"></div>
+      <div class="container hero-resort-grid">
+        <div class="hero-copy hero-copy-wide">
+          <span class="hero-chip">Ленинградская область</span>
+          <h1>Токсово — место, где хочется <span class="hero-script">остаться</span></h1>
+          <p class="lead lead-resort">
+            Сосновые леса, чистые озёра и живописные холмы всего в 30 км от Санкт-Петербурга.
           </p>
 
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="map.html">Перейти к карте</a>
-            <a class="btn btn-secondary" href="#featured">Смотреть места</a>
-          </div>
-
-          <div class="hero-metrics">
-            <div class="metric-card">
-              <strong id="metricTotal">0</strong>
-              <span>точек в каталоге</span>
+          <div class="search-strip" aria-label="Быстрый поиск">
+            <div class="search-field">
+              <span class="search-label">Куда вы хотите поехать?</span>
+              <span class="search-value">Озёра, спорт, прогулки, семья</span>
             </div>
-            <div class="metric-card">
-              <strong id="metricCoords">0</strong>
-              <span>объектов на карте</span>
+            <div class="search-field">
+              <span class="search-label">Когда</span>
+              <span class="search-value">Любые даты</span>
             </div>
-            <div class="metric-card">
-              <strong id="metricCategories">4</strong>
-              <span>основные категории</span>
+            <div class="search-field">
+              <span class="search-label">Кто</span>
+              <span class="search-value">2 гостя</span>
             </div>
+            <a class="search-action" href="map.html" aria-label="Открыть карту">⌕</a>
           </div>
         </div>
 
-        <aside class="hero-panel glass-card">
-          <div class="hero-panel-head">
-            <span class="panel-kicker">Быстрый старт</span>
-            <h2>Главные сценарии</h2>
+        <aside class="map-card">
+          <div class="map-card-head">
+            <strong>Быстрый обзор района</strong>
+            <span id="mapObjectsCount">0 объектов на карте</span>
+          </div>
+          <div class="map-card-toolbar">
+            <button class="chip chip-filter active" type="button" data-map-filter="all">Все</button>
+            <button class="chip chip-filter" type="button" data-map-filter="attractions">Места</button>
+            <button class="chip chip-filter" type="button" data-map-filter="children">Детям</button>
+            <button class="chip chip-filter" type="button" data-map-filter="sport">Спорт</button>
+          </div>
+          <div class="map-surface map-surface-live" id="home-map" aria-label="Интерактивная карта Токсово"></div>
+          <a class="map-card-link" href="map.html">Открыть полную карту →</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="quick-panel-wrap">
+      <div class="container">
+        <div class="quick-panel" id="quickPanel"></div>
+      </div>
+    </section>
+
+    <section class="section dashboard" id="featured">
+      <div class="container dashboard-grid">
+        <div class="dashboard-main">
+          <div class="section-heading between compact-heading">
+            <div>
+              <h2>Популярные места</h2>
+            </div>
+            <a class="text-link" href="map.html">Все места →</a>
+          </div>
+          <div class="popular-grid" id="featuredGrid"></div>
+        </div>
+
+        <aside class="dashboard-side">
+          <div class="info-card-panel" id="events">
+            <div class="panel-heading between mini-between">
+              <h3>Ближайшие события</h3>
+              <a class="text-link" href="#guide">Вся афиша →</a>
+            </div>
+            <div class="event-feed" id="eventsFeed"></div>
           </div>
 
-          <div class="quick-links">
-            <a href="#categories" class="quick-link">
-              <span>🏞️</span>
-              <div>
-                <strong>Категории</strong>
-                <small>места, спорт, детям и локальные жемчужины</small>
-              </div>
-            </a>
-            <a href="#featured" class="quick-link">
-              <span>✨</span>
-              <div>
-                <strong>Подборки</strong>
-                <small>карточки, рейтинги и быстрые переходы</small>
-              </div>
-            </a>
-            <a href="#map-preview" class="quick-link">
-              <span>🗺️</span>
-              <div>
-                <strong>Карта</strong>
-                <small>главный путь в каталог в один клик</small>
-              </div>
-            </a>
-            <a href="#guide" class="quick-link">
-              <span>🚉</span>
-              <div>
-                <strong>Как пользоваться</strong>
-                <small>для туристов, жителей и администрации</small>
-              </div>
-            </a>
+          <div class="season-card">
+            <div>
+              <span class="eyebrow">Токсово круглый год</span>
+              <h3>Летом озёра и прогулки, зимой лыжи и уют</h3>
+              <p>Приезжайте в любое время: маршрут по району можно собрать за пару минут прямо с главной.</p>
+            </div>
+            <a class="btn btn-soft" href="map.html">Узнать больше</a>
           </div>
         </aside>
       </div>
     </section>
 
-    <section class="section" id="about">
-      <div class="container">
-        <div class="section-heading left">
-          <span class="eyebrow">Концепция редизайна</span>
-          <h2>Меньше шума, больше пользы и быстрых сценариев</h2>
+    <section class="section section-soft" id="about">
+      <div class="container lower-grid">
+        <div class="about-sheet">
+          <div class="section-heading left compact-heading">
+            <span class="eyebrow">О поселении</span>
+            <h2>Природный курорт рядом с городом</h2>
+          </div>
           <p>
-            Главная страница теперь работает как удобная обложка района: объясняет, зачем сюда ехать,
-            даёт мгновенный доступ к карте и показывает живой каталог мест из существующей базы данных.
-            Вместо длинных разрозненных блоков интерфейс собран вокруг маршрутов, категорий и карточек.
+            Токсово давно известно как место для отдыха, прогулок и спорта. Новый сайт собирает всё важное в одной
+            точке: карту, категории мест, карточки объектов, новости и быстрые сценарии для жителей и туристов.
           </p>
+
+          <div class="stats-row">
+            <div class="stat-pill">
+              <strong id="metricTotal">0</strong>
+              <span>точек в каталоге</span>
+            </div>
+            <div class="stat-pill">
+              <strong id="metricCoords">0</strong>
+              <span>на карте</span>
+            </div>
+            <div class="stat-pill">
+              <strong>30 км</strong>
+              <span>до Петербурга</span>
+            </div>
+            <div class="stat-pill">
+              <strong>4</strong>
+              <span>главные категории</span>
+            </div>
+          </div>
         </div>
 
-        <div class="value-grid">
-          <article class="value-card">
-            <span class="value-icon">01</span>
-            <h3>Главная как витрина района</h3>
-            <p>Крупный hero, понятный оффер и акцент на природе Токсово вместо перегруженной навигации.</p>
-          </article>
-          <article class="value-card">
-            <span class="value-icon">02</span>
-            <h3>Каталог как продукт</h3>
-            <p>Данные из <code>data.js</code> автоматически заполняют статистику, категории и подборки мест.</p>
-          </article>
-          <article class="value-card">
-            <span class="value-icon">03</span>
-            <h3>Карта как главный вход</h3>
-            <p>Переход в полноэкранную карту стал основным сценарием для изучения района и поиска мест рядом.</p>
-          </article>
+        <div class="news-panel" id="news">
+          <div class="panel-heading between mini-between">
+            <h3>Новости</h3>
+            <a class="text-link" href="#guide">Все новости →</a>
+          </div>
+          <div class="news-feed" id="newsFeed"></div>
         </div>
       </div>
     </section>
 
-    <section class="section section-alt" id="categories">
+    <section class="section" id="categories">
       <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Навигация по контенту</span>
-          <h2>Четыре понятные категории вместо перегруженного меню</h2>
-        </div>
-        <div class="category-grid" id="categoryGrid"></div>
-      </div>
-    </section>
-
-    <section class="section" id="featured">
-      <div class="container">
-        <div class="section-heading between">
+        <div class="section-heading between compact-heading">
           <div>
-            <span class="eyebrow">Подборка из каталога</span>
-            <h2>Рекомендуемые места</h2>
+            <span class="eyebrow">Категории</span>
+            <h2>Быстрые сценарии для жителей и туристов</h2>
           </div>
-          <a class="text-link" href="map.html">Смотреть все на карте →</a>
         </div>
-        <div class="featured-grid" id="featuredGrid"></div>
+        <div class="category-grid category-grid-wide" id="categoryGrid"></div>
       </div>
     </section>
 
-    <section class="section section-alt" id="map-preview">
-      <div class="container map-preview-grid">
-        <div class="section-heading left compact">
-          <span class="eyebrow">Главный сценарий</span>
-          <h2>Карта как отдельный цифровой продукт</h2>
-          <p>
-            На карте можно фильтровать категории, видеть только объекты с координатами и открывать карточки мест.
-            Это самый быстрый способ пройти от вдохновения к конкретной точке и построить свой маршрут по Токсово.
-          </p>
-          <ul class="feature-list">
-            <li>фильтры по категориям</li>
-            <li>только объекты с координатами</li>
-            <li>быстрый переход в карточку места</li>
-          </ul>
-          <a class="btn btn-primary" href="map.html">Открыть полноэкранную карту</a>
-        </div>
-        <div class="map-mock glass-card">
-          <div class="map-mock-toolbar">
-            <button class="chip chip-filter active" type="button" data-map-filter="all">Все</button>
-            <button class="chip chip-filter" type="button" data-map-filter="attractions">Достопримечательности</button>
-            <button class="chip chip-filter" type="button" data-map-filter="children">Детям</button>
-            <button class="chip chip-filter" type="button" data-map-filter="sport">Спорт</button>
-            <button class="chip chip-filter" type="button" data-map-filter="hidden">Скрытые места</button>
-          </div>
-          <div class="map-surface" id="home-map" aria-label="Интерактивная карта Токсово"></div>
-          <div class="map-mock-foot">
-            <strong id="mapObjectsCount">0 объектов на карте</strong>
-            <span>интерактивный слой на базе существующей интеграции</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="guide">
-      <div class="container guide-grid">
+    <section class="section section-soft" id="guide">
+      <div class="container guide-grid guide-grid-wide">
         <div class="guide-card accent-card">
           <span class="eyebrow">Для туристов</span>
-          <h2>Приехать на день и быстро собрать маршрут</h2>
-          <p>Озёра, лес, панорамы, зимний спорт и прогулки собраны в одном сценарии с быстрым стартом от карты.</p>
-          <a class="text-link text-link-light" href="map.html">Собрать маршрут →</a>
+          <h2>Приехать на день</h2>
+          <p>Озёра, панорамы, экотропы и семейные места можно собрать в удобный маршрут прямо из каталога.</p>
+          <a class="text-link text-link-light" href="map.html">Построить маршрут →</a>
         </div>
         <div class="guide-card">
           <span class="eyebrow">Для жителей</span>
-          <h2>Найти секции, активности и места рядом</h2>
-          <p>Категории для детей, спорта и повседневных точек помогают быстрее ориентироваться в районе.</p>
+          <h2>Быстро найти секции и активности</h2>
+          <p>Детские занятия, спорт и локальные рекомендации собраны в понятные разделы без перегруженного меню.</p>
         </div>
         <div class="guide-card">
           <span class="eyebrow">Для администрации</span>
-          <h2>Поддерживать один источник данных</h2>
-          <p>Карточки, подборки и карта синхронизируются из единого массива и масштабируются без ручной сборки страниц.</p>
+          <h2>Один каталог для всего сайта</h2>
+          <p>Главная, карта и карточки мест работают на одном массиве данных и легко обновляются без ручной сборки.</p>
         </div>
       </div>
     </section>
@@ -231,7 +210,7 @@
   </footer>
 
   <script src="https://api-maps.yandex.ru/2.1/?apikey=8e92e0f0-e860-4047-9d12-7a329837fd4e&lang=ru_RU" type="text/javascript"></script>
-  <script src="data.js?v=20260404-ymaps-1"></script>
-  <script src="main.js?v=20260404-ymaps-1"></script>
+  <script src="data.js?v=20260404-home-2"></script>
+  <script src="main.js?v=20260404-home-2"></script>
 </body>
 </html>
