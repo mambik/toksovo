@@ -187,6 +187,102 @@ button,input{font:inherit}
   color:var(--muted);
 }
 
+.editor-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+  padding:20px;
+}
+.editor-modal__inner{
+  width:min(420px,100%);
+  background:#fff;
+  border-radius:18px;
+  padding:24px;
+  display:grid;
+  gap:14px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.2);
+}
+.editor-modal__inner header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.editor-modal__inner label{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  font-weight:600;
+}
+.editor-modal__inner input,
+.editor-modal__inner textarea{
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:10px 12px;
+  font:inherit;
+}
+.editor-modal__inner textarea{
+  min-height:120px;
+  resize:vertical;
+}
+.editor-actions{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+}
+.editor-actions button{
+  flex:1;
+  padding:10px 14px;
+  border-radius:12px;
+  border:none;
+  font-weight:700;
+  cursor:pointer;
+}
+.editor-save{
+  background:var(--green);
+  color:#fff;
+}
+.editor-close{
+  background:rgba(0,0,0,0.08);
+}
+.place-actions{
+  display:flex;
+  gap:10px;
+  margin-top:12px;
+  flex-wrap:wrap;
+}
+.edit-btn{
+  border:none;
+  border-radius:12px;
+  background:#eef2f0;
+  padding:6px 10px;
+  font-weight:600;
+  cursor:pointer;
+}
+.inline-edit{
+  border:none;
+  background:none;
+  font-size:14px;
+  color:var(--green);
+  cursor:pointer;
+}
+.list-actions{
+  margin-top:12px;
+  display:flex;
+  justify-content:flex-end;
+}
+.edit-category-btn{
+  border:none;
+  background:rgba(37,74,55,0.08);
+  border-radius:12px;
+  padding:6px 12px;
+  font-weight:600;
+  cursor:pointer;
+}
+
 .travel-panel{position:relative;overflow:hidden;min-height:440px;background:linear-gradient(180deg,#173222 0%,#294d32 100%)}
 .travel-bg{position:absolute;inset:0;background:url('assets/summer.jpg') center/cover no-repeat;opacity:.18;mix-blend-mode:screen}
 .travel-content{position:relative;z-index:2;padding:28px;color:#fff}
@@ -266,6 +362,12 @@ button,input{font:inherit}
 .category-object-list li:first-child{
   border-top:none;
   padding-top:0;
+}
+.category-object-list--hidden{
+  display:none;
+}
+.category-object-list--hidden.is-expanded{
+  display:grid;
 }
 .category-object-link{
   color:#274c38;
