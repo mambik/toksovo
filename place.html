@@ -881,19 +881,11 @@
               </div>
               <h1>${place.name}</h1>
               ${subtitle ? `<div class="subtitle">${subtitle}</div>` : ''}
-            <div class="hero-actions">
+          <div class="hero-actions">
                 <a class="btn btn-primary" href="map.html">Открыть карту</a>
                 ${place.website ? `<a class="btn btn-secondary" href="${place.website}" target="_blank" rel="noopener">Перейти на сайт</a>` : ''}
               </div>
             </div>
-            <aside class="hero-panel">
-              <h2>Коротко</h2>
-              <div class="snapshot-list">
-                ${snapshotItem('Адрес', place.address)}
-                ${snapshotItem('Телефон', place.phone)}
-                ${snapshotItem('Сайт', place.website, true)}
-              </div>
-            </aside>
           </div>
         </section>
 

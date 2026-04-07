@@ -256,14 +256,6 @@ function renderPlace(place) {
             ${place.website ? `<a class="btn btn-secondary" href="${escapeAttr(place.website)}" target="_blank" rel="noopener">Перейти на сайт</a>` : ''}
           </div>
         </div>
-        <aside class="hero-panel">
-          <h2>Коротко</h2>
-          <div class="snapshot-list">
-            ${snapshotItem('Адрес', place.address || place.district)}
-            ${snapshotItem('Телефон', place.phone)}
-            ${snapshotItem('Сайт', place.website, true)}
-          </div>
-        </aside>
       </div>
     </section>
 
