@@ -4,6 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Карта — Токсово</title>
+  <meta name="description" content="Интерактивная карта Токсово с объектами, фильтрами по категориям и прямыми ссылками на карточки мест." />
+  <link rel="canonical" href="https://toksovo.info/map.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Токсово" />
+  <meta property="og:title" content="Карта — Токсово" />
+  <meta property="og:description" content="Интерактивная карта Токсово с объектами, фильтрами по категориям и прямыми ссылками на карточки мест." />
+  <meta property="og:url" content="https://toksovo.info/map.html" />
+  <meta property="og:image" content="https://toksovo.info/assets/hero_lake.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Карта — Токсово" />
+  <meta name="twitter:description" content="Интерактивная карта Токсово с объектами, фильтрами по категориям и прямыми ссылками на карточки мест." />
+  <meta name="twitter:image" content="https://toksovo.info/assets/hero_lake.jpg" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Карта Токсово",
+    "url": "https://toksovo.info/map.html",
+    "description": "Интерактивная карта Токсово с объектами, фильтрами по категориям и прямыми ссылками на карточки мест."
+  }
+  </script>
   <style>
     :root {
       --bg: #eef2ef;
@@ -312,7 +333,7 @@
         places.forEach((place) => {
           const mark = new ymaps.Placemark([place.lat, place.lng], {
             balloonContentHeader: place.name,
-            balloonContentBody: `${CAT_LABELS[place.categoryId] || place.category}<br><a href="place.html?slug=${place.slug}" style="color:#17362c;font-weight:700">Открыть карточку →</a>`,
+            balloonContentBody: `${CAT_LABELS[place.categoryId] || place.category}<br><a href="place.html?slug=${place.slug}" style="color:#17362c;font-weight:700">Подробнее</a>`,
             hintContent: place.name,
           }, {
             preset: CAT_PRESET[place.categoryId] || 'islands#grayCircleDotIcon',

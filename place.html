@@ -3,7 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Токсово — место</title>
+  <title>Токсово — карточка места</title>
+  <meta name="description" id="metaDescription" content="Карточка места в Токсово: описание, контакты, адрес и карта." />
+  <meta name="robots" id="robotsMeta" content="index,follow" />
+  <link rel="canonical" id="canonicalLink" href="https://toksovo.info/place.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Токсово" />
+  <meta property="og:title" id="ogTitle" content="Токсово — карточка места" />
+  <meta property="og:description" id="ogDescription" content="Карточка места в Токсово: описание, контакты, адрес и карта." />
+  <meta property="og:url" id="ogUrl" content="https://toksovo.info/place.html" />
+  <meta property="og:image" id="ogImage" content="https://toksovo.info/assets/hero_lake.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" id="twitterTitle" content="Токсово — карточка места" />
+  <meta name="twitter:description" id="twitterDescription" content="Карточка места в Токсово: описание, контакты, адрес и карта." />
+  <meta name="twitter:image" id="twitterImage" content="https://toksovo.info/assets/hero_lake.jpg" />
+  <script type="application/ld+json" id="placeJsonLd"></script>
   <style>
     :root {
       --bg: #f6f7f3;
@@ -308,6 +322,22 @@
   <script src="https://api-maps.yandex.ru/2.1/?apikey=8e92e0f0-e860-4047-9d12-7a329837fd4e&lang=ru_RU" type="text/javascript"></script>
   <script src="data.js?v=20260404-ymaps-1"></script>
   <script>
+    const SITE_ORIGIN = 'https://toksovo.info';
+
+    const PLACE_IMAGE_BY_SLUG = {
+      kavgolovskoe_ozero: 'assets/lake1.jpg',
+      ozero_khepoyarvi: 'assets/lake2.jpg',
+      severnyy_sklon: 'assets/ski.jpg',
+      zubrovnik: 'assets/hero_bg.jpg',
+    };
+
+    const PLACE_IMAGE_BY_CATEGORY = {
+      attractions: 'assets/hero_lake.jpg',
+      children: 'assets/summer.jpg',
+      sport: 'assets/ski.jpg',
+      hidden: 'assets/hero_bg.jpg',
+    };
+
     const CAT_LABELS = {
       attractions: 'Достопримечательности',
       children: 'Детям',
@@ -326,6 +356,41 @@
     const place = Array.isArray(PLACES) ? PLACES.find((item) => item.slug === slug) : null;
     const root = document.getElementById('app');
 
+    function absoluteUrl(path) {
+      return new URL(path, SITE_ORIGIN).href;
+    }
+
+    function cleanText(value) {
+      return String(value || '').replace(/\s+/g, ' ').trim();
+    }
+
+    function setHeadMeta({ title, description, url, image, robots, jsonLd }) {
+      if (title) document.title = title;
+      if (description) document.getElementById('metaDescription').setAttribute('content', description);
+      if (url) {
+        document.getElementById('canonicalLink').setAttribute('href', url);
+        document.getElementById('ogUrl').setAttribute('content', url);
+      }
+      if (image) {
+        document.getElementById('ogImage').setAttribute('content', image);
+        document.getElementById('twitterImage').setAttribute('content', image);
+      }
+      if (title) {
+        document.getElementById('ogTitle').setAttribute('content', title);
+        document.getElementById('twitterTitle').setAttribute('content', title);
+      }
+      if (description) {
+        document.getElementById('ogDescription').setAttribute('content', description);
+        document.getElementById('twitterDescription').setAttribute('content', description);
+      }
+      if (robots) {
+        document.getElementById('robotsMeta').setAttribute('content', robots);
+      }
+      if (jsonLd) {
+        document.getElementById('placeJsonLd').textContent = JSON.stringify(jsonLd, null, 2);
+      }
+    }
+
     function infoCard(label, value, isLink = false) {
       if (!value) return '';
       const content = isLink
@@ -341,6 +406,14 @@
     }
 
     if (!place) {
+      setHeadMeta({
+        title: 'Место не найдено — Токсово',
+        description: 'Запрошенная карточка места в Токсово не найдена.',
+        url: absoluteUrl('place.html'),
+        image: absoluteUrl('assets/hero_lake.jpg'),
+        robots: 'noindex,follow',
+      });
+
       root.innerHTML = `
         <div class="container" style="padding:48px 0 80px">
           <div class="card content-card">
@@ -353,8 +426,39 @@
       const category = CAT_LABELS[place.categoryId] || place.category || 'Каталог';
       const status = STATUS_LABELS[place.status] || place.status || 'Каталог';
       const subtitle = [place.subcategory, place.age ? `${place.age} лет` : '', place.district].filter(Boolean).join(' · ');
+      const image = absoluteUrl(PLACE_IMAGE_BY_SLUG[place.slug] || PLACE_IMAGE_BY_CATEGORY[place.categoryId] || 'assets/hero_lake.jpg');
+      const seoDescription = cleanText([
+        place.description,
+        place.address,
+        place.district && place.district !== place.address ? place.district : '',
+        category,
+      ].filter(Boolean).join('. ')).slice(0, 180);
+      const canonicalUrl = absoluteUrl(`place.html?slug=${encodeURIComponent(place.slug)}`);
 
-      document.title = `${place.name} — Токсово`;
+      setHeadMeta({
+        title: `${place.name} — Токсово`,
+        description: seoDescription || `Карточка места: ${place.name} в Токсово.`,
+        url: canonicalUrl,
+        image,
+        robots: 'index,follow',
+        jsonLd: {
+          "@context": "https://schema.org",
+          "@type": "Place",
+          "name": place.name,
+          "description": seoDescription || place.description || `Карточка места: ${place.name} в Токсово.`,
+          "url": canonicalUrl,
+          "image": image,
+          "address": place.address || place.district || undefined,
+          "geo": place.lat && place.lng ? {
+            "@type": "GeoCoordinates",
+            "latitude": place.lat,
+            "longitude": place.lng,
+          } : undefined,
+          "telephone": place.phone || undefined,
+          "sameAs": place.website || undefined,
+        },
+      });
+
       document.getElementById('breadcrumb').textContent = place.name;
 
       root.innerHTML = `
