@@ -97,6 +97,19 @@ function featuredPlaces(places) {
   }).slice(0, 8);
 }
 
+function trimCardText(text, min = 200, max = 300) {
+  const value = String(text || '').replace(/\s+/g, ' ').trim();
+  if (value.length <= max && value.length >= min) return value;
+  if (value.length <= max) return value;
+
+  const cut = value.slice(0, max);
+  const splitAt = Math.max(cut.lastIndexOf('.'), cut.lastIndexOf('!'), cut.lastIndexOf('?'), cut.lastIndexOf('—'));
+  if (splitAt >= min - 40) {
+    return cut.slice(0, splitAt + 1);
+  }
+  return `${cut.replace(/\s+\S*$/, '').trim()}…`;
+}
+
 function renderPlaces() {
   const root = document.getElementById('placesGrid');
   if (!root) return;
@@ -107,7 +120,7 @@ function renderPlaces() {
     const tagClass = TAG_CLASS_BY_CATEGORY[place.categoryId] || 'blue';
     const tagLabel = place.subcategory || LABEL_BY_CATEGORY[place.categoryId] || place.category || 'Место';
     const rating = place.rating ? `★ ${place.rating}` : 'Без рейтинга';
-    const extra = place.address || place.district || 'Токсово';
+    const summary = trimCardText(place.description || 'Описание появится позже.');
 
     return `
       <article class="place-card">
@@ -118,8 +131,8 @@ function renderPlaces() {
           </div>
           <div class="place-body">
             <h3>${place.name}</h3>
-            <p>${place.description || 'Описание появится позже.'}</p>
-            <div class="rating">${rating} <span>${extra}</span></div>
+            <p>${summary}</p>
+            <div class="rating">${rating}</div>
           </div>
         </a>
         <button class="fav" type="button" aria-label="Добавить в избранное">♡</button>
