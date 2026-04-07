@@ -24,6 +24,12 @@ function escapeAttr(value) {
   return escapeHtml(value).replace(/`/g, '&#96;');
 }
 
+function absoluteUrl(value) {
+  if (!value) return '';
+  if (/^https?:\/\//i.test(value)) return value;
+  return `${SITE_ORIGIN}/${String(value).replace(/^\/+/, '')}`;
+}
+
 function cleanMetaText(parts) {
   return parts
     .filter(Boolean)
@@ -143,7 +149,7 @@ function buildMeta(place, images) {
     category,
   ]).slice(0, 180);
   const canonical = `${SITE_ORIGIN}/place-${place.slug}.html`;
-  const image = `${SITE_ORIGIN}/${images[0]}`;
+  const image = absoluteUrl(images[0]);
   const title = `${place.name} — Токсово`;
 
   return { title, description, canonical, image };
