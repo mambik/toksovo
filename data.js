@@ -412,7 +412,7 @@ const PLACES = [
     "category": "Спорт",
     "categoryId": "sport",
     "subcategory": "Спорткомплекс",
-    "description": "Крупный спортивный центр.",
+    "description": "УТЦ Кавголово — крупный круглогодичный спортивный комплекс в Токсово. На территории есть всесезонный лыжный тоннель, лыжероллерная и лыжная трассы, биатлонное стрельбище, тренажёрный зал, площадки для игровых видов спорта, СПА и гостиничный комплекс. Рядом находятся Курголовское озеро и сосновые леса, поэтому центр подходит и для тренировок, и для отдыха.",
     "address": "ул. Лесгафта, 31, Токсово",
     "district": "Токсово",
     "phone": "+7 (812) 383-70-60",
@@ -421,7 +421,14 @@ const PLACES = [
     "age": "16+",
     "format": "центр / тренировки",
     "rating": "4.8",
-    "source": "ранее собранные открытые данные",
+    "source": "официальный сайт УТЦ Кавголово",
+    "photos": [
+      "https://www.kavgolovo.center/style/images/logo-2.png",
+      "https://www.kavgolovo.center/style/images/tonnel.webp",
+      "https://www.kavgolovo.center/style/products/20/small/skym.jpg",
+      "https://www.kavgolovo.center/style/products/19/small/rollerm.jpg",
+      "https://www.kavgolovo.center/style/products/44/small/shooting2m.jpg"
+    ],
     "status": "verified_public",
     "lat": 60.176514,
     "lng": 30.5348935
