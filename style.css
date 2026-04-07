@@ -158,20 +158,48 @@ button,input,textarea{font:inherit}
 
 .places-layout{display:grid;grid-template-columns:1.6fr .55fr;gap:24px;margin-top:24px;align-items:start}
 .cards-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.place-card{border:1px solid var(--line);border-radius:22px;overflow:hidden;background:#fff}
+.place-card{
+  position:relative;
+  border:1px solid var(--line);
+  border-radius:22px;
+  overflow:hidden;
+  background:#fff;
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.place-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 20px 42px rgba(22,32,24,.12);
+  border-color:#d9dfd4;
+}
+.place-card-link{
+  display:block;
+  color:inherit;
+  text-decoration:none;
+  height:100%;
+}
 .place-image-wrap{position:relative;height:186px;background:#d8e2d6}
 .place-image-wrap img{width:100%;height:100%;object-fit:cover;display:block}
 .tag{position:absolute;left:12px;top:12px;padding:7px 10px;border-radius:999px;color:#fff;font-size:12px;font-weight:700}
 .tag.blue{background:#4f8ed1}.tag.green{background:#618d48}.tag.dark{background:#60717c}
-.fav{position:absolute;right:12px;top:12px;width:34px;height:34px;border:none;border-radius:50%;background:rgba(255,255,255,.92);font-size:20px;cursor:pointer}
+.fav{
+  position:absolute;
+  right:12px;
+  top:12px;
+  z-index:2;
+  width:34px;
+  height:34px;
+  border:none;
+  border-radius:50%;
+  background:rgba(255,255,255,.92);
+  font-size:20px;
+  cursor:pointer;
+}
 .fav.active{color:#c84b63}
 .place-body{padding:16px 16px 18px}
 .place-body h3{margin:0 0 8px;font-size:25px;letter-spacing:-.04em;line-height:1.02}
 .place-body p{margin:0 0 12px;color:var(--muted);font-size:15px;min-height:42px}
 .rating{font-weight:700}
 .rating span{color:var(--muted);font-weight:500}
-.place-detail-link{display:inline-flex;margin-top:12px;color:#517854;font-weight:700}
-.place-actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
 .empty-places{padding:22px;border:1px dashed var(--line);border-radius:22px;color:var(--muted)}
 
 .travel-panel{position:relative;overflow:hidden;min-height:440px;background:linear-gradient(180deg,#173222 0%,#294d32 100%)}

@@ -106,19 +106,18 @@ function renderPlaces() {
 
     return `
       <article class="place-card">
-        <div class="place-image-wrap">
-          <img src="${image}" alt="${place.name}" />
-          <span class="tag ${tagClass}">${tagLabel}</span>
-          <button class="fav" type="button" aria-label="Добавить в избранное">♡</button>
-        </div>
-        <div class="place-body">
-          <h3>${place.name}</h3>
-          <p>${place.description || 'Описание появится позже.'}</p>
-          <div class="rating">${rating} <span>${extra}</span></div>
-          <div class="place-actions">
-            <a class="place-detail-link" href="place.html?slug=${place.slug}">Открыть карточку →</a>
+        <a class="place-card-link" href="place.html?slug=${place.slug}" aria-label="Открыть ${place.name}">
+          <div class="place-image-wrap">
+            <img src="${image}" alt="${place.name}" />
+            <span class="tag ${tagClass}">${tagLabel}</span>
           </div>
-        </div>
+          <div class="place-body">
+            <h3>${place.name}</h3>
+            <p>${place.description || 'Описание появится позже.'}</p>
+            <div class="rating">${rating} <span>${extra}</span></div>
+          </div>
+        </a>
+        <button class="fav" type="button" aria-label="Добавить в избранное">♡</button>
       </article>
     `;
   }).join('');
@@ -259,7 +258,7 @@ function initMaps() {
 
       const placemarks = points.map(({ coords, place }) => new ymaps.Placemark(coords, {
         hintContent: place.name,
-        balloonContent: `<strong>${place.name}</strong><br>${place.address || place.district || 'Токсово'}<br><a href="place.html?slug=${place.slug}">Открыть карточку</a>`,
+        balloonContent: `<strong>${place.name}</strong><br>${place.address || place.district || 'Токсово'}<br><a href="place.html?slug=${place.slug}">Подробнее</a>`,
       }, {
         preset: 'islands#greenDotIcon',
       }));
