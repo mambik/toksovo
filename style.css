@@ -34,7 +34,15 @@ button,input,textarea{font:inherit}
   gap:24px;padding:18px 0;
 }
 .brand{display:flex;align-items:center;gap:12px;color:#fff;min-width:220px}
-.brand img{width:42px;height:42px;border-radius:50%;display:block}
+.brand img{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  display:block;
+  object-fit:cover;
+  box-shadow:0 10px 24px rgba(0,0,0,.22);
+  border:1px solid rgba(255,255,255,.14);
+}
 .brand strong{display:block;font-size:18px;font-weight:800}
 .brand small{display:block;font-size:12px;opacity:.82}
 .desktop-nav{display:flex;gap:28px;justify-content:center;flex:1}

@@ -1,12 +1,63 @@
-<svg viewBox="0 0 64 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Озеро — круг внизу -->
-  <circle cx="32" cy="60" r="10" fill="#2d5a3d" opacity="0.22"/>
-  <circle cx="32" cy="60" r="10" fill="none" stroke="#2d5a3d" stroke-width="1.5"/>
+<svg width="768" height="768" viewBox="0 0 768 768" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Логотип Токсово">
+  <defs>
+    <clipPath id="circleClip">
+      <circle cx="384" cy="384" r="344" />
+    </clipPath>
+    <linearGradient id="sky" x1="384" y1="70" x2="384" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A9C8E2" />
+      <stop offset="1" stop-color="#7FA7C4" />
+    </linearGradient>
+    <linearGradient id="water" x1="384" y1="360" x2="384" y2="650" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2E72B3" />
+      <stop offset="1" stop-color="#1C5D97" />
+    </linearGradient>
+    <linearGradient id="forestDark" x1="384" y1="240" x2="384" y2="600" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#274836" />
+      <stop offset="1" stop-color="#0C2417" />
+    </linearGradient>
+    <linearGradient id="forestMid" x1="384" y1="240" x2="384" y2="560" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#416A50" />
+      <stop offset="1" stop-color="#234131" />
+    </linearGradient>
+    <linearGradient id="ring" x1="384" y1="40" x2="384" y2="728" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#123B2A" />
+      <stop offset="1" stop-color="#0A2417" />
+    </linearGradient>
+  </defs>
 
-  <!-- Холм — большой треугольник -->
-  <polygon points="32,8 60,54 4,54" fill="#2d5a3d"/>
+  <g clip-path="url(#circleClip)">
+    <rect width="768" height="768" fill="transparent" />
+    <circle cx="384" cy="384" r="344" fill="url(#sky)" />
 
-  <!-- Сосна — три ярусных треугольника на вершине -->
-  <polygon points="32,0 36,9 28,9" fill="#1a3a2a"/>
-  <polygon points="32,5 37,13 27,13" fill="#1a3a2a" opacity="0.6"/>
+    <path d="M0 370C108 312 185 308 270 338C354 368 448 372 541 342C628 314 693 307 768 337V768H0V370Z" fill="url(#forestMid)" opacity="0.95" />
+    <path d="M0 410C92 356 176 342 260 364C349 387 439 391 529 360C627 326 701 324 768 355V768H0V410Z" fill="url(#forestDark)" opacity="0.92" />
+
+    <path d="M160 468C232 438 286 434 352 452C419 470 478 471 538 451C598 430 646 425 768 455V768H160V468Z" fill="url(#water)" />
+    <path d="M0 520C86 490 154 492 214 514C280 538 346 541 414 519C479 499 549 492 768 528V768H0V520Z" fill="#1D5C95" opacity="0.96" />
+    <path d="M0 580C128 548 224 556 296 584C364 610 438 614 520 590C610 563 687 553 768 576V768H0V580Z" fill="#174A79" opacity="0.72" />
+
+    <path d="M384 230C402 230 417 239 431 239C444 239 451 235 460 232C472 227 482 221 496 221C514 221 529 230 529 241C529 242 528 243 528 244H393C393 244 383 244 383 234C383 231 383 230 384 230Z" fill="#F5F0E7" />
+    <path d="M290 275C303 275 311 269 321 269C330 269 337 272 346 275C352 277 356 282 359 286H274C277 281 281 277 290 275Z" fill="#F5F0E7" />
+
+    <circle cx="238" cy="182" r="28" fill="#F7F0E6" />
+
+    <path d="M122 184L140 226H104L122 184Z" fill="#173322" />
+    <path d="M122 207L151 262H93L122 207Z" fill="#173322" />
+    <path d="M122 243L163 310H81L122 243Z" fill="#173322" />
+    <rect x="117" y="304" width="10" height="82" rx="5" fill="#102417" />
+
+    <path d="M625 548L643 590H607L625 548Z" fill="#304D38" />
+    <path d="M625 572L657 630H593L625 572Z" fill="#304D38" />
+    <path d="M625 606L669 679H581L625 606Z" fill="#304D38" />
+    <rect x="620" y="665" width="10" height="54" rx="5" fill="#102417" />
+
+    <path d="M92 648C184 596 286 595 384 628C493 664 597 662 676 612L768 768H0L92 648Z" fill="#193B28" opacity="0.82" />
+    <path d="M0 688C114 644 216 642 315 676C413 711 513 709 628 677C684 661 724 646 768 632V768H0V688Z" fill="#0E2618" opacity="0.88" />
+
+    <path d="M490 520L512 560H468L490 520Z" fill="#20412E" />
+    <path d="M490 548L523 608H457L490 548Z" fill="#20412E" />
+    <rect x="485" y="606" width="10" height="68" rx="5" fill="#0E2618" />
+  </g>
+
+  <circle cx="384" cy="384" r="344" stroke="url(#ring)" stroke-width="18" />
 </svg>
