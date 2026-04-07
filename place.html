@@ -54,50 +54,130 @@
       color: inherit;
     }
 
-    .container {
-      width: min(1100px, calc(100% - 24px));
+    .shell {
+      width: min(1240px, calc(100% - 32px));
       margin: 0 auto;
     }
 
-    .topbar {
+    .site-header {
       position: sticky;
       top: 0;
-      z-index: 50;
-      display: flex;
-      align-items: center;
-      min-height: 72px;
-      backdrop-filter: blur(16px);
-      background: rgba(246, 247, 243, 0.8);
-      border-bottom: 1px solid var(--line);
+      z-index: 30;
+      backdrop-filter: blur(18px);
+      background: rgba(28, 35, 27, 0.28);
     }
 
-    .topbar-inner {
-      width: min(1100px, calc(100% - 24px));
-      margin: 0 auto;
+    .header-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
+      gap: 24px;
+      padding: 18px 0;
     }
 
-    .backlink {
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+      min-width: 220px;
       text-decoration: none;
-      color: var(--muted);
+    }
+
+    .brand img {
+      width: 60px;
+      height: 60px;
+      display: block;
+      object-fit: contain;
+      background: transparent;
+      box-shadow: none;
+      border: none;
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .brand small {
+      display: block;
+      font-size: 12px;
+      opacity: 0.82;
+    }
+
+    .desktop-nav {
+      display: flex;
+      gap: 28px;
+      justify-content: center;
+      flex: 1;
+    }
+
+    .desktop-nav a {
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .icon-btn,
+    .map-btn {
+      min-height: 46px;
+      border: none;
+      border-radius: 999px;
+      background: #fff;
+      color: #1f2a21;
+      padding: 0 16px;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.75);
-      border: 1px solid var(--line);
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      text-decoration: none;
     }
 
-    .crumb {
-      color: var(--muted);
-      font-size: 0.95rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .icon-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .map-btn {
+      font-weight: 700;
+      background: #f6f5ef;
+    }
+
+    .burger {
+      display: none;
+    }
+
+    .mobile-nav {
+      display: none;
+      padding: 0 16px 16px;
+      gap: 12px;
+      flex-direction: column;
+    }
+
+    .mobile-nav a {
+      color: #fff;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      text-decoration: none;
+    }
+
+    .mobile-nav.open {
+      display: flex;
+    }
+
+    .container {
+      width: min(1240px, calc(100% - 32px));
+      margin: 0 auto;
     }
 
     .hero {
@@ -219,13 +299,6 @@
       line-height: 1.7;
     }
 
-    .layout {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 22px;
-      padding: 28px 0 60px;
-    }
-
     .card {
       background: var(--surface);
       border: 1px solid var(--line);
@@ -241,6 +314,39 @@
       color: var(--muted);
       line-height: 1.85;
       margin: 0;
+    }
+
+    .content-card h2 {
+      margin: 0 0 14px;
+      font-size: 1.4rem;
+    }
+
+    .place-main {
+      padding: 28px 0 60px;
+      display: grid;
+      gap: 22px;
+    }
+
+    .content-wide {
+      padding: 28px;
+    }
+
+    .content-wide-top {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .content-wide .hero-panel {
+      background: rgba(23, 54, 44, 0.04);
+      border-color: rgba(23, 50, 41, 0.08);
+      color: var(--text);
+      backdrop-filter: none;
+    }
+
+    .content-wide .hero-panel p {
+      color: var(--muted);
     }
 
     .info-grid {
@@ -275,8 +381,12 @@
       text-decoration: none;
     }
 
+    .place-map-card {
+      padding: 28px;
+    }
+
     #place-map {
-      height: 340px;
+      height: 420px;
       border-radius: var(--radius-xl);
       overflow: hidden;
     }
@@ -292,8 +402,16 @@
 
     @media (max-width: 900px) {
       .hero-inner,
-      .layout {
+      .content-wide-top {
         grid-template-columns: 1fr;
+      }
+
+      .desktop-nav {
+        display: none;
+      }
+
+      .burger {
+        display: inline-flex;
       }
     }
 
@@ -306,19 +424,64 @@
         padding: 22px;
       }
 
-      .topbar-inner {
-        flex-wrap: wrap;
+      .header-row {
+        padding: 14px 0;
+      }
+
+      .brand strong {
+        font-size: 16px;
+      }
+
+      .header-actions .map-btn {
+        display: none;
+      }
+
+      .place-map-card {
+        padding: 22px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="topbar">
-    <div class="topbar-inner">
-      <a href="index.html" class="backlink">← На главную</a>
-      <div class="crumb" id="breadcrumb">Карточка места</div>
+  <header class="site-header" id="top">
+    <div class="shell header-row">
+      <a class="brand" href="index.html">
+        <img src="logo.png" alt="Токсово" />
+        <span>
+          <strong>Токсово</strong>
+          <small>городское поселение</small>
+        </span>
+      </a>
+
+      <nav class="desktop-nav">
+        <a href="index.html#about">О поселении</a>
+        <a href="index.html#places">Популярное</a>
+        <a href="index.html#mapSection">Карта</a>
+        <a href="index.html#catalog">Каталог</a>
+        <a href="index.html#events">События</a>
+        <a href="index.html#news">Новости</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" type="button" aria-label="Поиск">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"/></svg>
+        </button>
+        <a class="map-btn" href="index.html#mapSection">Карта</a>
+        <button class="icon-btn burger" id="burger" aria-label="Меню">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+      </div>
     </div>
-  </div>
+
+    <nav class="mobile-nav" id="mobileNav">
+      <a href="index.html#about">О поселении</a>
+      <a href="index.html#places">Популярное</a>
+      <a href="index.html#mapSection">Карта</a>
+      <a href="index.html#catalog">Каталог</a>
+      <a href="index.html#events">События</a>
+      <a href="index.html#news">Новости</a>
+    </nav>
+  </header>
 
   <div id="app"></div>
 
@@ -462,8 +625,6 @@
         },
       });
 
-      document.getElementById('breadcrumb').textContent = place.name;
-
       root.innerHTML = `
         <section class="hero">
           <div class="container hero-inner">
@@ -486,30 +647,30 @@
           </div>
         </section>
 
-        <div class="container layout">
-          <section class="stack">
-            <div class="card content-card">
-              <h2 style="margin:0 0 14px;font-size:1.4rem">Описание</h2>
-              <p>${place.description || 'Подробное описание пока отсутствует.'}</p>
-            </div>
-            ${place.lat && place.lng ? `<div class="card content-card"><h2 style="margin:0 0 14px;font-size:1.4rem">Место на карте</h2><div id="place-map"></div></div>` : ''}
-          </section>
-          <aside class="stack">
-            <div class="card content-card">
-              <h2 style="margin:0 0 16px;font-size:1.4rem">Детали</h2>
-              <div class="info-grid">
-                ${infoCard('Адрес', place.address)}
-                ${infoCard('Район', place.district)}
-                ${infoCard('Цена', place.price)}
-                ${infoCard('Возраст', place.age)}
-                ${infoCard('Формат', place.format)}
-                ${infoCard('Телефон', place.phone)}
-                ${infoCard('Рейтинг', place.rating)}
-                ${infoCard('Сайт', place.website, true)}
-                ${infoCard('Источник', place.source)}
+        <div class="container place-main">
+          <section class="card content-card content-wide">
+            <div class="content-wide-top">
+              <div>
+                <h2>Описание</h2>
+                <p>${place.description || 'Подробное описание пока отсутствует.'}</p>
               </div>
+              <aside class="hero-panel">
+                <h2>Детали</h2>
+                <div class="info-grid">
+                  ${infoCard('Адрес', place.address)}
+                  ${infoCard('Район', place.district)}
+                  ${infoCard('Цена', place.price)}
+                  ${infoCard('Возраст', place.age)}
+                  ${infoCard('Формат', place.format)}
+                  ${infoCard('Телефон', place.phone)}
+                  ${infoCard('Рейтинг', place.rating)}
+                  ${infoCard('Сайт', place.website, true)}
+                  ${infoCard('Источник', place.source)}
+                </div>
+              </aside>
             </div>
-          </aside>
+          </section>
+          ${place.lat && place.lng ? `<section class="card place-map-card"><h2>Место на карте</h2><div id="place-map"></div></section>` : ''}
         </div>
       `;
 
@@ -530,6 +691,14 @@
         });
       }
     }
+
+    if (burger && mobileNav) {
+      burger.addEventListener('click', () => mobileNav.classList.toggle('open'));
+    }
+
+    document.querySelectorAll('.mobile-nav a').forEach((link) => {
+      link.addEventListener('click', () => mobileNav.classList.remove('open'));
+    });
   </script>
 </body>
 </html>
