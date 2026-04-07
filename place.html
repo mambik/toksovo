@@ -392,10 +392,9 @@
     }
 
     .place-details {
-      padding: 22px;
-      background: #fff;
-      border: 1px solid rgba(23, 50, 41, 0.08);
-      border-radius: var(--radius-xl);
+      padding: 0;
+      background: transparent;
+      border: none;
     }
 
     .info-grid {
@@ -447,7 +446,7 @@
       position: relative;
       border-radius: var(--radius-xl);
       overflow: hidden;
-      min-height: 420px;
+      min-height: 340px;
       background: #d8e2d6;
     }
 
@@ -468,7 +467,7 @@
       position: relative;
       border-radius: 20px;
       overflow: hidden;
-      min-height: 124px;
+      min-height: 100px;
       background: #e7ece3;
     }
 
@@ -487,7 +486,7 @@
     }
 
     .gallery-more .gallery-thumb {
-      min-height: 112px;
+      min-height: 92px;
     }
 
     .gallery-caption {
@@ -549,12 +548,13 @@
     }
 
     .place-map-card {
-      padding: 28px;
+      padding: 22px;
     }
 
     #place-map {
       height: 100%;
-      min-height: 520px;
+      min-height: 100%;
+      aspect-ratio: 3 / 4;
       border-radius: var(--radius-xl);
       overflow: hidden;
     }
@@ -605,10 +605,6 @@
 
       .header-actions .map-btn {
         display: none;
-      }
-
-      .place-map-card {
-        padding: 22px;
       }
 
       #place-map {
@@ -928,7 +924,6 @@
                 ${infoCard('Возраст', place.age)}
                 ${infoCard('Формат', place.format)}
                 ${infoCard('Рейтинг', place.rating)}
-                ${infoCard('Источник', place.source)}
               </div>
             </div>
           </section>
