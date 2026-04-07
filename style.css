@@ -157,6 +157,8 @@ button,input,textarea{font:inherit}
 .event-item small{color:var(--muted);font-size:14px}
 
 .places-layout{display:grid;grid-template-columns:1.6fr .55fr;gap:24px;margin-top:24px;align-items:start}
+.events-section{margin:24px auto 0}
+.events-panel{padding:28px}
 .cards-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .place-card{
   position:relative;
