@@ -395,11 +395,11 @@ const PLACES = [
     "rating": "5.0",
     "source": "официальный сайт Skillon, УТЦ Кавголово и 2ГИС",
     "photos": [
-      "https://www.kavgolovo.center/style/products/34/skilion.webp",
-      "assets/ski.jpg",
-      "assets/hero_bg.jpg",
-      "assets/lake1.jpg",
-      "assets/hero_lake.jpg"
+      "https://static.tildacdn.com/tild3130-3139-4836-b265-383132396666/IMG_8346.webp",
+      "https://static.tildacdn.com/tild3063-6438-4163-b061-383130343464/IMG_8349.webp",
+      "https://static.tildacdn.com/tild3034-3339-4935-a431-643763653633/IMG_8355.webp",
+      "https://static.tildacdn.com/tild3130-6465-4636-a534-313335663261/IMG_8361.webp",
+      "https://static.tildacdn.com/tild3061-3263-4139-b130-633132666637/IMG_8378_1.webp"
     ],
     "status": "verified_public",
     "lat": 60.177631,
