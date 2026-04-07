@@ -7,13 +7,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20260405-airbnb-real-1" />
+  <link rel="stylesheet" href="style.css?v=20260407-yandex-admin-1" />
+  <script defer src="https://api-maps.yandex.ru/2.1/?apikey=8e92e0f0-e860-4047-9d12-7a329837fd4e&lang=ru_RU"></script>
+  <script defer src="data.js"></script>
+  <script defer src="main.js?v=20260407-yandex-admin-1"></script>
 </head>
 <body>
   <header class="site-header" id="top">
     <div class="shell header-row">
       <a class="brand" href="index.html">
-        <img src="logo.svg?v=20260405-airbnb-real-1" alt="Токсово" />
+        <img src="logo.svg" alt="Токсово" />
         <span>
           <strong>Токсово</strong>
           <small>городское поселение</small>
@@ -22,18 +25,19 @@
 
       <nav class="desktop-nav">
         <a href="#about">О поселении</a>
-        <a href="#catalog">Чем заняться</a>
-        <a href="#catalog">Места</a>
+        <a href="#places">Популярное</a>
+        <a href="#mapSection">Карта</a>
+        <a href="#catalog">Каталог</a>
         <a href="#events">События</a>
         <a href="#news">Новости</a>
-        <a href="#travel">Туристам</a>
+        <a href="#admin">Админка</a>
       </nav>
 
       <div class="header-actions">
-        <button class="icon-btn" aria-label="Поиск">
+        <button class="icon-btn" type="button" aria-label="Поиск">
           <svg viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"/></svg>
         </button>
-        <a class="map-btn" href="map.html">Карта</a>
+        <a class="map-btn" href="#mapSection">Карта</a>
         <button class="icon-btn burger" id="burger" aria-label="Меню">
           <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
         </button>
@@ -42,11 +46,12 @@
 
     <nav class="mobile-nav" id="mobileNav">
       <a href="#about">О поселении</a>
-      <a href="#catalog">Чем заняться</a>
+      <a href="#places">Популярное</a>
+      <a href="#mapSection">Карта</a>
+      <a href="#catalog">Каталог</a>
       <a href="#events">События</a>
       <a href="#news">Новости</a>
-      <a href="#travel">Туристам</a>
-      <a href="map.html">Карта</a>
+      <a href="#admin">Админка</a>
     </nav>
   </header>
 
@@ -57,8 +62,8 @@
       <div class="shell hero-grid">
         <div class="hero-copy">
           <div class="eyebrow">Ленинградская область</div>
-          <h1>Токсово — место,<br>где хочется <span>остаться</span></h1>
-          <p>Сосновые леса, чистые озёра и живописные холмы всего в 30 км от Санкт-Петербурга.</p>
+          <h1 id="heroTitle">Токсово — место,<br>где хочется <span id="heroHighlight">остаться</span></h1>
+          <p id="heroLead">Сосновые леса, чистые озёра и живописные холмы всего в 30 км от Санкт-Петербурга.</p>
 
           <form class="search-bar search-bar-simple">
             <label>
@@ -71,11 +76,9 @@
           </form>
         </div>
 
-        <aside class="map-card" id="map-card">
-          <div class="map-visual">
-            <iframe src="map.html" title="Превью карты Токсово" loading="lazy"></iframe>
-          </div>
-          <a class="map-link" href="map.html">Открыть полную карту →</a>
+        <aside class="map-card">
+          <div class="map-visual map-visual--live" id="heroMapPreview"></div>
+          <a class="map-link" href="#mapSection">Открыть полную карту →</a>
         </aside>
       </div>
     </section>
@@ -88,8 +91,8 @@
       <a href="#cat-hidden"><span>◌</span><strong>Скрытые места</strong><small>Малоизвестное</small></a>
       <a href="#events"><span>▦</span><strong>События</strong><small>Афиша</small></a>
       <a href="#news"><span>☰</span><strong>Новости</strong><small>Главное</small></a>
-      <a href="#travel"><span>⌁</span><strong>Туристам</strong><small>Как добраться</small></a>
-      <a href="#footer"><span>◔</span><strong>Контакты</strong><small>Администрация</small></a>
+      <a href="#mapSection"><span>⌘</span><strong>Карта</strong><small>Яндекс-карта</small></a>
+      <a href="#admin"><span>◔</span><strong>Админка</strong><small>Редактирование</small></a>
     </section>
 
     <section class="shell content-grid top-section">
@@ -105,7 +108,7 @@
           <div><strong>100+</strong><span>озёр рядом</span></div>
         </div>
 
-        <a class="text-link" href="map.html">Подробнее о Токсово →</a>
+        <a class="text-link" href="#mapSection">Подробнее о Токсово →</a>
       </article>
 
       <article class="panel video-panel">
@@ -116,21 +119,9 @@
       <aside class="panel events-panel" id="events">
         <div class="panel-head">
           <h3>Ближайшие события</h3>
-          <a href="#travel">Вся афиша →</a>
+          <a href="#news">К новостям →</a>
         </div>
-
-        <div class="event-item">
-          <div class="event-date"><strong>25</strong><span>мая</span></div>
-          <div><b>Открытие летнего сезона в парке</b><small>Парк Токсово, 12:00</small></div>
-        </div>
-        <div class="event-item">
-          <div class="event-date"><strong>1</strong><span>июн</span></div>
-          <div><b>Турнир по футболу</b><small>Стадион Токсово, 10:00</small></div>
-        </div>
-        <div class="event-item">
-          <div class="event-date"><strong>12</strong><span>июн</span></div>
-          <div><b>День России</b><small>Площадь, 14:00</small></div>
-        </div>
+        <div id="eventsFeed"></div>
       </aside>
     </section>
 
@@ -141,7 +132,7 @@
             <div class="section-kicker">Популярные места</div>
             <h2>Открывайте лучшее</h2>
           </div>
-          <a href="map.html">Все места →</a>
+          <a href="#catalog">Все места →</a>
         </div>
 
         <div class="cards-grid" id="placesGrid"></div>
@@ -161,6 +152,19 @@
       </aside>
     </section>
 
+    <section class="shell map-section" id="mapSection">
+      <div class="panel map-panel">
+        <div class="panel-head big">
+          <div>
+            <div class="section-kicker">Яндекс-карта</div>
+            <h2>Все точки поселения на карте</h2>
+          </div>
+          <span class="map-panel-note">Живые маркеры и кластеризация объектов</span>
+        </div>
+        <div id="fullMap" class="full-map"></div>
+      </div>
+    </section>
+
     <section class="shell lower-grid">
       <article class="panel mini-panel">
         <h3>О поселении</h3>
@@ -169,11 +173,9 @@
       <article class="panel mini-panel" id="news">
         <div class="panel-head">
           <h3>Новости</h3>
-          <a href="#travel">Все новости →</a>
+          <a href="#catalog">Каталог →</a>
         </div>
-        <div class="news-row"><img src="assets/summer.jpg" alt="Лютеранская церковь Токсово"><span>Летний маршрут к лютеранской церкви снова популярен у туристов</span></div>
-        <div class="news-row"><img src="assets/lake2.jpg" alt="Озеро Хепоярви"><span>Турнир среди дворовых команд пройдёт в июне</span></div>
-        <div class="news-row"><img src="assets/ski.jpg" alt="Трамплины в Токсово"><span>Спортивная инфраструктура Кавголово остаётся одной из визитных карточек района</span></div>
+        <div id="newsFeed"></div>
       </article>
     </section>
 
@@ -184,9 +186,56 @@
             <div class="section-kicker">Все категории объектов</div>
             <h2>Каталог мест с прямыми ссылками</h2>
           </div>
-          <a href="map.html">Открыть карту →</a>
+          <a href="#mapSection">Открыть карту →</a>
         </div>
         <div class="category-columns" id="categoryColumns"></div>
+      </div>
+    </section>
+
+    <section class="shell admin-section" id="admin">
+      <div class="panel admin-panel">
+        <div class="panel-head big">
+          <div>
+            <div class="section-kicker">Администрирование</div>
+            <h2>Редактирование контента</h2>
+          </div>
+          <button class="map-btn admin-toggle-btn" id="adminUnlockBtn" type="button">Войти</button>
+        </div>
+
+        <div class="admin-locked" id="adminLocked">
+          <p>Редактирование скрыто для обычных посетителей. Доступ открывается только после входа администратора.</p>
+        </div>
+
+        <div class="admin-content is-hidden" id="adminContent">
+          <div class="admin-grid">
+            <form id="heroEditor" class="admin-card">
+              <h3>Главный экран</h3>
+              <label>Заголовок<input name="title" type="text" /></label>
+              <label>Выделенное слово<input name="highlight" type="text" /></label>
+              <label>Описание<textarea name="lead" rows="4"></textarea></label>
+              <button class="map-btn admin-save-btn" type="submit">Сохранить</button>
+            </form>
+
+            <form id="eventEditor" class="admin-card">
+              <h3>События</h3>
+              <label>JSON<textarea name="events" rows="8"></textarea></label>
+              <p class="admin-hint">Массив объектов `day`, `month`, `title`, `meta`.</p>
+              <button class="map-btn admin-save-btn" type="submit">Применить</button>
+            </form>
+
+            <form id="newsEditor" class="admin-card">
+              <h3>Новости</h3>
+              <label>JSON<textarea name="news" rows="8"></textarea></label>
+              <p class="admin-hint">Массив объектов `title`, `meta`.</p>
+              <button class="map-btn admin-save-btn" type="submit">Обновить</button>
+            </form>
+          </div>
+
+          <div class="admin-actions">
+            <button id="resetOverrides" class="icon-btn admin-reset-btn" type="button">Сбросить локальные правки</button>
+            <button id="adminLogoutBtn" class="icon-btn admin-reset-btn" type="button">Выйти</button>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -195,13 +244,26 @@
     <div class="shell footer-row">
       <div>
         <strong>Токсово</strong>
-        <p>Главная страница в стиле Airbnb с реальными фото Токсово.</p>
+        <p>Главная страница с Яндекс-картой, каталогом мест и защищённым редактированием.</p>
       </div>
       <a href="#top">Наверх ↑</a>
     </div>
   </footer>
 
-  <script src="data.js?v=20260405-airbnb-real-1"></script>
-  <script src="main.js?v=20260405-airbnb-real-2"></script>
+  <div class="admin-gate is-hidden" id="adminGate">
+    <div class="admin-gate-card">
+      <div class="panel-head">
+        <h3>Вход в админку</h3>
+        <button class="icon-btn admin-gate-close" id="adminGateClose" type="button" aria-label="Закрыть">×</button>
+      </div>
+      <form id="adminGateForm" class="admin-gate-form">
+        <label>Пароль администратора
+          <input name="password" type="password" autocomplete="current-password" />
+        </label>
+        <button class="map-btn admin-save-btn" type="submit">Открыть доступ</button>
+        <p class="admin-hint" id="adminGateError"></p>
+      </form>
+    </div>
+  </div>
 </body>
 </html>
