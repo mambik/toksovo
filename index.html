@@ -30,7 +30,6 @@
         <a href="#catalog">Каталог</a>
         <a href="#events">События</a>
         <a href="#news">Новости</a>
-        <a href="#admin">Админка</a>
       </nav>
 
       <div class="header-actions">
@@ -51,7 +50,6 @@
       <a href="#catalog">Каталог</a>
       <a href="#events">События</a>
       <a href="#news">Новости</a>
-      <a href="#admin">Админка</a>
     </nav>
   </header>
 
@@ -92,7 +90,6 @@
       <a href="#events"><span>▦</span><strong>События</strong><small>Афиша</small></a>
       <a href="#news"><span>☰</span><strong>Новости</strong><small>Главное</small></a>
       <a href="#mapSection"><span>⌘</span><strong>Карта</strong><small>Яндекс-карта</small></a>
-      <a href="#admin"><span>◔</span><strong>Админка</strong><small>Редактирование</small></a>
     </section>
 
     <section class="shell content-grid top-section">
@@ -192,52 +189,6 @@
       </div>
     </section>
 
-    <section class="shell admin-section" id="admin">
-      <div class="panel admin-panel">
-        <div class="panel-head big">
-          <div>
-            <div class="section-kicker">Администрирование</div>
-            <h2>Редактирование контента</h2>
-          </div>
-          <button class="map-btn admin-toggle-btn" id="adminUnlockBtn" type="button">Войти</button>
-        </div>
-
-        <div class="admin-locked" id="adminLocked">
-          <p>Редактирование скрыто для обычных посетителей. Доступ открывается только после входа администратора.</p>
-        </div>
-
-        <div class="admin-content is-hidden" id="adminContent">
-          <div class="admin-grid">
-            <form id="heroEditor" class="admin-card">
-              <h3>Главный экран</h3>
-              <label>Заголовок<input name="title" type="text" /></label>
-              <label>Выделенное слово<input name="highlight" type="text" /></label>
-              <label>Описание<textarea name="lead" rows="4"></textarea></label>
-              <button class="map-btn admin-save-btn" type="submit">Сохранить</button>
-            </form>
-
-            <form id="eventEditor" class="admin-card">
-              <h3>События</h3>
-              <label>JSON<textarea name="events" rows="8"></textarea></label>
-              <p class="admin-hint">Массив объектов `day`, `month`, `title`, `meta`.</p>
-              <button class="map-btn admin-save-btn" type="submit">Применить</button>
-            </form>
-
-            <form id="newsEditor" class="admin-card">
-              <h3>Новости</h3>
-              <label>JSON<textarea name="news" rows="8"></textarea></label>
-              <p class="admin-hint">Массив объектов `title`, `meta`.</p>
-              <button class="map-btn admin-save-btn" type="submit">Обновить</button>
-            </form>
-          </div>
-
-          <div class="admin-actions">
-            <button id="resetOverrides" class="icon-btn admin-reset-btn" type="button">Сбросить локальные правки</button>
-            <button id="adminLogoutBtn" class="icon-btn admin-reset-btn" type="button">Выйти</button>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer" id="footer">
@@ -250,20 +201,5 @@
     </div>
   </footer>
 
-  <div class="admin-gate is-hidden" id="adminGate">
-    <div class="admin-gate-card">
-      <div class="panel-head">
-        <h3>Вход в админку</h3>
-        <button class="icon-btn admin-gate-close" id="adminGateClose" type="button" aria-label="Закрыть">×</button>
-      </div>
-      <form id="adminGateForm" class="admin-gate-form">
-        <label>Пароль администратора
-          <input name="password" type="password" autocomplete="current-password" />
-        </label>
-        <button class="map-btn admin-save-btn" type="submit">Открыть доступ</button>
-        <p class="admin-hint" id="adminGateError"></p>
-      </form>
-    </div>
-  </div>
 </body>
 </html>

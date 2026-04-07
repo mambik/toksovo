@@ -36,29 +36,19 @@ const CATEGORY_TITLES = {
   hidden: 'Скрытые места',
 };
 
-const STORAGE_KEYS = {
-  hero: 'toksovo-hero',
-  events: 'toksovo-events',
-  news: 'toksovo-news',
-  catalog: 'toksovo-catalog-edits',
-  admin: 'toksovo-admin-unlocked',
-};
-
-const ADMIN_PASSWORD = 'toksovo-admin-2026';
-
-const HERO_DEFAULT = {
+const HERO_DEFAULT = window?.CATALOG_DEFAULTS?.hero ?? {
   title: 'Токсово — место,<br>где хочется',
   highlight: 'остаться',
   lead: 'Сосновые леса, чистые озёра и живописные холмы всего в 30 км от Санкт-Петербурга.',
 };
 
-const EVENTS_DEFAULT = [
+const EVENTS_DEFAULT = window?.CATALOG_DEFAULTS?.events ?? [
   { day: '25', month: 'мая', title: 'Открытие летнего сезона в парке', meta: 'Парк Токсово, 12:00' },
   { day: '1', month: 'июн', title: 'Турнир по футболу', meta: 'Стадион Токсово, 10:00' },
   { day: '12', month: 'июн', title: 'День России', meta: 'Площадь, 14:00' },
 ];
 
-const NEWS_DEFAULT = [
+const NEWS_DEFAULT = window?.CATALOG_DEFAULTS?.news ?? [
   { title: 'Летний маршрут к лютеранской церкви снова популярен у туристов', meta: 'Новый маршрут выходного дня по историческим местам Токсово.' },
   { title: 'Турнир среди дворовых команд пройдёт в июне', meta: 'Спортивный календарь поселения пополнился летними матчами.' },
   { title: 'Спортивная инфраструктура Кавголово остаётся одной из визитных карточек района', meta: 'Подготовлен новый обзор активностей для жителей и туристов.' },
@@ -69,42 +59,6 @@ const TOKSOVO_CENTER = [60.1547, 30.4684];
 let heroState = { ...HERO_DEFAULT };
 let eventsState = EVENTS_DEFAULT.slice();
 let newsState = NEWS_DEFAULT.slice();
-let adminUnlocked = false;
-
-function loadFromStorage(key, fallback = null) {
-  try {
-    const raw = localStorage.getItem(key);
-    return raw ? JSON.parse(raw) : fallback;
-  } catch (error) {
-    console.error('loadFromStorage', error);
-    return fallback;
-  }
-}
-
-function saveToStorage(key, value) {
-  try {
-    localStorage.setItem(key, JSON.stringify(value));
-  } catch (error) {
-    console.error('saveToStorage', error);
-  }
-}
-
-function applyStoredState() {
-  heroState = { ...HERO_DEFAULT, ...(loadFromStorage(STORAGE_KEYS.hero, {}) || {}) };
-  eventsState = loadFromStorage(STORAGE_KEYS.events, EVENTS_DEFAULT.slice()) || EVENTS_DEFAULT.slice();
-  newsState = loadFromStorage(STORAGE_KEYS.news, NEWS_DEFAULT.slice()) || NEWS_DEFAULT.slice();
-  adminUnlocked = Boolean(loadFromStorage(STORAGE_KEYS.admin, false));
-
-  const overrides = loadFromStorage(STORAGE_KEYS.catalog, []);
-  if (!Array.isArray(overrides)) return;
-  overrides.forEach((entry) => {
-    const target = PLACES.find((item) => item.slug === entry.slug);
-    if (target) {
-      target.name = entry.name;
-      target.description = entry.description;
-    }
-  });
-}
 
 function normalizeSlug(value) {
   return String(value || '').replace(/-/g, '_');
@@ -163,7 +117,6 @@ function renderPlaces() {
           <div class="rating">${rating} <span>${extra}</span></div>
           <div class="place-actions">
             <a class="place-detail-link" href="place.html?slug=${place.slug}">Открыть карточку →</a>
-            ${adminUnlocked ? `<button class="edit-btn" type="button" data-slug="${place.slug}">Редактировать</button>` : ''}
           </div>
         </div>
       </article>
@@ -221,7 +174,6 @@ function renderCategoryColumns() {
           </ul>
         ` : ''}
         <div class="list-actions">
-          ${adminUnlocked ? `<button class="edit-category-btn" type="button" data-category="${categoryId}">Редактировать первую</button>` : ''}
           ${hidden.length ? `<button class="expand-category" type="button" data-category="${categoryId}">Показать ещё ${hidden.length}</button>` : ''}
         </div>
       </article>
@@ -263,185 +215,6 @@ function attachExpandListeners() {
       button.textContent = expanded ? 'Свернуть' : `Показать ещё ${hiddenList.children.length}`;
     });
   });
-}
-
-function openEditor(slug) {
-  if (!adminUnlocked) return;
-  const place = PLACES.find((item) => item.slug === slug);
-  if (!place) return;
-
-  const modal = document.createElement('div');
-  modal.className = 'editor-modal';
-  modal.innerHTML = `
-    <div class="editor-modal__inner">
-      <header>
-        <h3>Редактировать "${place.name}"</h3>
-        <button type="button" class="editor-close">×</button>
-      </header>
-      <label>
-        Название
-        <input name="name" type="text" value="${place.name}" />
-      </label>
-      <label>
-        Описание
-        <textarea name="description">${place.description || ''}</textarea>
-      </label>
-      <div class="editor-actions">
-        <button type="button" class="editor-save">Сохранить</button>
-        <button type="button" class="editor-close">Отмена</button>
-      </div>
-    </div>
-  `;
-
-  document.body.appendChild(modal);
-
-  const closeModal = () => modal.remove();
-  modal.querySelectorAll('.editor-close').forEach((button) => button.addEventListener('click', closeModal));
-  modal.querySelector('.editor-save').addEventListener('click', () => {
-    place.name = modal.querySelector('input[name="name"]').value.trim() || place.name;
-    place.description = modal.querySelector('textarea[name="description"]').value.trim();
-
-    const overrides = loadFromStorage(STORAGE_KEYS.catalog, []).filter((item) => item.slug !== place.slug);
-    overrides.push({ slug: place.slug, name: place.name, description: place.description });
-    saveToStorage(STORAGE_KEYS.catalog, overrides);
-
-    renderAll();
-    closeModal();
-  });
-}
-
-function attachEditListeners() {
-  document.querySelectorAll('.edit-btn').forEach((button) => {
-    button.addEventListener('click', () => openEditor(button.dataset.slug));
-  });
-
-  document.querySelectorAll('.edit-category-btn').forEach((button) => {
-    button.addEventListener('click', () => {
-      const place = PLACES.find((item) => item.categoryId === button.dataset.category);
-      if (place) openEditor(place.slug);
-    });
-  });
-}
-
-function syncAdminVisibility() {
-  const locked = document.getElementById('adminLocked');
-  const content = document.getElementById('adminContent');
-  const unlockButton = document.getElementById('adminUnlockBtn');
-
-  if (!locked || !content || !unlockButton) return;
-
-  if (adminUnlocked) {
-    locked.classList.add('is-hidden');
-    content.classList.remove('is-hidden');
-    unlockButton.textContent = 'Доступ открыт';
-    unlockButton.disabled = true;
-  } else {
-    locked.classList.remove('is-hidden');
-    content.classList.add('is-hidden');
-    unlockButton.textContent = 'Войти';
-    unlockButton.disabled = false;
-  }
-}
-
-function setupAdmin() {
-  syncAdminVisibility();
-
-  const unlockButton = document.getElementById('adminUnlockBtn');
-  const logoutButton = document.getElementById('adminLogoutBtn');
-  const gate = document.getElementById('adminGate');
-  const gateClose = document.getElementById('adminGateClose');
-  const gateForm = document.getElementById('adminGateForm');
-  const gateError = document.getElementById('adminGateError');
-
-  if (unlockButton && gate) {
-    unlockButton.addEventListener('click', () => gate.classList.remove('is-hidden'));
-  }
-
-  if (gateClose && gate) {
-    gateClose.addEventListener('click', () => {
-      gate.classList.add('is-hidden');
-      gateError.textContent = '';
-    });
-  }
-
-  if (gateForm && gate) {
-    gateForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const password = gateForm.elements.password.value;
-      if (password !== ADMIN_PASSWORD) {
-        gateError.textContent = 'Неверный пароль.';
-        return;
-      }
-
-      adminUnlocked = true;
-      saveToStorage(STORAGE_KEYS.admin, true);
-      gate.classList.add('is-hidden');
-      gateForm.reset();
-      gateError.textContent = '';
-      renderAll();
-    });
-  }
-
-  if (logoutButton) {
-    logoutButton.addEventListener('click', () => {
-      adminUnlocked = false;
-      saveToStorage(STORAGE_KEYS.admin, false);
-      renderAll();
-    });
-  }
-
-  const heroForm = document.getElementById('heroEditor');
-  if (heroForm) {
-    heroForm.elements.title.value = heroState.title.replace('<br>', ' ');
-    heroForm.elements.highlight.value = heroState.highlight;
-    heroForm.elements.lead.value = heroState.lead;
-    heroForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      heroState.title = heroForm.elements.title.value.trim() || HERO_DEFAULT.title;
-      heroState.highlight = heroForm.elements.highlight.value.trim() || HERO_DEFAULT.highlight;
-      heroState.lead = heroForm.elements.lead.value.trim() || HERO_DEFAULT.lead;
-      saveToStorage(STORAGE_KEYS.hero, heroState);
-      applyHeroText();
-    });
-  }
-
-  const eventForm = document.getElementById('eventEditor');
-  if (eventForm) {
-    eventForm.elements.events.value = JSON.stringify(eventsState, null, 2);
-    eventForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      try {
-        eventsState = JSON.parse(eventForm.elements.events.value);
-        saveToStorage(STORAGE_KEYS.events, eventsState);
-        renderEvents();
-      } catch (error) {
-        alert('Проверь JSON событий.');
-      }
-    });
-  }
-
-  const newsForm = document.getElementById('newsEditor');
-  if (newsForm) {
-    newsForm.elements.news.value = JSON.stringify(newsState, null, 2);
-    newsForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      try {
-        newsState = JSON.parse(newsForm.elements.news.value);
-        saveToStorage(STORAGE_KEYS.news, newsState);
-        renderNews();
-      } catch (error) {
-        alert('Проверь JSON новостей.');
-      }
-    });
-  }
-
-  const resetButton = document.getElementById('resetOverrides');
-  if (resetButton) {
-    resetButton.addEventListener('click', () => {
-      Object.values(STORAGE_KEYS).forEach((key) => localStorage.removeItem(key));
-      window.location.reload();
-    });
-  }
 }
 
 function buildMapPoints() {
@@ -507,9 +280,7 @@ function renderAll() {
   renderNews();
   renderPlaces();
   renderCategoryColumns();
-  syncAdminVisibility();
   attachExpandListeners();
-  attachEditListeners();
 }
 
 function setupNav() {
@@ -522,8 +293,6 @@ function setupNav() {
   });
 }
 
-applyStoredState();
 setupNav();
 renderAll();
-setupAdmin();
 initMaps();
