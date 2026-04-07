@@ -333,25 +333,28 @@
 
     .content-wide-top {
       display: grid;
-      grid-template-columns: 1fr 360px;
-      gap: 24px;
-      align-items: start;
+      gap: 22px;
     }
 
-    .content-wide .hero-panel {
+    .details-wide {
+      padding: 22px;
       background: rgba(23, 54, 44, 0.04);
-      border-color: rgba(23, 50, 41, 0.08);
-      color: var(--text);
-      backdrop-filter: none;
+      border: 1px solid rgba(23, 50, 41, 0.08);
+      border-radius: var(--radius-xl);
     }
 
-    .content-wide .hero-panel p {
+    .details-wide h2 {
+      margin: 0 0 16px;
+      font-size: 1.4rem;
+    }
+
+    .details-wide p {
       color: var(--muted);
     }
 
     .info-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
     }
 
@@ -401,8 +404,7 @@
     }
 
     @media (max-width: 900px) {
-      .hero-inner,
-      .content-wide-top {
+      .hero-inner {
         grid-template-columns: 1fr;
       }
 
@@ -654,20 +656,20 @@
                 <h2>Описание</h2>
                 <p>${place.description || 'Подробное описание пока отсутствует.'}</p>
               </div>
-              <aside class="hero-panel">
-                <h2>Детали</h2>
-                <div class="info-grid">
-                  ${infoCard('Адрес', place.address)}
-                  ${infoCard('Район', place.district)}
-                  ${infoCard('Цена', place.price)}
-                  ${infoCard('Возраст', place.age)}
-                  ${infoCard('Формат', place.format)}
-                  ${infoCard('Телефон', place.phone)}
-                  ${infoCard('Рейтинг', place.rating)}
-                  ${infoCard('Сайт', place.website, true)}
-                  ${infoCard('Источник', place.source)}
-                </div>
-              </aside>
+            </div>
+            <div class="details-wide">
+              <h2>Детали</h2>
+              <div class="info-grid">
+                ${infoCard('Адрес', place.address)}
+                ${infoCard('Район', place.district)}
+                ${infoCard('Цена', place.price)}
+                ${infoCard('Возраст', place.age)}
+                ${infoCard('Формат', place.format)}
+                ${infoCard('Телефон', place.phone)}
+                ${infoCard('Рейтинг', place.rating)}
+                ${infoCard('Сайт', place.website, true)}
+                ${infoCard('Источник', place.source)}
+              </div>
             </div>
           </section>
           ${place.lat && place.lng ? `<section class="card place-map-card"><h2>Место на карте</h2><div id="place-map"></div></section>` : ''}
