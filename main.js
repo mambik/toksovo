@@ -42,7 +42,11 @@ const HERO_DEFAULT = window?.CATALOG_DEFAULTS?.hero ?? {
   lead: 'Сосновые леса, чистые озёра и живописные холмы всего в 30 км от Санкт-Петербурга.',
 };
 
-const EVENTS_DEFAULT = window?.CATALOG_DEFAULTS?.events ?? [
+const GENERATED_EVENTS = Array.isArray(window?.CATALOG_EVENTS?.events) && window.CATALOG_EVENTS.events.length
+  ? window.CATALOG_EVENTS.events
+  : null;
+
+const EVENTS_DEFAULT = GENERATED_EVENTS ?? window?.CATALOG_DEFAULTS?.events ?? [
   { day: '25', month: 'мая', title: 'Открытие летнего сезона в парке', meta: 'Парк Токсово, 12:00' },
   { day: '1', month: 'июн', title: 'Турнир по футболу', meta: 'Стадион Токсово, 10:00' },
   { day: '12', month: 'июн', title: 'День России', meta: 'Площадь, 14:00' },
