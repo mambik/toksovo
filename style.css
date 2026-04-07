@@ -35,8 +35,8 @@ button,input,textarea{font:inherit}
 }
 .brand{display:flex;align-items:center;gap:12px;color:#fff;min-width:220px}
 .brand img{
-  width:48px;
-  height:48px;
+  width:60px;
+  height:60px;
   display:block;
   object-fit:contain;
   background:transparent;
