@@ -59,6 +59,7 @@ const TOKSOVO_CENTER = [60.1547, 30.4684];
 let heroState = { ...HERO_DEFAULT };
 let eventsState = EVENTS_DEFAULT.slice();
 let newsState = NEWS_DEFAULT.slice();
+const mapResizers = [];
 
 function normalizeSlug(value) {
   return String(value || '').replace(/-/g, '_');
@@ -89,7 +90,7 @@ function featuredPlaces(places) {
     if (!place?.slug || seen.has(place.slug)) return false;
     seen.add(place.slug);
     return true;
-  }).slice(0, 12);
+  }).slice(0, 8);
 }
 
 function renderPlaces() {
@@ -106,7 +107,7 @@ function renderPlaces() {
 
     return `
       <article class="place-card">
-        <a class="place-card-link" href="place.html?slug=${place.slug}" aria-label="Открыть ${place.name}">
+        <a class="place-card-link" href="place.html?slug=${place.slug}" aria-label="Карточка ${place.name}">
           <div class="place-image-wrap">
             <img src="${image}" alt="${place.name}" />
             <span class="tag ${tagClass}">${tagLabel}</span>
@@ -241,6 +242,8 @@ function initMaps() {
       points.slice(0, 6).forEach(({ coords, place }) => {
         previewMap.geoObjects.add(new ymaps.Placemark(coords, { hintContent: place.name }, { preset: 'islands#greenDotIcon' }));
       });
+      previewMap.container.fitToViewport();
+      mapResizers.push(() => previewMap.container.fitToViewport());
     }
 
     if (fullNode) {
@@ -269,6 +272,14 @@ function initMaps() {
       if (placemarks.length) {
         fullMap.setBounds(clusterer.getBounds(), { checkZoomRange: true, zoomMargin: 30 });
       }
+      fullMap.container.fitToViewport();
+      mapResizers.push(() => fullMap.container.fitToViewport());
+    }
+
+    if (mapResizers.length) {
+      window.addEventListener('resize', () => {
+        mapResizers.forEach((resize) => resize());
+      });
     }
   });
 }

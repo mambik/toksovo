@@ -29,7 +29,7 @@
     "description": "Токсово: озёра, спорт, прогулки, карта мест, события и новости поселения."
   }
   </script>
-  <script defer src="https://api-maps.yandex.ru/2.1/?apikey=8e92e0f0-e860-4047-9d12-7a329837fd4e&lang=ru_RU"></script>
+  <script defer src="https://api-maps.yandex.ru/2.1/?apikey=8e92e0f0-e860-4047-9d12-7a329837fd4e&lang=ru_RU&coordorder=latlong"></script>
   <script defer src="data.js"></script>
   <script defer src="main.js?v=20260407-yandex-admin-1"></script>
 </head>
@@ -83,16 +83,6 @@
           <div class="eyebrow">Ленинградская область</div>
           <h1 id="heroTitle">Токсово — место,<br>где хочется <span id="heroHighlight">остаться</span></h1>
           <p id="heroLead">Сосновые леса, чистые озёра и живописные холмы всего в 30 км от Санкт-Петербурга.</p>
-
-          <form class="search-bar search-bar-simple">
-            <label>
-              <span>Куда</span>
-              <input type="text" value="Куда вы хотите поехать: озёра, спорт, прогулки?" aria-label="Куда" />
-            </label>
-            <button type="button" class="search-submit" aria-label="Искать">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2"/></svg>
-            </button>
-          </form>
         </div>
 
         <aside class="map-card">
@@ -183,6 +173,19 @@
       </div>
     </section>
 
+    <section class="shell catalog-section" id="catalog">
+      <div class="panel catalog-panel">
+        <div class="panel-head big">
+          <div>
+            <div class="section-kicker">Все категории объектов</div>
+            <h2>Каталог мест с прямыми ссылками</h2>
+          </div>
+          <a href="#mapSection">Открыть карту →</a>
+        </div>
+        <div class="category-columns" id="categoryColumns"></div>
+      </div>
+    </section>
+
     <section class="shell lower-grid">
       <article class="panel mini-panel">
         <h3>О поселении</h3>
@@ -195,19 +198,6 @@
         </div>
         <div id="newsFeed"></div>
       </article>
-    </section>
-
-    <section class="shell catalog-section" id="catalog">
-      <div class="panel catalog-panel">
-        <div class="panel-head big">
-          <div>
-            <div class="section-kicker">Все категории объектов</div>
-            <h2>Каталог мест с прямыми ссылками</h2>
-          </div>
-          <a href="#mapSection">Открыть карту →</a>
-        </div>
-        <div class="category-columns" id="categoryColumns"></div>
-      </div>
     </section>
 
   </main>
