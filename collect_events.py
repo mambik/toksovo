@@ -175,6 +175,8 @@ def infer_meta(url: str, text: str) -> str:
 def summarize_event_title(body_text: str, fallback: str) -> str:
     body_text = clean_text(body_text)
     lowered = body_text.lower()
+    if "кавголовские звезды" in lowered:
+        return "Турнир «Кавголовские звезды»"
     if "пляжному волейболу" in lowered:
         if "среди мужчин и женщин" in lowered:
             return "Кубок Ленинградской области по пляжному волейболу среди мужчин и женщин"
@@ -246,6 +248,46 @@ def split_date_title(line: str) -> tuple[date | None, str | None]:
             return candidate, title or None
         return None, None
 
+    numeric_search = re.search(
+        r"\d{1,2}(?:\s*[-–—и,]\s*\d{1,2})?\.(\d{1,2})(?:\.(\d{2,4}))?",
+        line,
+    )
+    if numeric_search:
+        token = numeric_search.group(0)
+        token_match = re.match(
+            r"(\d{1,2})(?:\s*[-–—и,]\s*(\d{1,2}))?\.(\d{1,2})(?:\.(\d{2,4}))?",
+            token,
+        )
+        if token_match:
+            title = normalize_title_tail(line[: numeric_search.start()])
+            day_a = int(token_match.group(1))
+            month_num = int(token_match.group(3))
+            year = pick_year(token_match.group(4))
+            candidate = parse_node_date(day_a, month_num, year)
+            if candidate:
+                return candidate, title or None
+
+    month_search = re.search(
+        r"\d{1,2}(?:\s*[-–—и,]\s*\d{1,2})?\s+(" + "|".join(MONTHS.keys()) + r")(?:\s+(\d{4}))?",
+        line,
+        flags=re.IGNORECASE,
+    )
+    if month_search:
+        token = month_search.group(0)
+        token_match = re.match(
+            r"(\d{1,2})(?:\s*[-–—и,]\s*(\d{1,2}))?\s+(" + "|".join(MONTHS.keys()) + r")(?:\s+(\d{4}))?",
+            token,
+            flags=re.IGNORECASE,
+        )
+        if token_match:
+            title = normalize_title_tail(line[: month_search.start()])
+            day_a = int(token_match.group(1))
+            month_num = MONTHS[token_match.group(3).lower()]
+            year = pick_year(token_match.group(4))
+            candidate = parse_node_date(day_a, month_num, year)
+            if candidate:
+                return candidate, title or None
+
     return None, None
 
 
@@ -254,10 +296,15 @@ def extract_article_events(url: str, html: str, source_label: str) -> list[dict]
     title = clean_text(soup.find("h1").get_text(" ", strip=True) if soup.find("h1") else soup.title.get_text(" ", strip=True) if soup.title else "")
     body_text = clean_text(soup.get_text("\n", strip=True))
     lines = [clean_text(line) for line in body_text.split("\n") if clean_text(line)]
+    segments = [clean_text(segment) for segment in soup.stripped_strings if clean_text(segment)]
     events: list[dict] = []
 
     def build_event(event_date: date, event_title: str, meta: str | None = None) -> dict:
-      display = summarize_event_title(body_text, event_title or title)
+      display = clean_text(event_title or title)
+      if source_label.startswith("kavgolovo"):
+          display = summarize_event_title(body_text, display or title)
+      elif not display:
+          display = summarize_event_title(body_text, title)
       return {
           "date": event_date.isoformat(),
           "day": str(event_date.day),
@@ -273,11 +320,15 @@ def extract_article_events(url: str, html: str, source_label: str) -> list[dict]
         events.append(build_event(event_date, parsed_title or title))
         return events
 
-    for line in lines[:20]:
-        if len(events) >= 4:
+    seen_lines: set[str] = set()
+    for line in segments + lines:
+        if len(events) >= 8:
             break
         if len(line) > 220:
             continue
+        if line in seen_lines:
+            continue
+        seen_lines.add(line)
         lower = line.lower()
         has_keyword = any(keyword in lower for keyword in EVENT_KEYWORDS)
         starts_with_date = bool(re.match(r"^\s*\d", line))
