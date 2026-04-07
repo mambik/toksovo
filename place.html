@@ -327,35 +327,193 @@
       gap: 22px;
     }
 
-    .content-wide {
+    .place-overview {
       padding: 28px;
-    }
-
-    .content-wide-top {
       display: grid;
-      gap: 22px;
+      gap: 24px;
     }
 
-    .details-wide {
+    .place-overview-top {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .place-snapshot {
       padding: 22px;
       background: rgba(23, 54, 44, 0.04);
       border: 1px solid rgba(23, 50, 41, 0.08);
       border-radius: var(--radius-xl);
     }
 
-    .details-wide h2 {
+    .place-snapshot h2,
+    .place-details h2,
+    .place-overview-copy h2 {
       margin: 0 0 16px;
       font-size: 1.4rem;
     }
 
-    .details-wide p {
+    .place-snapshot p,
+    .place-overview-copy p {
       color: var(--muted);
+    }
+
+    .snapshot-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .snapshot-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 0;
+      border-top: 1px solid rgba(23, 50, 41, 0.08);
+    }
+
+    .snapshot-item:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .snapshot-label {
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+    }
+
+    .snapshot-value {
+      font-weight: 700;
+      text-align: right;
+      line-height: 1.55;
+    }
+
+    .place-details {
+      padding: 22px;
+      background: #fff;
+      border: 1px solid rgba(23, 50, 41, 0.08);
+      border-radius: var(--radius-xl);
     }
 
     .info-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
+    }
+
+    .media-row {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .gallery-card {
+      padding: 22px;
+    }
+
+    .gallery-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .gallery-head h2 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+
+    .gallery-note {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .gallery-main {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 14px;
+    }
+
+    .gallery-hero {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      min-height: 420px;
+      background: #d8e2d6;
+    }
+
+    .gallery-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-thumbs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .gallery-thumb {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      min-height: 124px;
+      background: #e7ece3;
+    }
+
+    .gallery-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-more {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .gallery-more .gallery-thumb {
+      min-height: 112px;
+    }
+
+    .gallery-caption {
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(17, 26, 21, 0.5);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      backdrop-filter: blur(10px);
+    }
+
+    .map-sidebar {
+      padding: 22px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .map-sidebar h2 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+
+    .map-sidebar p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
     }
 
     .info-card {
@@ -389,7 +547,8 @@
     }
 
     #place-map {
-      height: 420px;
+      height: 100%;
+      min-height: 520px;
       border-radius: var(--radius-xl);
       overflow: hidden;
     }
@@ -398,13 +557,17 @@
       color: var(--muted);
     }
 
-    .stack {
-      display: grid;
-      gap: 22px;
-    }
-
     @media (max-width: 900px) {
       .hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .media-row,
+      .gallery-main {
+        grid-template-columns: 1fr;
+      }
+
+      .place-overview-top {
         grid-template-columns: 1fr;
       }
 
@@ -440,6 +603,10 @@
 
       .place-map-card {
         padding: 22px;
+      }
+
+      #place-map {
+        min-height: 360px;
       }
     }
   </style>
@@ -573,6 +740,77 @@
       `;
     }
 
+    function snapshotItem(label, value, isLink = false) {
+      if (!value) return '';
+      const content = isLink
+        ? `<a href="${value}" target="_blank" rel="noopener">${value.replace(/^https?:\/\//, '').replace(/\/$/, '')}</a>`
+        : value;
+
+      return `
+        <div class="snapshot-item">
+          <div class="snapshot-label">${label}</div>
+          <div class="snapshot-value">${content}</div>
+        </div>
+      `;
+    }
+
+    function buildPhotoList(currentPlace) {
+      const unique = [];
+      const push = (value) => {
+        if (value && !unique.includes(value)) unique.push(value);
+      };
+
+      push(PLACE_IMAGE_BY_SLUG[currentPlace.slug]);
+      push(PLACE_IMAGE_BY_CATEGORY[currentPlace.categoryId]);
+
+      const fallbackSets = {
+        attractions: ['assets/hero_lake.jpg', 'assets/lake1.jpg', 'assets/lake2.jpg', 'assets/hero_bg.jpg', 'assets/summer.jpg'],
+        children: ['assets/summer.jpg', 'assets/hero_bg.jpg', 'assets/lake1.jpg', 'assets/lake2.jpg', 'assets/hero_lake.jpg'],
+        sport: ['assets/ski.jpg', 'assets/hero_bg.jpg', 'assets/lake1.jpg', 'assets/lake2.jpg', 'assets/hero_lake.jpg'],
+        hidden: ['assets/hero_bg.jpg', 'assets/lake1.jpg', 'assets/lake2.jpg', 'assets/summer.jpg', 'assets/hero_lake.jpg'],
+      };
+
+      (fallbackSets[currentPlace.categoryId] || fallbackSets.hidden).forEach(push);
+      return unique.slice(0, 5);
+    }
+
+    function renderGallery(images, title) {
+      if (!images.length) return '';
+      const [hero, ...rest] = images;
+      const [top1, top2, top3, top4] = rest;
+
+      return `
+        <section class="card gallery-card">
+          <div class="gallery-head">
+            <h2>Фото объекта</h2>
+            <span class="gallery-note">3-5 фото, главное фото выделено первым</span>
+          </div>
+          <div class="gallery-main">
+            <div class="gallery-hero">
+              <img src="${hero}" alt="${title}" />
+              <div class="gallery-caption">Главное фото</div>
+            </div>
+            <div class="gallery-thumbs">
+              ${[top1, top2].filter(Boolean).map((src, index) => `
+                <div class="gallery-thumb">
+                  <img src="${src}" alt="${title} ${index + 2}" />
+                </div>
+              `).join('')}
+              ${[top3, top4].filter(Boolean).length ? `
+                <div class="gallery-more">
+                  ${[top3, top4].filter(Boolean).map((src, index) => `
+                    <div class="gallery-thumb">
+                      <img src="${src}" alt="${title} ${index + 4}" />
+                    </div>
+                  `).join('')}
+                </div>
+              ` : ''}
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
     if (!place) {
       setHeadMeta({
         title: 'Место не найдено — Токсово',
@@ -595,6 +833,7 @@
       const status = STATUS_LABELS[place.status] || place.status || 'Каталог';
       const subtitle = [place.subcategory, place.age ? `${place.age} лет` : '', place.district].filter(Boolean).join(' · ');
       const image = absoluteUrl(PLACE_IMAGE_BY_SLUG[place.slug] || PLACE_IMAGE_BY_CATEGORY[place.categoryId] || 'assets/hero_lake.jpg');
+      const gallery = buildPhotoList(place);
       const seoDescription = cleanText([
         place.description,
         place.address,
@@ -650,29 +889,43 @@
         </section>
 
         <div class="container place-main">
-          <section class="card content-card content-wide">
-            <div class="content-wide-top">
-              <div>
+          <section class="card place-overview">
+            <div class="place-overview-top">
+              <div class="place-overview-copy">
                 <h2>Описание</h2>
                 <p>${place.description || 'Подробное описание пока отсутствует.'}</p>
               </div>
+              <aside class="place-snapshot">
+                <h2>Коротко</h2>
+                <div class="snapshot-list">
+                  ${snapshotItem('Адрес', place.address)}
+                  ${snapshotItem('Район', place.district)}
+                  ${snapshotItem('Телефон', place.phone)}
+                  ${snapshotItem('Сайт', place.website, true)}
+                </div>
+              </aside>
             </div>
-            <div class="details-wide">
+            <div class="place-details">
               <h2>Детали</h2>
               <div class="info-grid">
-                ${infoCard('Адрес', place.address)}
-                ${infoCard('Район', place.district)}
                 ${infoCard('Цена', place.price)}
                 ${infoCard('Возраст', place.age)}
                 ${infoCard('Формат', place.format)}
-                ${infoCard('Телефон', place.phone)}
                 ${infoCard('Рейтинг', place.rating)}
-                ${infoCard('Сайт', place.website, true)}
                 ${infoCard('Источник', place.source)}
               </div>
             </div>
           </section>
-          ${place.lat && place.lng ? `<section class="card place-map-card"><h2>Место на карте</h2><div id="place-map"></div></section>` : ''}
+          ${place.lat && place.lng ? `
+            <div class="media-row">
+              ${renderGallery(gallery, place.name)}
+              <section class="card map-sidebar">
+                <h2>Карта</h2>
+                <p>Расположение объекта и быстрый ориентир на местности.</p>
+                <div id="place-map"></div>
+              </section>
+            </div>
+          ` : renderGallery(gallery, place.name)}
         </div>
       `;
 
