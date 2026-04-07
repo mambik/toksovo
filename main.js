@@ -65,6 +65,10 @@ function normalizeSlug(value) {
   return String(value || '').replace(/-/g, '_');
 }
 
+function placePageUrl(slug) {
+  return `place-${encodeURIComponent(slug)}.html`;
+}
+
 function applyHeroText() {
   const title = document.getElementById('heroTitle');
   const highlight = document.getElementById('heroHighlight');
@@ -107,7 +111,7 @@ function renderPlaces() {
 
     return `
       <article class="place-card">
-        <a class="place-card-link" href="place.html?slug=${place.slug}" aria-label="Карточка ${place.name}">
+        <a class="place-card-link" href="${placePageUrl(place.slug)}" aria-label="Карточка ${place.name}">
           <div class="place-image-wrap">
             <img src="${image}" alt="${place.name}" />
             <span class="tag ${tagClass}">${tagLabel}</span>
@@ -158,7 +162,7 @@ function renderCategoryColumns() {
         <ul class="category-object-list">
           ${visible.map((place) => `
             <li>
-              <a class="category-object-link" href="place.html?slug=${place.slug}">${place.name}</a>
+              <a class="category-object-link" href="${placePageUrl(place.slug)}">${place.name}</a>
               <span class="category-object-meta">${place.subcategory || place.district || place.address || 'Токсово'}</span>
             </li>
           `).join('')}
@@ -167,7 +171,7 @@ function renderCategoryColumns() {
           <ul class="category-object-list category-object-list--hidden" data-hidden="${categoryId}">
             ${hidden.map((place) => `
               <li>
-                <a class="category-object-link" href="place.html?slug=${place.slug}">${place.name}</a>
+                <a class="category-object-link" href="${placePageUrl(place.slug)}">${place.name}</a>
                 <span class="category-object-meta">${place.subcategory || place.district || place.address || 'Токсово'}</span>
               </li>
             `).join('')}
@@ -261,7 +265,7 @@ function initMaps() {
 
       const placemarks = points.map(({ coords, place }) => new ymaps.Placemark(coords, {
         hintContent: place.name,
-        balloonContent: `<strong>${place.name}</strong><br>${place.address || place.district || 'Токсово'}<br><a href="place.html?slug=${place.slug}">Подробнее</a>`,
+        balloonContent: `<strong>${place.name}</strong><br>${place.address || place.district || 'Токсово'}<br><a href="${placePageUrl(place.slug)}">Подробнее</a>`,
       }, {
         preset: 'islands#greenDotIcon',
       }));

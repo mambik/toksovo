@@ -3,24 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Токсово — карточка места</title>
-  <meta name="description" id="metaDescription" content="Карточка места в Токсово: описание, контакты, адрес и карта." />
+  <title>Горнолыжная школа СКА — Токсово</title>
+  <meta name="description" id="metaDescription" content="Тренировки по лыжам · Санаторная ул., 36, Токсово · Токсово · Спорт" />
   <meta name="robots" id="robotsMeta" content="index,follow" />
-  <link rel="canonical" id="canonicalLink" href="https://toksovo.info/place.html" />
+  <link rel="canonical" id="canonicalLink" href="https://toksovo.info/place-gornolyzhnaya-shkola-ska.html" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Токсово" />
-  <meta property="og:title" id="ogTitle" content="Токсово — карточка места" />
-  <meta property="og:description" id="ogDescription" content="Карточка места в Токсово: описание, контакты, адрес и карта." />
-  <meta property="og:url" id="ogUrl" content="https://toksovo.info/place.html" />
-  <meta property="og:image" id="ogImage" content="https://toksovo.info/assets/hero_lake.jpg" />
+  <meta property="og:title" id="ogTitle" content="Горнолыжная школа СКА — Токсово" />
+  <meta property="og:description" id="ogDescription" content="Тренировки по лыжам · Санаторная ул., 36, Токсово · Токсово · Спорт" />
+  <meta property="og:url" id="ogUrl" content="https://toksovo.info/place-gornolyzhnaya-shkola-ska.html" />
+  <meta property="og:image" id="ogImage" content="https://toksovo.info/assets/ski.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" id="twitterTitle" content="Токсово — карточка места" />
-  <meta name="twitter:description" id="twitterDescription" content="Карточка места в Токсово: описание, контакты, адрес и карта." />
-  <meta name="twitter:image" id="twitterImage" content="https://toksovo.info/assets/hero_lake.jpg" />
+  <meta name="twitter:title" id="twitterTitle" content="Горнолыжная школа СКА — Токсово" />
+  <meta name="twitter:description" id="twitterDescription" content="Тренировки по лыжам · Санаторная ул., 36, Токсово · Токсово · Спорт" />
+  <meta name="twitter:image" id="twitterImage" content="https://toksovo.info/assets/ski.jpg" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-  <script type="application/ld+json" id="placeJsonLd"></script>
+  <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "name": "Горнолыжная школа СКА",
+  "description": "Тренировки по лыжам · Санаторная ул., 36, Токсово · Токсово · Спорт",
+  "url": "https://toksovo.info/place-gornolyzhnaya-shkola-ska.html",
+  "image": "https://toksovo.info/assets/ski.jpg",
+  "address": "Санаторная ул., 36, Токсово",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 60.1602488,
+    "longitude": 30.5114844
+  },
+  "telephone": "+7 (921) 939-71-14",
+  "sameAs": "http://sca-ski.ru"
+}</script>
   <style>
     :root {
       --bg: #f6f7f3;
@@ -654,310 +669,170 @@
     </nav>
   </header>
 
-  <div id="app"></div>
-
-  <script src="https://api-maps.yandex.ru/2.1/?apikey=8e92e0f0-e860-4047-9d12-7a329837fd4e&lang=ru_RU&coordorder=latlong" type="text/javascript"></script>
-  <script src="data.js?v=20260404-ymaps-1"></script>
-  <script>
-    const SITE_ORIGIN = 'https://toksovo.info';
-
-    const PLACE_IMAGE_BY_SLUG = {
-      kavgolovskoe_ozero: 'assets/lake1.jpg',
-      ozero_khepoyarvi: 'assets/lake2.jpg',
-      severnyy_sklon: 'assets/ski.jpg',
-      zubrovnik: 'assets/hero_bg.jpg',
-    };
-
-    const PLACE_IMAGE_BY_CATEGORY = {
-      attractions: 'assets/hero_lake.jpg',
-      children: 'assets/summer.jpg',
-      sport: 'assets/ski.jpg',
-      hidden: 'assets/hero_bg.jpg',
-    };
-
-    const CAT_LABELS = {
-      attractions: 'Достопримечательности',
-      children: 'Детям',
-      sport: 'Спорт',
-      hidden: 'Скрытые места',
-    };
-
-    const STATUS_LABELS = {
-      verified_public: 'Проверено',
-      candidate: 'Требует проверки',
-      chat_only: 'Локальный источник',
-    };
-
-    const params = new URLSearchParams(location.search);
-    const slug = params.get('slug');
-    if (slug && location.pathname.endsWith('/place.html')) {
-      location.replace(`place-${encodeURIComponent(slug)}.html`);
-    }
-    const place = Array.isArray(PLACES) ? PLACES.find((item) => item.slug === slug) : null;
-    const root = document.getElementById('app');
-
-    function absoluteUrl(path) {
-      return new URL(path, SITE_ORIGIN).href;
-    }
-
-    function cleanText(value) {
-      return String(value || '').replace(/\s+/g, ' ').trim();
-    }
-
-    function setHeadMeta({ title, description, url, image, robots, jsonLd }) {
-      if (title) document.title = title;
-      if (description) document.getElementById('metaDescription').setAttribute('content', description);
-      if (url) {
-        document.getElementById('canonicalLink').setAttribute('href', url);
-        document.getElementById('ogUrl').setAttribute('content', url);
-      }
-      if (image) {
-        document.getElementById('ogImage').setAttribute('content', image);
-        document.getElementById('twitterImage').setAttribute('content', image);
-      }
-      if (title) {
-        document.getElementById('ogTitle').setAttribute('content', title);
-        document.getElementById('twitterTitle').setAttribute('content', title);
-      }
-      if (description) {
-        document.getElementById('ogDescription').setAttribute('content', description);
-        document.getElementById('twitterDescription').setAttribute('content', description);
-      }
-      if (robots) {
-        document.getElementById('robotsMeta').setAttribute('content', robots);
-      }
-      if (jsonLd) {
-        document.getElementById('placeJsonLd').textContent = JSON.stringify(jsonLd, null, 2);
-      }
-    }
-
-    function infoCard(label, value, isLink = false) {
-      if (!value) return '';
-      const content = isLink
-        ? `<a href="${value}" target="_blank" rel="noopener">${value.replace(/^https?:\/\//, '').replace(/\/$/, '')}</a>`
-        : value;
-
-      return `
-        <div class="info-card">
-          <div class="info-label">${label}</div>
-          <div class="info-value">${content}</div>
-        </div>
-      `;
-    }
-
-    function snapshotItem(label, value, isLink = false) {
-      if (!value) return '';
-      const content = isLink
-        ? `<a href="${value}" target="_blank" rel="noopener">${value.replace(/^https?:\/\//, '').replace(/\/$/, '')}</a>`
-        : value;
-
-      return `
-        <div class="snapshot-item">
-          <div class="snapshot-label">${label}</div>
-          <div class="snapshot-value">${content}</div>
-        </div>
-      `;
-    }
-
-    function buildPhotoList(currentPlace) {
-      const unique = [];
-      const push = (value) => {
-        if (value && !unique.includes(value)) unique.push(value);
-      };
-
-      push(PLACE_IMAGE_BY_SLUG[currentPlace.slug]);
-      push(PLACE_IMAGE_BY_CATEGORY[currentPlace.categoryId]);
-
-      const fallbackSets = {
-        attractions: ['assets/hero_lake.jpg', 'assets/lake1.jpg', 'assets/lake2.jpg', 'assets/hero_bg.jpg', 'assets/summer.jpg'],
-        children: ['assets/summer.jpg', 'assets/hero_bg.jpg', 'assets/lake1.jpg', 'assets/lake2.jpg', 'assets/hero_lake.jpg'],
-        sport: ['assets/ski.jpg', 'assets/hero_bg.jpg', 'assets/lake1.jpg', 'assets/lake2.jpg', 'assets/hero_lake.jpg'],
-        hidden: ['assets/hero_bg.jpg', 'assets/lake1.jpg', 'assets/lake2.jpg', 'assets/summer.jpg', 'assets/hero_lake.jpg'],
-      };
-
-      (fallbackSets[currentPlace.categoryId] || fallbackSets.hidden).forEach(push);
-      return unique.slice(0, 5);
-    }
-
-    function renderGallery(images, title) {
-      if (!images.length) return '';
-      const [hero, ...rest] = images;
-      const [top1, top2, top3, top4] = rest;
-
-      return `
-        <section class="card gallery-card">
-          <div class="gallery-head">
-            <h2>Фото объекта</h2>
-            <span class="gallery-note">3-5 фото, главное фото выделено первым</span>
+  
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <div class="tags">
+            <span class="tag">Спорт</span>
+            <span class="tag">Проверено</span>
           </div>
-          <div class="gallery-main">
-            <div class="gallery-hero">
-              <img src="${hero}" alt="${title}" />
-              <div class="gallery-caption">Главное фото</div>
-            </div>
-            <div class="gallery-thumbs">
-              ${[top1, top2].filter(Boolean).map((src, index) => `
-                <div class="gallery-thumb">
-                  <img src="${src}" alt="${title} ${index + 2}" />
-                </div>
-              `).join('')}
-              ${[top3, top4].filter(Boolean).length ? `
-                <div class="gallery-more">
-                  ${[top3, top4].filter(Boolean).map((src, index) => `
-                    <div class="gallery-thumb">
-                      <img src="${src}" alt="${title} ${index + 4}" />
-                    </div>
-                  `).join('')}
-                </div>
-              ` : ''}
-            </div>
+          <h1>Горнолыжная школа СКА</h1>
+          <div class="subtitle">Горные лыжи · 16+ лет · Токсово</div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="index.html#mapSection">Открыть карту</a>
+            <a class="btn btn-secondary" href="http://sca-ski.ru" target="_blank" rel="noopener">Перейти на сайт</a>
           </div>
-        </section>
-      `;
-    }
+        </div>
+        <aside class="hero-panel">
+          <h2>О месте</h2>
+          <p>Тренировки по лыжам.</p>
+        </aside>
+      </div>
+    </section>
 
-    if (!place) {
-      setHeadMeta({
-        title: 'Место не найдено — Токсово',
-        description: 'Запрошенная карточка места в Токсово не найдена.',
-        url: absoluteUrl('place.html'),
-        image: absoluteUrl('assets/hero_lake.jpg'),
-        robots: 'noindex,follow',
+    <div class="container place-main">
+      
+    <div class="media-row">
+      
+    <section class="card gallery-card">
+      <div class="gallery-head">
+        <h2>Фото объекта</h2>
+        <span class="gallery-note">3-5 фото, главное фото выделено первым</span>
+      </div>
+      <div class="gallery-main">
+        <div class="gallery-hero">
+          <img src="assets/ski.jpg" alt="Горнолыжная школа СКА - главное фото" />
+          <div class="gallery-caption">Главное фото</div>
+        </div>
+        <div class="gallery-thumbs">
+          
+            <div class="gallery-thumb">
+              <img src="assets/hero_bg.jpg" alt="Горнолыжная школа СКА - фото 2" />
+            </div>
+          
+            <div class="gallery-thumb">
+              <img src="assets/lake1.jpg" alt="Горнолыжная школа СКА - фото 3" />
+            </div>
+          
+            <div class="gallery-thumb">
+              <img src="assets/lake2.jpg" alt="Горнолыжная школа СКА - фото 4" />
+            </div>
+          
+            <div class="gallery-thumb">
+              <img src="assets/hero_lake.jpg" alt="Горнолыжная школа СКА - фото 5" />
+            </div>
+          
+        </div>
+      </div>
+    </section>
+  
+      <section class="card map-sidebar">
+        <h2>Карта</h2>
+        <p>Расположение объекта и быстрый ориентир на местности.</p>
+        <div id="place-map"></div>
+      </section>
+    </div>
+  
+      
+    <section class="card place-overview">
+      <div class="place-overview-top">
+        <div class="place-overview-copy">
+          <h2>Описание</h2>
+          <p>Тренировки по лыжам.</p>
+        </div>
+        <aside class="place-snapshot">
+          <h2>Коротко</h2>
+          <div class="snapshot-list">
+            
+    <div class="snapshot-item">
+      <div class="snapshot-label">Адрес</div>
+      <div class="snapshot-value">Санаторная ул., 36, Токсово</div>
+    </div>
+  
+            
+    <div class="snapshot-item">
+      <div class="snapshot-label">Район</div>
+      <div class="snapshot-value">Токсово</div>
+    </div>
+  
+            
+    <div class="snapshot-item">
+      <div class="snapshot-label">Телефон</div>
+      <div class="snapshot-value">+7 (921) 939-71-14</div>
+    </div>
+  
+            
+    <div class="snapshot-item">
+      <div class="snapshot-label">Сайт</div>
+      <div class="snapshot-value"><a href="http://sca-ski.ru" target="_blank" rel="noopener">sca-ski.ru</a></div>
+    </div>
+  
+          </div>
+        </aside>
+      </div>
+      <div class="place-details">
+        <h2>Детали</h2>
+        <div class="info-grid">
+          
+    <div class="info-card">
+      <div class="info-label">Цена</div>
+      <div class="info-value">по запросу</div>
+    </div>
+  
+          
+    <div class="info-card">
+      <div class="info-label">Возраст</div>
+      <div class="info-value">16+</div>
+    </div>
+  
+          
+    <div class="info-card">
+      <div class="info-label">Формат</div>
+      <div class="info-value">тренировки</div>
+    </div>
+  
+          
+    <div class="info-card">
+      <div class="info-label">Рейтинг</div>
+      <div class="info-value">3.6</div>
+    </div>
+  
+        </div>
+      </div>
+    </section>
+  
+    </div>
+  
+
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=8e92e0f0-e860-4047-9d12-7a329837fd4e&lang=ru_RU&coordorder=latlong" type="text/javascript"></script>
+    <script>
+      ymaps.ready(() => {
+        const map = new ymaps.Map('place-map', {
+          center: [60.1602488, 30.5114844],
+          zoom: 15,
+          controls: ['zoomControl'],
+        }, { suppressMapOpenBlock: true });
+        map.geoObjects.add(new ymaps.Placemark([60.1602488, 30.5114844], {
+          balloonContent: "Горнолыжная школа СКА",
+          hintContent: "Горнолыжная школа СКА",
+        }, { preset: 'islands#darkGreenCircleDotIcon' }));
+        map.container.fitToViewport();
+        window.addEventListener('resize', () => map.container.fitToViewport());
       });
+    </script>
+  
 
-      root.innerHTML = `
-        <div class="container" style="padding:48px 0 80px">
-          <div class="card content-card">
-            <h1 style="font-size:2rem;color:var(--text);margin-bottom:12px">Место не найдено</h1>
-            <p class="empty">Проверьте slug в адресной строке.</p>
-          </div>
-        </div>
-      `;
-    } else {
-      const category = CAT_LABELS[place.categoryId] || place.category || 'Каталог';
-      const status = STATUS_LABELS[place.status] || place.status || 'Каталог';
-      const subtitle = [place.subcategory, place.age ? `${place.age} лет` : '', place.district].filter(Boolean).join(' · ');
-      const image = absoluteUrl(PLACE_IMAGE_BY_SLUG[place.slug] || PLACE_IMAGE_BY_CATEGORY[place.categoryId] || 'assets/hero_lake.jpg');
-      const gallery = buildPhotoList(place);
-      const seoDescription = cleanText([
-        place.description,
-        place.address,
-        place.district && place.district !== place.address ? place.district : '',
-        category,
-      ].filter(Boolean).join('. ')).slice(0, 180);
-      const canonicalUrl = absoluteUrl(`place-${encodeURIComponent(place.slug)}.html`);
-
-      setHeadMeta({
-        title: `${place.name} — Токсово`,
-        description: seoDescription || `Карточка места: ${place.name} в Токсово.`,
-        url: canonicalUrl,
-        image,
-        robots: 'index,follow',
-        jsonLd: {
-          "@context": "https://schema.org",
-          "@type": "Place",
-          "name": place.name,
-          "description": seoDescription || place.description || `Карточка места: ${place.name} в Токсово.`,
-          "url": canonicalUrl,
-          "image": image,
-          "address": place.address || place.district || undefined,
-          "geo": place.lat && place.lng ? {
-            "@type": "GeoCoordinates",
-            "latitude": place.lat,
-            "longitude": place.lng,
-          } : undefined,
-          "telephone": place.phone || undefined,
-          "sameAs": place.website || undefined,
-        },
-      });
-
-      root.innerHTML = `
-        <section class="hero">
-          <div class="container hero-inner">
-            <div>
-              <div class="tags">
-                <span class="tag">${category}</span>
-                <span class="tag">${status}</span>
-              </div>
-              <h1>${place.name}</h1>
-              ${subtitle ? `<div class="subtitle">${subtitle}</div>` : ''}
-              <div class="hero-actions">
-                <a class="btn btn-primary" href="map.html">Открыть карту</a>
-                ${place.website ? `<a class="btn btn-secondary" href="${place.website}" target="_blank" rel="noopener">Перейти на сайт</a>` : ''}
-              </div>
-            </div>
-            <aside class="hero-panel">
-              <h2>О месте</h2>
-              <p>${place.description || 'Описание пока не заполнено.'}</p>
-            </aside>
-          </div>
-        </section>
-
-        <div class="container place-main">
-          ${place.lat && place.lng ? `
-            <div class="media-row">
-              ${renderGallery(gallery, place.name)}
-              <section class="card map-sidebar">
-                <h2>Карта</h2>
-                <p>Расположение объекта и быстрый ориентир на местности.</p>
-                <div id="place-map"></div>
-              </section>
-            </div>
-          ` : renderGallery(gallery, place.name)}
-          <section class="card place-overview">
-            <div class="place-overview-top">
-              <div class="place-overview-copy">
-                <h2>Описание</h2>
-                <p>${place.description || 'Подробное описание пока отсутствует.'}</p>
-              </div>
-              <aside class="place-snapshot">
-                <h2>Коротко</h2>
-                <div class="snapshot-list">
-                  ${snapshotItem('Адрес', place.address)}
-                  ${snapshotItem('Район', place.district)}
-                  ${snapshotItem('Телефон', place.phone)}
-                  ${snapshotItem('Сайт', place.website, true)}
-                </div>
-              </aside>
-            </div>
-            <div class="place-details">
-              <h2>Детали</h2>
-              <div class="info-grid">
-                ${infoCard('Цена', place.price)}
-                ${infoCard('Возраст', place.age)}
-                ${infoCard('Формат', place.format)}
-                ${infoCard('Рейтинг', place.rating)}
-              </div>
-            </div>
-          </section>
-        </div>
-      `;
-
-      if (place.lat && place.lng) {
-        ymaps.ready(() => {
-          const map = new ymaps.Map('place-map', {
-            center: [place.lat, place.lng],
-            zoom: 15,
-            controls: ['zoomControl'],
-          }, { suppressMapOpenBlock: true });
-
-          map.geoObjects.add(new ymaps.Placemark([place.lat, place.lng], {
-            balloonContent: place.name,
-            hintContent: place.name,
-          }, { preset: 'islands#darkGreenCircleDotIcon' }));
-          map.container.fitToViewport();
-          window.addEventListener('resize', () => map.container.fitToViewport());
-        });
+    <script>
+      const burger = document.getElementById('burger');
+      const mobileNav = document.getElementById('mobileNav');
+      if (burger && mobileNav) {
+        burger.addEventListener('click', () => mobileNav.classList.toggle('open'));
       }
-    }
-
-    if (burger && mobileNav) {
-      burger.addEventListener('click', () => mobileNav.classList.toggle('open'));
-    }
-
-    document.querySelectorAll('.mobile-nav a').forEach((link) => {
-      link.addEventListener('click', () => mobileNav.classList.remove('open'));
-    });
-  </script>
+      document.querySelectorAll('.mobile-nav a').forEach((link) => {
+        link.addEventListener('click', () => mobileNav.classList.remove('open'));
+      });
+    </script>
+  
 </body>
 </html>

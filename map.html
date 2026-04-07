@@ -282,7 +282,7 @@
     function renderList() {
       const filtered = filteredPlaces();
       listRoot.innerHTML = filtered.map((place) => `
-        <a class="place-link" href="place.html?slug=${place.slug}">
+        <a class="place-link" href="place-${place.slug}.html">
           <strong>${place.name}</strong>
           <span>${CAT_LABELS[place.categoryId] || place.category} · ${place.subcategory || place.district || 'Токсово'}</span>
         </a>
@@ -336,7 +336,7 @@
         places.forEach((place) => {
           const mark = new ymaps.Placemark([place.lat, place.lng], {
             balloonContentHeader: place.name,
-            balloonContentBody: `${CAT_LABELS[place.categoryId] || place.category}<br><a href="place.html?slug=${place.slug}" style="color:#17362c;font-weight:700">Подробнее</a>`,
+            balloonContentBody: `${CAT_LABELS[place.categoryId] || place.category}<br><a href="place-${place.slug}.html" style="color:#17362c;font-weight:700">Подробнее</a>`,
             hintContent: place.name,
           }, {
             preset: CAT_PRESET[place.categoryId] || 'islands#grayCircleDotIcon',

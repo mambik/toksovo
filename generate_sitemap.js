@@ -21,7 +21,7 @@ const esc = (value) => String(value)
 const urls = [
   `${SITE_ORIGIN}/`,
   `${SITE_ORIGIN}/map.html`,
-  ...places.map((place) => `${SITE_ORIGIN}/place.html?slug=${encodeURIComponent(place.slug)}`),
+  ...places.map((place) => `${SITE_ORIGIN}/place-${encodeURIComponent(place.slug)}.html`),
 ];
 
 const sitemap = [
@@ -36,4 +36,3 @@ fs.writeFileSync(
   'robots.txt',
   'User-agent: *\nAllow: /\nSitemap: https://toksovo.info/sitemap.xml\n',
 );
-
