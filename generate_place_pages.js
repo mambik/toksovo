@@ -257,8 +257,12 @@ function renderPlace(place) {
           </div>
         </div>
         <aside class="hero-panel">
-          <h2>О месте</h2>
-          <p>${escapeHtml(place.description || 'Описание пока не заполнено.')}</p>
+          <h2>Коротко</h2>
+          <div class="snapshot-list">
+            ${snapshotItem('Адрес', place.address || place.district)}
+            ${snapshotItem('Телефон', place.phone)}
+            ${snapshotItem('Сайт', place.website, true)}
+          </div>
         </aside>
       </div>
     </section>
