@@ -27,7 +27,7 @@ const PLACES = [
     "category": "Дети",
     "categoryId": "children",
     "subcategory": "Муниципальный центр",
-    "description": "Муниципальные кружки: рисование, вокал, танцы, мероприятия.",
+    "description": "Муниципальный культурно-досуговый центр в Токсово с кружками, творческими студиями, вокалом, танцами и мероприятиями для детей и взрослых.",
     "address": "Ленинградская область, Токсово, ул. Ленина, 33",
     "district": "Токсово",
     "phone": "+7 (81370) 5-56-63",
@@ -36,10 +36,10 @@ const PLACES = [
     "age": "4–16",
     "format": "группы",
     "rating": "",
-    "source": "ранее собранные открытые данные",
+    "source": "официальный сайт vk.com",
     "status": "verified_public",
     "lat": null,
-    "lng": null
+    "lng": null,
   },
   {
     "id": "baletnaya-gruppa",
@@ -69,7 +69,7 @@ const PLACES = [
     "category": "Дети",
     "categoryId": "children",
     "subcategory": "Телесные практики",
-    "description": "Занятия для детей и родителей, развитие через движение и взаимодействие.",
+    "description": "Семейная мягкая школа помогает детям и родителям через движение, телесные упражнения и мягкие практики взаимодействия. Формат подходит для спокойного развития координации, уверенности и контакта в семье.",
     "address": "Порошкино (точный адрес требует подтверждения)",
     "district": "≈10 км",
     "phone": "",
@@ -78,10 +78,17 @@ const PLACES = [
     "age": "3–10",
     "format": "группы",
     "rating": "",
-    "source": "чат жителей",
+    "source": "официальный сайт vk.com",
     "status": "chat_only",
     "lat": null,
-    "lng": null
+    "lng": null,
+    "photos": [
+      "https://pp.userapi.com/94aVrHyY-wHPkZnMULeXIFx8l7bTfrHK4yPPBA/QulWsGFAn5k.png",
+      "http://sun9-21.userapi.com/s/v1/ig2/iySItydMvMgs_sMpg9oHO7D-I7jJxcZViD3vzyEbGZDzkMi89Usc6tyiI-uaL0t7mU1AhcxLkwfGXGfkhwB8Ij9-.jpg?quality=96&blur=50,20&as=32x21,48x32,72x48,108x72,160x106,240x160,360x240,480x319,540x359,640x426,720x479,960x639&from=bu&cs=640x0",
+      "https://sun9-5.userapi.com/s/v1/ig2/MeHXjUo-4xzDvhDqYyP6L9J2Vfk4FR1DtMP2ohR8qLDgjtO3zlv1J3k0RvNvCQu9WsdLiFUYMW4nEG729bab5tz5.jpg?quality=95&crop=0,0,1000,1000&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&cs=50x50",
+      "https://sun9-5.userapi.com/s/v1/ig2/MeHXjUo-4xzDvhDqYyP6L9J2Vfk4FR1DtMP2ohR8qLDgjtO3zlv1J3k0RvNvCQu9WsdLiFUYMW4nEG729bab5tz5.jpg?quality=95&crop=0,0,1000,1000&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=27ST9-goDle-2lk_F6_hLEH1uCK5hjXSh8fcdCrZJ6A&cs=100x100",
+      "https://sun9-61.userapi.com/s/v1/ig2/-PVqD3Hpb6_xxbVGnMA6jJyZvRHgWSXJumKmkg6OczO0FSzw1bWi7Fk4XztIuScCkmVlrEUYWIEfyqVEx6eATvo8.jpg?quality=95&crop=237,3,955,955&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&cs=50x50"
+    ]
   },
   {
     "id": "basketbol-shkolnaya-sektsiya",
@@ -111,8 +118,8 @@ const PLACES = [
     "category": "Дети",
     "categoryId": "children",
     "subcategory": "Горные лыжи / сноуборд",
-    "description": "Обучение горным лыжам и сноуборду, индивидуальные и групповые занятия.",
-    "address": "Ленинградская область, Токсово, ул. Офицерская, 17Б",
+    "description": "Детская школа Северного склона обучает горным лыжам и сноуборду в Токсово. На базе курорта проходят индивидуальные и групповые занятия, есть прокат инвентаря, учебные склоны и трассы для уверенного прогресса детей разного уровня.",
+    "address": "Ленинградская область, Всеволожский р-н, пос. Токсово, ул. Офицерская, 17Б",
     "district": "Токсово",
     "phone": "+7 (911) 924-81-81",
     "website": "https://severny-sklon.ru",
@@ -120,10 +127,17 @@ const PLACES = [
     "age": "4–16",
     "format": "индивидуально / группы",
     "rating": "4.3",
-    "source": "ранее собранные открытые данные",
+    "source": "официальный сайт severny-sklon.ru",
     "status": "verified_public",
     "lat": 60.1560282,
-    "lng": 30.5486059
+    "lng": 30.5486059,
+    "photos": [
+      "assets/ski.jpg",
+      "assets/hero_bg.jpg",
+      "assets/lake1.jpg",
+      "assets/lake2.jpg",
+      "assets/hero_lake.jpg"
+    ]
   },
   {
     "id": "kanaev-ski-club",
@@ -132,7 +146,7 @@ const PLACES = [
     "category": "Дети",
     "categoryId": "children",
     "subcategory": "Горные лыжи",
-    "description": "Горнолыжная школа с тренировками и выездами.",
+    "description": "Лыжная школа в Токсово проводит круглогодичные тренировки для детей от 3,5 лет. Занятия проходят на горнолыжных курортах Ленинградской области и помогают детям развивать технику, уверенность и соревновательный опыт под руководством опытных тренеров.",
     "address": "ул. Офицерская, 17Б, Токсово",
     "district": "Токсово",
     "phone": "+7 (981) 122-10-00",
@@ -141,10 +155,17 @@ const PLACES = [
     "age": "5–16",
     "format": "группы",
     "rating": "5.0",
-    "source": "ранее собранные открытые данные",
+    "source": "официальный сайт kanaevskiclub.ru",
     "status": "verified_public",
     "lat": 60.1553068,
-    "lng": 30.5496235
+    "lng": 30.5496235,
+    "photos": [
+      "https://static.tildacdn.com/tild3131-3064-4163-b035-323237396535/photo.svg",
+      "https://static.tildacdn.com/tild6439-3935-4362-a565-643439633539/ski_uqqyflek683u.svg",
+      "https://static.tildacdn.com/tild3366-6134-4039-a539-346362383964/Group_6.png",
+      "https://static.tildacdn.com/tild3835-3664-4330-a437-623431646539/Group_4.svg",
+      "https://static.tildacdn.com/tild3830-3830-4564-b831-393566383537/Vector.svg"
+    ]
   },
   {
     "id": "aykido",
@@ -195,7 +216,7 @@ const PLACES = [
     "category": "Дети",
     "categoryId": "children",
     "subcategory": "Рисование",
-    "description": "Рисование, лепка, творческие занятия.",
+    "description": "Творческая студия при КДЦ Токсово, где дети занимаются рисованием, лепкой и другими художественными практиками. Формат помогает развивать воображение, аккуратность и интерес к изобразительному искусству.",
     "address": "ул. Ленина, 33, Токсово",
     "district": "Токсово",
     "phone": "+7 (81370) 5-56-63",
@@ -204,10 +225,10 @@ const PLACES = [
     "age": "4–14",
     "format": "группы",
     "rating": "",
-    "source": "ранее собранные открытые данные",
+    "source": "официальный сайт vk.com",
     "status": "verified_public",
     "lat": null,
-    "lng": null
+    "lng": null,
   },
   {
     "id": "angliyskiy-yazyk",
@@ -258,8 +279,8 @@ const PLACES = [
     "category": "Спорт",
     "categoryId": "sport",
     "subcategory": "Горные лыжи / сноуборд",
-    "description": "Курорт с обучением, прокатом и трассами.",
-    "address": "ул. Офицерская, 17Б, Токсово",
+    "description": "Северный склон — круглогодичный курорт в Токсово с коттеджами, отелем, баней, прокатом снаряжения и горнолыжными склонами. На территории работают учебные и прогулочные трассы, ватрушки, каток, экстрим-парк, пейнтбол и тир.",
+    "address": "Ленинградская область, Всеволожский р-н, пос. Токсово, ул. Офицерская, 17Б",
     "district": "Токсово",
     "phone": "+7 (911) 924-81-81",
     "website": "https://severny-sklon.ru",
@@ -267,10 +288,17 @@ const PLACES = [
     "age": "16+",
     "format": "индивидуально / группы",
     "rating": "4.3",
-    "source": "ранее собранные открытые данные",
+    "source": "официальный сайт severny-sklon.ru",
     "status": "verified_public",
     "lat": 60.1560282,
-    "lng": 30.5486059
+    "lng": 30.5486059,
+    "photos": [
+      "assets/ski.jpg",
+      "assets/hero_bg.jpg",
+      "assets/lake1.jpg",
+      "assets/lake2.jpg",
+      "assets/hero_lake.jpg"
+    ]
   },
   {
     "id": "kanaev-ski-club-2",
@@ -279,7 +307,7 @@ const PLACES = [
     "category": "Спорт",
     "categoryId": "sport",
     "subcategory": "Горные лыжи",
-    "description": "Школа горных лыж, тренировки и обучение.",
+    "description": "Лыжная школа в Токсово проводит круглогодичные тренировки для детей от 3,5 лет. Занятия проходят на горнолыжных курортах Ленинградской области и помогают детям развивать технику, уверенность и соревновательный опыт под руководством опытных тренеров.",
     "address": "ул. Офицерская, 17Б, Токсово",
     "district": "Токсово",
     "phone": "+7 (981) 122-10-00",
@@ -288,10 +316,17 @@ const PLACES = [
     "age": "18+",
     "format": "группы",
     "rating": "5.0",
-    "source": "ранее собранные открытые данные",
+    "source": "официальный сайт kanaevskiclub.ru",
     "status": "verified_public",
     "lat": 60.1553068,
-    "lng": 30.5496235
+    "lng": 30.5496235,
+    "photos": [
+      "https://static.tildacdn.com/tild3131-3064-4163-b035-323237396535/photo.svg",
+      "https://static.tildacdn.com/tild6439-3935-4362-a565-643439633539/ski_uqqyflek683u.svg",
+      "https://static.tildacdn.com/tild3366-6134-4039-a539-346362383964/Group_6.png",
+      "https://static.tildacdn.com/tild3835-3664-4330-a437-623431646539/Group_4.svg",
+      "https://static.tildacdn.com/tild3830-3830-4564-b831-393566383537/Vector.svg"
+    ]
   },
   {
     "id": "yukki-sport-club",
@@ -342,7 +377,7 @@ const PLACES = [
     "category": "Спорт",
     "categoryId": "sport",
     "subcategory": "Горные лыжи",
-    "description": "Тренировки по лыжам.",
+    "description": "Горнолыжная школа СКА обучает детей от 3,5 лет и взрослых любого уровня подготовки. Занятия проходят на ведущих курортах Ленинградской области, доступны тренировки, выезды и программа для тех, кто хочет развивать технику под руководством опытных инструкторов.",
     "address": "Санаторная ул., 36, Токсово",
     "district": "Токсово",
     "phone": "+7 (921) 939-71-14",
@@ -351,10 +386,17 @@ const PLACES = [
     "age": "16+",
     "format": "тренировки",
     "rating": "3.6",
-    "source": "ранее собранные открытые данные",
+    "source": "официальный сайт sca-ski.ru",
     "status": "verified_public",
     "lat": 60.1602488,
-    "lng": 30.5114844
+    "lng": 30.5114844,
+    "photos": [
+      "http://sca-ski.ru/static/site/assets/img/video-school-img.jpg",
+      "http://sca-ski.ru/media/images/ska/staff/OI_na_sajt_1_crop.jpg",
+      "http://sca-ski.ru/media/images/ska/staff/Panova_na_sajt_crop.jpg",
+      "http://sca-ski.ru/media/images/ska/staff/IMG-20170821-WA0000_crop.jpg",
+      "http://sca-ski.ru/media/images/ska/staff/TOlich_na_sajt_crop.jpg"
+    ]
   },
   {
     "id": "nikels-club",
@@ -363,7 +405,7 @@ const PLACES = [
     "category": "Спорт",
     "categoryId": "sport",
     "subcategory": "Лыжный клуб",
-    "description": "Лыжный клуб.",
+    "description": "Nikels Club проводит тренировки по беговым лыжам и лыжероллерам для детей и взрослых. Новичкам помогают освоить технику с нуля, опытным спортсменам предлагают системные занятия и работу с тренером, а формат подходит для регулярных тренировок и любительского спорта.",
     "address": "ул. Лесгафта, 35к1, Токсово",
     "district": "Токсово",
     "phone": "+7 (911) 844-48-15",
@@ -372,10 +414,17 @@ const PLACES = [
     "age": "16+",
     "format": "клуб / тренировки",
     "rating": "5.0",
-    "source": "ранее собранные открытые данные",
+    "source": "официальный сайт nikels.club",
     "status": "verified_public",
     "lat": 60.1781724,
-    "lng": 30.5366633
+    "lng": 30.5366633,
+    "photos": [
+      "https://thb.tildacdn.com/tild3538-3833-4561-a361-623439613632/-/resize/20x/photo_2025-12-01_095.jpeg",
+      "https://thb.tildacdn.com/tild6535-6132-4132-b935-333436613361/-/resize/20x/photo.jpg",
+      "https://thb.tildacdn.com/tild3038-6263-4566-b765-336337613931/-/resize/20x/photo.jpg",
+      "https://thb.tildacdn.com/tild3064-6139-4365-b735-653061333639/-/resize/20x/photo_2025-12-01_095.jpeg",
+      "https://thb.tildacdn.com/tild6131-6231-4138-a665-393836633462/-/resize/20x/IMG_5523.jpg"
+    ]
   },
   {
     "id": "skillon",
@@ -384,7 +433,7 @@ const PLACES = [
     "category": "Спорт",
     "categoryId": "sport",
     "subcategory": "Лыжный клуб",
-    "description": "Skillon — спортивный клуб в УТЦ Кавголово, где обучают беговым лыжам и биатлону взрослых и детей от 4 лет. Занятия проходят в группах до 8 человек и индивидуально, с поэтапным освоением техники, вниманием к безопасности и комфортному темпу обучения. В клубе есть прокат инвентаря, тренировки круглый год и выездные локации для бега, лыжероллеров и ОФП.",
+    "description": "Skillon — лыжный клуб в УТЦ Кавголово, где взрослых и детей от 4 лет обучают беговым лыжам и биатлону. Занятия проходят индивидуально и в небольших группах, есть прокат инвентаря, работа с начинающими и продвинутыми спортсменами, а тренировки идут круглый год.",
     "address": "УТЦ Кавголово, ул. Лесгафта, 35, Токсово",
     "district": "Токсово",
     "phone": "+7 (909) 585-77-01",
@@ -393,13 +442,13 @@ const PLACES = [
     "age": "4+",
     "format": "клуб / тренировки / прокат",
     "rating": "5.0",
-    "source": "официальный сайт Skillon, УТЦ Кавголово и 2ГИС",
+    "source": "официальный сайт skillon.ru",
     "photos": [
-      "https://static.tildacdn.com/tild3130-3139-4836-b265-383132396666/IMG_8346.webp",
-      "https://static.tildacdn.com/tild3063-6438-4163-b061-383130343464/IMG_8349.webp",
-      "https://static.tildacdn.com/tild3034-3339-4935-a431-643763653633/IMG_8355.webp",
-      "https://static.tildacdn.com/tild3130-6465-4636-a534-313335663261/IMG_8361.webp",
-      "https://static.tildacdn.com/tild3061-3263-4139-b130-633132666637/IMG_8378_1.webp"
+      "https://thb.tildacdn.com/tild6235-6663-4531-b630-373130666365/-/empty/IMG_8346.webp",
+      "https://thb.tildacdn.com/tild3932-6361-4630-a364-646535316665/-/empty/IMG_8364.webp",
+      "https://thb.tildacdn.com/tild3862-3934-4461-b133-623338633862/-/empty/IMG_8361.webp",
+      "https://thb.tildacdn.com/tild3935-3631-4463-b965-333534393865/-/empty/IMG_8345.webp",
+      "https://thb.tildacdn.com/tild3933-3261-4665-b838-393964356434/-/empty/IMG_8352.webp"
     ],
     "status": "verified_public",
     "lat": 60.177631,
@@ -412,22 +461,22 @@ const PLACES = [
     "category": "Спорт",
     "categoryId": "sport",
     "subcategory": "Спорткомплекс",
-    "description": "УТЦ Кавголово — крупный круглогодичный спортивный комплекс в Токсово. На территории есть всесезонный лыжный тоннель, лыжероллерная и лыжная трассы, биатлонное стрельбище, тренажёрный зал, площадки для игровых видов спорта, СПА и гостиничный комплекс. Рядом находятся Курголовское озеро и сосновые леса, поэтому центр подходит и для тренировок, и для отдыха.",
+    "description": "Учебно-тренировочный центр Кавголово — современный спортивный комплекс в Токсово с всесезонным лыжным тоннелем, гостиницей, трассами, стрельбищем и зонами для отдыха. Здесь тренируются спортсмены, проходят сборы и семейные выезды на природу круглый год.",
     "address": "ул. Лесгафта, 31, Токсово",
     "district": "Токсово",
     "phone": "+7 (812) 383-70-60",
-    "website": "http://www.utc-kavgolovo.ru",
+    "website": "https://www.kavgolovo.center/",
     "price": "по запросу",
     "age": "16+",
     "format": "центр / тренировки",
     "rating": "4.8",
-    "source": "официальный сайт УТЦ Кавголово",
+    "source": "официальный сайт kavgolovo.center",
     "photos": [
       "https://www.kavgolovo.center/style/images/logo-2.png",
-      "https://www.kavgolovo.center/style/images/tonnel.webp",
-      "https://www.kavgolovo.center/style/products/20/small/skym.jpg",
       "https://www.kavgolovo.center/style/products/19/small/rollerm.jpg",
-      "https://www.kavgolovo.center/style/products/44/small/shooting2m.jpg"
+      "https://www.kavgolovo.center/style/products/20/small/skym.jpg",
+      "https://www.kavgolovo.center/style/products/44/small/shooting2m.jpg",
+      "https://www.kavgolovo.center/style/products/48/small/shootings.jpg"
     ],
     "status": "verified_public",
     "lat": 60.176514,
@@ -734,7 +783,7 @@ const PLACES = [
     "category": "Достопримечательности",
     "categoryId": "attractions",
     "subcategory": "Холмы / панорамы",
-    "description": "Живописные холмы, виды, лыжи зимой, прогулки летом.",
+    "description": "Памятник природы с камовыми холмами, сосновыми и еловыми лесами, болотными участками и панорамными видами. Токсовские высоты относятся к самым заметным возвышенностям Всеволожского района и подходят для прогулок, наблюдения за природой и маршрутов выходного дня.",
     "address": "Кавголово / Токсово",
     "district": "Токсово",
     "phone": "",
@@ -743,10 +792,17 @@ const PLACES = [
     "age": "0+",
     "format": "свободный доступ",
     "rating": "4.8",
-    "source": "ООПТ",
+    "source": "официальный сайт ooptlo.ru",
     "status": "verified_public",
     "lat": 60.1762,
-    "lng": 30.5361
+    "lng": 30.5361,
+    "photos": [
+      "https://ooptlo.ru/tpl/img/header_logo1.png",
+      "https://ooptlo.ru/tpl/img/svg/logo.svg",
+      "https://ooptlo.ru/oopt_emblem/41.jpg",
+      "https://ooptlo.ru/tpl/img/prohibitory_signs/proh_hunting.jpg",
+      "https://ooptlo.ru/tpl/img/prohibitory_signs/proh_water_pollution.jpg"
+    ]
   },
   {
     "id": "stantsiya-kavgolovo-vidovaya",
@@ -776,7 +832,7 @@ const PLACES = [
     "category": "Достопримечательности",
     "categoryId": "attractions",
     "subcategory": "Маршруты",
-    "description": "Маршруты для прогулок, бега, велосипедов.",
+    "description": "Кольцевой экологический маршрут длиной около 3,9 км по Токсовским высотам. На тропе встречаются еловые и сосновые леса, камовые холмы, болотные участки и красивые видовые точки. Маршрут хорошо подходит для спокойной прогулки с интересом к природе и рельефу Карельского перешейка.",
     "address": "Токсово",
     "district": "Токсово",
     "phone": "",
@@ -785,10 +841,17 @@ const PLACES = [
     "age": "0+",
     "format": "свободный доступ",
     "rating": "4.8",
-    "source": "ООПТ",
+    "source": "официальный сайт ooptlo.ru",
     "status": "verified_public",
     "lat": 60.17,
-    "lng": 30.52
+    "lng": 30.52,
+    "photos": [
+      "https://ooptlo.ru/tpl/img/header_logo1.png",
+      "https://ooptlo.ru/tpl/img/svg/logo.svg",
+      "https://ooptlo.ru/news_image/banner0.jpg",
+      "https://ooptlo.ru/assets/images/app_google.png",
+      "https://ooptlo.ru/assets/images/app_apple.png"
+    ]
   },
   {
     "id": "tserkov-arkhangela-mikhaila",
@@ -818,19 +881,26 @@ const PLACES = [
     "category": "Достопримечательности",
     "categoryId": "attractions",
     "subcategory": "Спорткомплекс",
-    "description": "Крупный центр лыжных и спортивных тренировок.",
+    "description": "Учебно-тренировочный центр Кавголово — современный спортивный комплекс в Токсово с всесезонным лыжным тоннелем, гостиницей, трассами, стрельбищем и зонами для отдыха. Центр подходит для тренировок, сборов и семейных поездок на природу.",
     "address": "ул. Лесгафта, 31, Токсово",
     "district": "Токсово",
     "phone": "+7 (812) 383-70-60",
-    "website": "http://www.utc-kavgolovo.ru",
+    "website": "https://www.kavgolovo.center/",
     "price": "зависит от услуг",
     "age": "0+",
     "format": "посещение / тренировки",
     "rating": "4.8",
-    "source": "официальные данные",
+    "source": "официальный сайт kavgolovo.center",
     "status": "verified_public",
     "lat": 60.176514,
-    "lng": 30.5348935
+    "lng": 30.5348935,
+    "photos": [
+      "https://www.kavgolovo.center/style/images/logo-2.png",
+      "https://www.kavgolovo.center/style/products/19/small/rollerm.jpg",
+      "https://www.kavgolovo.center/style/products/20/small/skym.jpg",
+      "https://www.kavgolovo.center/style/products/44/small/shooting2m.jpg",
+      "https://www.kavgolovo.center/style/products/48/small/shootings.jpg"
+    ]
   },
   {
     "id": "severnyy-sklon-2",
@@ -860,7 +930,7 @@ const PLACES = [
     "category": "Достопримечательности",
     "categoryId": "attractions",
     "subcategory": "Экотропа",
-    "description": "Официальная стартовая точка экотропы.",
+    "description": "Старт экотропы «Еловые холмы» на Токсовских высотах. Здесь начинается маршрут по камовым холмам, еловым и сосновым лесам, болотным участкам и панорамным точкам. Место удобно для выхода на прогулку и знакомства с природным рельефом Карельского перешейка.",
     "address": "район платформы Кавголово",
     "district": "Токсово",
     "phone": "",
@@ -869,10 +939,17 @@ const PLACES = [
     "age": "0+",
     "format": "маршрут",
     "rating": "",
-    "source": "ООПТ",
+    "source": "официальный сайт ooptlo.ru",
     "status": "verified_public",
     "lat": 60.188448,
-    "lng": 30.547983
+    "lng": 30.547983,
+    "photos": [
+      "https://ooptlo.ru/tpl/img/header_logo1.png",
+      "https://ooptlo.ru/tpl/img/svg/logo.svg",
+      "https://ooptlo.ru/news_image/banner0.jpg",
+      "https://ooptlo.ru/assets/images/app_google.png",
+      "https://ooptlo.ru/assets/images/app_apple.png"
+    ]
   },
   {
     "id": "malinovaya-gora-start",
@@ -881,7 +958,7 @@ const PLACES = [
     "category": "Достопримечательности",
     "categoryId": "attractions",
     "subcategory": "Экотропа",
-    "description": "Официальная стартовая точка экотропы.",
+    "description": "Старт экотропы «Малиновая гора» знакомит с камовым ландшафтом, хвойными лесами, болотами и небольшими водоёмами южной части Карельского перешейка. Маршрут проходит в основном по еловому лесу и даёт спокойный природный опыт для прогулки выходного дня.",
     "address": "Токсово",
     "district": "Токсово",
     "phone": "",
@@ -890,10 +967,17 @@ const PLACES = [
     "age": "0+",
     "format": "маршрут",
     "rating": "",
-    "source": "ООПТ",
+    "source": "официальный сайт ooptlo.ru",
     "status": "verified_public",
     "lat": 60.161705,
-    "lng": 30.492562
+    "lng": 30.492562,
+    "photos": [
+      "https://ooptlo.ru/tpl/img/header_logo1.png",
+      "https://ooptlo.ru/tpl/img/svg/logo.svg",
+      "https://ooptlo.ru/assets/components/phpthumbof/cache/%D0%A2%D0%9E%D0%9A%D0%A1%D0%9E%D0%92%D0%A1%D0%9A%D0%98%D0%99.74e4abeb0e769628b6beedeb797c2a19.jpg",
+      "https://ooptlo.ru/news_image/banner0.jpg",
+      "https://ooptlo.ru/assets/images/app_google.png"
+    ]
   },
   {
     "id": "kurgolovskaya-etnotropa-start",
@@ -902,7 +986,7 @@ const PLACES = [
     "category": "Достопримечательности",
     "categoryId": "attractions",
     "subcategory": "Этнотропа",
-    "description": "Официальная стартовая точка этнотропы.",
+    "description": "Экологическая и этнографическая тропа в природном парке Токсовский длиной около 2,5 км. Большая часть инфраструктуры сделана из вторсырья, а информационные щиты рассказывают о финно-угорских народах, их быте, традициях, кухне и верованиях. Это спокойный маршрут с полезным познавательным содержанием.",
     "address": "район платформы Кавголово",
     "district": "Токсово",
     "phone": "",
@@ -911,10 +995,17 @@ const PLACES = [
     "age": "0+",
     "format": "маршрут",
     "rating": "",
-    "source": "ООПТ",
+    "source": "официальный сайт ooptlo.ru",
     "status": "verified_public",
     "lat": 60.188448,
-    "lng": 30.547983
+    "lng": 30.547983,
+    "photos": [
+      "https://ooptlo.ru/tpl/img/header_logo1.png",
+      "https://ooptlo.ru/tpl/img/svg/logo.svg",
+      "https://ooptlo.ru/news_image/banner0.jpg",
+      "https://ooptlo.ru/assets/images/app_google.png",
+      "https://ooptlo.ru/assets/images/app_apple.png"
+    ]
   },
   {
     "id": "peschanaya-kosa-kavgolovo",
