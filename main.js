@@ -6,6 +6,11 @@ const PHOTO_BY_SLUG = {
   ozero_khepoyarvi: 'assets/lake2.jpg',
   severnyy_sklon: 'assets/ski.jpg',
   zubrovnik: 'assets/hero_bg.jpg',
+  filosoviya: 'assets/summer.jpg',
+  konno_skazochnyy_khutor: 'assets/hero_bg.jpg',
+  funtopia: 'assets/hero_lake.jpg',
+  novokavgolovskiy_lesopark: 'assets/lake1.jpg',
+  kirha_petra_i_pavla: 'assets/lake2.jpg',
 };
 
 const PHOTO_BY_CATEGORY = {
