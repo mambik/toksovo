@@ -94,11 +94,6 @@ SOURCES = [
     },
     {
         "kind": "article",
-        "url": "https://old.toksovo-lo.ru/o-toksovo/novosti/plan-meropriyatij-na-iyul",
-        "label": "toksovo-lo.ru/plan-meropriyatij",
-    },
-    {
-        "kind": "article",
         "url": "https://www.kavgolovo.center/news/post-13811734.html",
         "label": "kavgolovo.center/news",
     },
