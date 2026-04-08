@@ -51,6 +51,7 @@ const EVENTS_DEFAULT = GENERATED_EVENTS ?? window?.CATALOG_DEFAULTS?.events ?? [
   { day: '1', month: 'июн', title: 'Турнир по футболу', meta: 'Стадион Токсово, 10:00' },
   { day: '12', month: 'июн', title: 'День России', meta: 'Площадь, 14:00' },
 ];
+const EVENTS_VISIBLE_LIMIT = 4;
 
 const NEWS_DEFAULT = window?.CATALOG_DEFAULTS?.news ?? [
   { title: 'Летний маршрут к лютеранской церкви снова популярен у туристов', meta: 'Новый маршрут выходного дня по историческим местам Токсово.' },
@@ -206,12 +207,34 @@ function renderEvents() {
   const root = document.getElementById('eventsFeed');
   if (!root) return;
 
-  root.innerHTML = eventsState.map((event) => `
-    <div class="event-item">
-      <div class="event-date"><strong>${event.day}</strong><span>${event.month}</span></div>
-      <div><b>${event.title}</b><small>${event.meta}</small></div>
+  const visible = eventsState.slice(0, EVENTS_VISIBLE_LIMIT);
+  const hidden = eventsState.slice(EVENTS_VISIBLE_LIMIT);
+
+  root.innerHTML = `
+    <div class="event-list event-list--visible">
+      ${visible.map((event) => `
+        <a class="event-item" href="${event.url || '#'}" aria-label="${event.title}">
+          <div class="event-date"><strong>${event.day}</strong><span>${event.month}</span></div>
+          <div><b>${event.title}</b><small>${event.meta}</small></div>
+        </a>
+      `).join('')}
     </div>
-  `).join('');
+    ${hidden.length ? `
+      <div class="event-list event-list--hidden" data-hidden-events>
+        ${hidden.map((event) => `
+          <a class="event-item" href="${event.url || '#'}" aria-label="${event.title}">
+            <div class="event-date"><strong>${event.day}</strong><span>${event.month}</span></div>
+            <div><b>${event.title}</b><small>${event.meta}</small></div>
+          </a>
+        `).join('')}
+      </div>
+      <div class="list-actions events-actions">
+        <button class="events-toggle" type="button" data-events-toggle data-count="${hidden.length}">
+          Показать ещё ${hidden.length}
+        </button>
+      </div>
+    ` : ''}
+  `;
 }
 
 function renderNews() {
@@ -234,6 +257,17 @@ function attachExpandListeners() {
       if (!hiddenList) return;
       const expanded = hiddenList.classList.toggle('is-expanded');
       button.textContent = expanded ? 'Свернуть' : `Показать ещё ${hiddenList.children.length}`;
+    });
+  });
+}
+
+function attachEventExpandListeners() {
+  document.querySelectorAll('[data-events-toggle]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const hiddenList = document.querySelector('[data-hidden-events]');
+      if (!hiddenList) return;
+      const expanded = hiddenList.classList.toggle('is-expanded');
+      button.textContent = expanded ? 'Свернуть' : `Показать ещё ${button.dataset.count || hiddenList.children.length}`;
     });
   });
 }
@@ -312,6 +346,7 @@ function renderAll() {
   renderPlaces();
   renderCategoryColumns();
   attachExpandListeners();
+  attachEventExpandListeners();
 }
 
 function setupNav() {
