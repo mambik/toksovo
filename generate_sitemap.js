@@ -2,7 +2,7 @@ const fs = require('fs');
 const vm = require('vm');
 
 const SITE_ORIGIN = 'https://toksovo.info';
-const TODAY = '2026-04-07';
+const TODAY = '2026-04-08';
 
 const code = fs.readFileSync('data.js', 'utf8') + '\nthis.__PLACES = PLACES;';
 const sandbox = {};
@@ -21,6 +21,7 @@ const esc = (value) => String(value)
 const urls = [
   `${SITE_ORIGIN}/`,
   `${SITE_ORIGIN}/map.html`,
+  `${SITE_ORIGIN}/dostoprimechatelnosti-toksovo.html`,
   ...places.map((place) => `${SITE_ORIGIN}/place-${encodeURIComponent(place.slug)}.html`),
 ];
 

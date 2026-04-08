@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Маршрут по достопримечательностям Токсово</title>
+  <meta name="description" content="Две прогулки по историческому центру Токсово: вокзал, памятники, церковь, кирха, Кавголово и озёрная часть поселка. Фото и интерактивная карта маршрута." />
+  <link rel="canonical" href="https://toksovo.info/dostoprimechatelnosti-toksovo.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Токсово" />
+  <meta property="og:title" content="Маршрут по достопримечательностям Токсово" />
+  <meta property="og:description" content="Две прогулки по историческому центру Токсово: вокзал, памятники, церковь, кирха, Кавголово и озёрная часть поселка. Фото и интерактивная карта маршрута." />
+  <meta property="og:url" content="https://toksovo.info/dostoprimechatelnosti-toksovo.html" />
+  <meta property="og:image" content="https://toksovo.info/assets/hero_lake.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Маршрут по достопримечательностям Токсово" />
+  <meta name="twitter:description" content="Две прогулки по историческому центру Токсово: вокзал, памятники, церковь, кирха, Кавголово и озёрная часть поселка. Фото и интерактивная карта маршрута." />
+  <meta name="twitter:image" content="https://toksovo.info/assets/hero_lake.jpg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=20260408-route-1" />
+  <script defer src="https://api-maps.yandex.ru/2.1/?apikey=8e92e0f0-e860-4047-9d12-7a329837fd4e&lang=ru_RU&coordorder=latlong"></script>
+  <script defer src="data.js"></script>
+  <script defer src="main.js?v=20260408-route-1"></script>
+  <style>
+    .route-hero{
+      margin-top:-82px;
+      padding:116px 0 34px;
+      background:
+        linear-gradient(180deg, rgba(13,20,17,.72) 0%, rgba(13,20,17,.25) 100%),
+        url('assets/hero_lake.jpg') center/cover no-repeat;
+      color:#fff;
+    }
+    .route-hero-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:24px;
+      align-items:stretch;
+    }
+    .route-hero-copy{
+      padding:36px 0 8px;
+      max-width:760px;
+    }
+    .route-hero h1{
+      margin:16px 0 14px;
+      font-size:60px;
+      line-height:1.02;
+      letter-spacing:-.04em;
+    }
+    .route-hero p{
+      margin:0;
+      max-width:700px;
+      font-size:18px;
+      line-height:1.6;
+      color:rgba(255,255,255,.92);
+    }
+    .route-hero-stats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin-top:22px;
+    }
+    .route-stat{
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:22px;
+      padding:14px 16px;
+      backdrop-filter:blur(10px);
+    }
+    .route-stat strong{display:block;font-size:20px;margin-bottom:4px}
+    .route-stat span{display:block;color:rgba(255,255,255,.8);font-size:14px}
+    .route-gallery{
+      background:rgba(255,255,255,.92);
+      color:var(--text);
+      border-radius:28px;
+      padding:14px;
+      box-shadow:0 24px 54px rgba(0,0,0,.18);
+    }
+    .route-gallery-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:10px;
+      min-height:100%;
+    }
+    .route-gallery-main,.route-gallery-mini{display:grid;gap:10px}
+    .route-gallery-main img,.route-gallery-mini img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      border-radius:20px;
+    }
+    .route-gallery-main img{min-height:308px}
+    .route-gallery-mini{grid-template-rows:repeat(2,1fr)}
+    .route-intro,.route-map-section,.route-routes,.route-tips{margin-top:24px}
+    .route-card{padding:28px}
+    .route-intro-grid{
+      display:grid;
+      grid-template-columns:1.4fr .9fr;
+      gap:24px;
+      align-items:start;
+    }
+    .route-intro h2,.route-map-panel h2,.route-route-card h3,.route-tips h3{
+      margin:0 0 14px;
+      font-size:32px;
+      line-height:1.06;
+      letter-spacing:-.03em;
+    }
+    .route-intro p,.route-route-card p,.route-tips p,.route-note{
+      color:#4f554f;
+      line-height:1.65;
+      font-size:16px;
+    }
+    .route-note{
+      font-size:14px;
+      background:#f6f7f2;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:16px;
+    }
+    .route-map-layout{
+      display:grid;
+      grid-template-columns:1.4fr .6fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    .route-map{
+      height:560px;
+      border-radius:24px;
+      overflow:hidden;
+      background:#eef2ef;
+    }
+    .route-legend{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .route-legend-item{
+      padding:16px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:#fbfbf8;
+    }
+    .route-legend-item b{display:block;margin-bottom:6px}
+    .route-legend-item small{display:block;color:var(--muted);line-height:1.5}
+    .route-routes{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:24px;
+    }
+    .route-route-card{
+      padding:28px;
+    }
+    .route-route-card .route-subtitle{
+      display:inline-flex;
+      padding:8px 12px;
+      border-radius:999px;
+      background:#f3f6f0;
+      color:#527351;
+      font-size:13px;
+      font-weight:700;
+      margin-bottom:16px;
+    }
+    .route-list{
+      margin:18px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:12px;
+      counter-reset: route;
+    }
+    .route-list li{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      padding:14px 0;
+      border-top:1px solid var(--line);
+    }
+    .route-list li:first-child{border-top:none;padding-top:0}
+    .route-step{
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:#5f8f64;
+      color:#fff;
+      font-weight:800;
+      flex-shrink:0;
+    }
+    .route-list strong{display:block;font-size:17px;margin-bottom:4px}
+    .route-list span{display:block;color:var(--muted);font-size:14px;line-height:1.5}
+    .route-photos{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+      margin-top:18px;
+    }
+    .route-photo{
+      border-radius:22px;
+      overflow:hidden;
+      min-height:160px;
+      position:relative;
+    }
+    .route-photo img{width:100%;height:100%;object-fit:cover;display:block}
+    .route-photo figcaption{
+      position:absolute;
+      left:12px;
+      bottom:12px;
+      right:12px;
+      color:#fff;
+      font-size:13px;
+      font-weight:700;
+      text-shadow:0 2px 14px rgba(0,0,0,.45);
+    }
+    .route-tips-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin-top:10px;
+    }
+    .route-tip{
+      background:#f8f8f3;
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:18px;
+    }
+    .route-tip b{display:block;margin-bottom:8px}
+    .route-tip span{color:var(--muted);line-height:1.5;display:block}
+    @media (max-width: 1180px){
+      .route-hero-grid,.route-intro-grid,.route-map-layout,.route-routes,.route-tips-grid{grid-template-columns:1fr}
+      .route-photos{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width: 760px){
+      .route-hero{padding-top:104px}
+      .route-hero h1{font-size:40px}
+      .route-hero-stats{grid-template-columns:1fr}
+      .route-gallery-grid{grid-template-columns:1fr}
+      .route-gallery-main img{min-height:220px}
+      .route-photos{grid-template-columns:1fr}
+      .route-map{height:380px}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="shell header-row">
+      <a class="brand" href="index.html">
+        <img src="logo.png" alt="Токсово" />
+        <span>
+          <strong>Токсово</strong>
+          <small>городское поселение</small>
+        </span>
+      </a>
+
+      <nav class="desktop-nav">
+        <a href="index.html#about">О поселении</a>
+        <a href="dostoprimechatelnosti-toksovo.html">Маршрут</a>
+        <a href="index.html#places">Популярное</a>
+        <a href="index.html#mapSection">Карта</a>
+        <a href="index.html#catalog">Каталог</a>
+        <a href="index.html#events">События</a>
+        <a href="index.html#news">Новости</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" type="button" aria-label="Поиск">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"/></svg>
+        </button>
+        <a class="map-btn" href="#routeMapSection">Карта маршрута</a>
+        <button class="icon-btn burger" id="burger" aria-label="Меню">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav class="mobile-nav" id="mobileNav">
+      <a href="index.html#about">О поселении</a>
+      <a href="dostoprimechatelnosti-toksovo.html">Маршрут</a>
+      <a href="index.html#places">Популярное</a>
+      <a href="index.html#mapSection">Карта</a>
+      <a href="index.html#catalog">Каталог</a>
+      <a href="index.html#events">События</a>
+      <a href="index.html#news">Новости</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="route-hero">
+      <div class="shell route-hero-grid">
+        <div class="route-hero-copy">
+          <div class="eyebrow">Экологический портал / Токсово</div>
+          <h1>Маршрут по достопримечательностям Токсово</h1>
+          <p>Мы переписали старый очерк в удобный маршрутный формат: две прогулки по историческому центру, ключевые точки на карте, фотографии и короткие пояснения для тех, кто хочет пройти Токсово пешком и не потеряться в деталях.</p>
+          <div class="route-hero-stats">
+            <div class="route-stat"><strong>2 прогулки</strong><span>исторический центр и озёрная часть</span></div>
+            <div class="route-stat"><strong>Интерактивно</strong><span>карта с точками и линиями</span></div>
+            <div class="route-stat"><strong>Фото + текст</strong><span>все ключевые места в одном месте</span></div>
+          </div>
+        </div>
+
+        <div class="route-gallery">
+          <div class="route-gallery-grid">
+            <div class="route-gallery-main">
+              <img src="assets/hero_lake.jpg" alt="Токсово - маршрут по озёрам" />
+            </div>
+            <div class="route-gallery-mini">
+              <img src="assets/lake1.jpg" alt="Токсово - прогулка у озера" />
+              <img src="assets/lake2.jpg" alt="Токсово - лесная часть маршрута" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell route-intro">
+      <article class="panel route-card">
+        <div class="route-intro-grid">
+          <div>
+            <div class="section-kicker">Что внутри маршрута</div>
+            <h2>От платформы и старого центра до озёр, храмов и видовых точек</h2>
+            <p>По мотивам исторического очерка мы собрали маршрут так, чтобы он был удобен для прогулки: сначала идём по старому Токсово с памятниками и храмами, затем переносимся к Кавголово, трамплину и озёрной стороне. Точки на карте можно открывать по очереди, а сами остановки читать как готовый план на день.</p>
+            <p>Маршрут не претендует на точную реконструкцию старого текста, зато оставляет его смысл: показать Токсово как место, где история, транспорт, природа и спорт стоят рядом.</p>
+          </div>
+          <aside class="route-note">
+            <b>Как пользоваться страницей</b>
+            <span>Открой карту, нажми на маркеры, затем переходи к спискам прогулок ниже. Если нужно, можно идти маршрут прямо по порядку: от платформы к центру поселка и дальше к озёрам.</span>
+          </aside>
+        </div>
+      </article>
+    </section>
+
+    <section class="shell route-map-section" id="routeMapSection">
+      <article class="panel route-card route-map-panel">
+        <div class="panel-head big">
+          <div>
+            <div class="section-kicker">Интерактивная карта</div>
+            <h2>Маршрутные точки Токсово</h2>
+          </div>
+          <a href="index.html#mapSection">Открыть карту поселения →</a>
+        </div>
+        <div class="route-map-layout">
+          <div id="routeMap" class="route-map"></div>
+          <aside class="route-legend">
+            <div class="route-legend-item">
+              <b>Прогулка № 1</b>
+              <small>Исторический центр: вокзал, памятники, храм, кирха, трамплин и вид на Кавголово.</small>
+            </div>
+            <div class="route-legend-item">
+              <b>Прогулка № 2</b>
+              <small>Озёрная часть: старая булыжная дорога, Кавголовское, Изумрудное и Светлое озёра, Чёртов мостик.</small>
+            </div>
+            <div class="route-legend-item">
+              <b>Подсказка</b>
+              <small>Точки на карте собраны как удобная маршрутная схема. Для некоторых участков использованы ориентировочные координаты, чтобы маршрут был наглядным и интерактивным.</small>
+            </div>
+          </aside>
+        </div>
+      </article>
+    </section>
+
+    <section class="shell route-routes">
+      <article class="panel route-route-card">
+        <div class="route-subtitle">Прогулка № 1</div>
+        <h3>Исторический центр Токсово</h3>
+        <p>Начинаем с платформы и старой площади, затем поднимаемся к памятникам и храмам, а после уходим к базе Кавголово и панораме на озёра. Это маршрут для тех, кто хочет понять, как посёлок рос вокруг дороги, холма и ключевых мест памяти.</p>
+        <ol class="route-list" id="route1List"></ol>
+      </article>
+
+      <article class="panel route-route-card">
+        <div class="route-subtitle">Прогулка № 2</div>
+        <h3>Озёра и лесная сторона</h3>
+        <p>Вторая прогулка уводит к воде: старая булыжная дорога, берег Кавголовского озера, мыс Венеция, Изумрудное и Светлое озёра, деревянные мостики и тихие участки у Охты. Здесь больше природы и меньше городской ткани.</p>
+        <ol class="route-list" id="route2List"></ol>
+      </article>
+    </section>
+
+    <section class="shell route-photos">
+      <figure class="route-photo">
+        <img src="assets/hero_bg.jpg" alt="Токсово - лесная панорама" />
+        <figcaption>Лес и холмы вокруг Токсово</figcaption>
+      </figure>
+      <figure class="route-photo">
+        <img src="assets/summer.jpg" alt="Токсово - летний маршрут" />
+        <figcaption>Летняя прогулка у воды</figcaption>
+      </figure>
+      <figure class="route-photo">
+        <img src="assets/lake1.jpg" alt="Токсово - озёрная часть маршрута" />
+        <figcaption>Кавголовское и соседние озёра</figcaption>
+      </figure>
+      <figure class="route-photo">
+        <img src="assets/lake2.jpg" alt="Токсово - лес у озера" />
+        <figcaption>Лесные подходы к маршруту</figcaption>
+      </figure>
+    </section>
+
+    <section class="shell route-tips">
+      <article class="panel route-card">
+        <div class="section-kicker">На что обратить внимание</div>
+        <h3>Маршрут лучше воспринимается как медленная прогулка</h3>
+        <div class="route-tips-grid">
+          <div class="route-tip"><b>Сначала центр</b><span>Так проще почувствовать, как Токсово менялось вокруг железной дороги, храмов и старых топонимов.</span></div>
+          <div class="route-tip"><b>Потом вода</b><span>Озёрная часть маршрута хорошо подходит для длинного неспешного круга и фотографий у берега.</span></div>
+          <div class="route-tip"><b>Проверяйте время</b><span>Если идёте летом, закладывайте запас на подъёмы, остановки у воды и смотровые точки.</span></div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="footer">
+    <div class="shell footer-row">
+      <div>
+        <strong>Токсово</strong>
+        <p>Маршрутная страница по достопримечательностям и интерактивной карте поселка.</p>
+      </div>
+      <a href="#top">Наверх ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    const ROUTE_ONE = [
+      { title: 'Платформа Токсово', note: 'Старт прогулки и вход в исторический центр.', coords: [60.1547, 30.4684], route: 1 },
+      { title: 'Памятник «Токсово 1500»', note: 'Памятный знак у развилки шоссе.', coords: [60.1561, 30.4706], route: 1 },
+      { title: 'Памятник первым радарам', note: 'Локальная военная память и история обороны неба.', coords: [60.1568, 30.4717], route: 1 },
+      { title: 'Канал и Кривое озеро', note: 'Старая инженерная связь воды и рельефа.', coords: [60.159, 30.4765], route: 1 },
+      { title: 'Комендантская гора', note: 'Место, связанное с больницей и старой управой.', coords: [60.1595, 30.4838], route: 1 },
+      { title: 'Собор Архистратига Михаила', note: 'Купола храма видны со стороны шоссе.', coords: [60.1585, 30.541], route: 1 },
+      { title: 'Кирха святых апостолов Петра и Павла', note: 'Лютеранская церковь и один из исторических символов Токсово.', coords: [60.1596, 30.5008], route: 1 },
+      { title: 'УТЦ Кавголово', note: 'Спортивная база, трамплин и панорама на озёра.', coords: [60.176514, 30.5348935], route: 1 },
+      { title: 'Платформа Кавголово', note: 'Финальная видовая точка прогулки.', coords: [60.173, 30.53], route: 1 },
+    ];
+
+    const ROUTE_TWO = [
+      { title: 'Старая булыжная дорога', note: 'Выход на тихую часть посёлка.', coords: [60.1549, 30.4687], route: 2 },
+      { title: 'Кавголовское озеро', note: 'Вид на берег и линию воды.', coords: [60.1735, 30.528], route: 2 },
+      { title: 'Мыс Венеция', note: 'Песчаный берег и одна из самых красивых остановок.', coords: [60.1741, 30.5272], route: 2 },
+      { title: 'Изумрудное озеро', note: 'Рукотворное озеро и зона отдыха.', coords: [60.1704, 30.5149], route: 2 },
+      { title: 'Чёртов мостик', note: 'Подвесной мост над оврагом.', coords: [60.1688, 30.5089], route: 2 },
+      { title: 'Светлое озеро', note: 'Спокойный участок у воды и леса.', coords: [60.1664, 30.5032], route: 2 },
+      { title: 'Берег Охты и Сярьги', note: 'Финишная лесная часть маршрута.', coords: [60.1615, 30.495], route: 2 },
+    ];
+
+    const ROUTES = [ROUTE_ONE, ROUTE_TWO];
+
+    function renderRouteList(rootId, items) {
+      const root = document.getElementById(rootId);
+      if (!root) return;
+      root.innerHTML = items.map((item, index) => `
+        <li>
+          <div class="route-step">${index + 1}</div>
+          <div>
+            <strong>${item.title}</strong>
+            <span>${item.note}</span>
+          </div>
+        </li>
+      `).join('');
+    }
+
+    function initRouteMap() {
+      if (typeof ymaps === 'undefined') return;
+      ymaps.ready(() => {
+        const mapNode = document.getElementById('routeMap');
+        if (!mapNode) return;
+
+        const map = new ymaps.Map(mapNode, {
+          center: [60.164, 30.505],
+          zoom: 12,
+          controls: ['zoomControl'],
+        });
+        map.behaviors.disable('scrollZoom');
+
+        const routeColors = {
+          1: '#4f8ed1',
+          2: '#618d48',
+        };
+
+        const allBounds = [];
+        ROUTES.forEach((route) => {
+          const polyline = new ymaps.Polyline(route.map((point) => point.coords), {}, {
+            strokeColor: routeColors[route[0].route],
+            strokeWidth: 4,
+            strokeOpacity: 0.85,
+          });
+          map.geoObjects.add(polyline);
+          route.forEach((point) => {
+            allBounds.push(point.coords);
+            map.geoObjects.add(new ymaps.Placemark(point.coords, {
+              balloonContentHeader: point.title,
+              balloonContentBody: point.note,
+              hintContent: point.title,
+            }, {
+              preset: route[0].route === 1 ? 'islands#blueDotIcon' : 'islands#greenDotIcon',
+            }));
+          });
+        });
+
+        if (allBounds.length) {
+          map.setBounds(allBounds, { checkZoomRange: true, zoomMargin: 40 });
+        }
+        map.container.fitToViewport();
+        window.addEventListener('resize', () => map.container.fitToViewport());
+      });
+    }
+
+    renderRouteList('route1List', ROUTE_ONE);
+    renderRouteList('route2List', ROUTE_TWO);
+    initRouteMap();
+  </script>
+</body>
+</html>
