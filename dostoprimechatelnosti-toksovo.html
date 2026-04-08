@@ -300,10 +300,10 @@
   <main>
     <section class="route-hero">
       <div class="shell route-hero-grid">
-        <div class="route-hero-copy">
-          <div class="eyebrow">Экологический портал / Токсово</div>
-          <h1>Маршрут по достопримечательностям Токсово</h1>
-          <p>Мы переписали старый очерк в удобный маршрутный формат: две прогулки по историческому центру, ключевые точки на карте, фотографии и короткие пояснения для тех, кто хочет пройти Токсово пешком и не потеряться в деталях.</p>
+          <div class="route-hero-copy">
+            <div class="eyebrow">Экологический портал / Токсово</div>
+            <h1>Маршрут по достопримечательностям Токсово</h1>
+          <p>Мы переписали старый очерк в удобный маршрутный формат: две прогулки по реальным точкам каталога, фотографии и короткие пояснения для тех, кто хочет пройти Токсово пешком и не потеряться в деталях.</p>
           <div class="route-hero-stats">
             <div class="route-stat"><strong>2 прогулки</strong><span>исторический центр и озёрная часть</span></div>
             <div class="route-stat"><strong>Интерактивно</strong><span>карта с точками и линиями</span></div>
@@ -356,15 +356,15 @@
           <aside class="route-legend">
             <div class="route-legend-item">
               <b>Прогулка № 1</b>
-              <small>Исторический центр: вокзал, памятники, храм, кирха, трамплин и вид на Кавголово.</small>
+              <small>Историко-спортивная петля: станция Кавголово, кирха, собор, ФилоСовия, УТЦ и панорама Токсовских высот.</small>
             </div>
             <div class="route-legend-item">
               <b>Прогулка № 2</b>
-              <small>Озёрная часть: старая булыжная дорога, Кавголовское, Изумрудное и Светлое озёра, Чёртов мостик.</small>
+              <small>Озёрно-лесная петля: Кавголовское озеро, Хепоярви, лесопарк, Funtopia, конный хутор и экотропы.</small>
             </div>
             <div class="route-legend-item">
               <b>Подсказка</b>
-              <small>Точки на карте собраны как удобная маршрутная схема. Для некоторых участков использованы ориентировочные координаты, чтобы маршрут был наглядным и интерактивным.</small>
+              <small>Точки на карте привязаны к реальным страницам каталога и их координатам. Это делает маршрут удобнее и убирает схематичную «кривизну».</small>
             </div>
           </aside>
         </div>
@@ -374,15 +374,15 @@
     <section class="shell route-routes">
       <article class="panel route-route-card">
         <div class="route-subtitle">Прогулка № 1</div>
-        <h3>Исторический центр Токсово</h3>
-        <p>Начинаем с платформы и старой площади, затем поднимаемся к памятникам и храмам, а после уходим к базе Кавголово и панораме на озёра. Это маршрут для тех, кто хочет понять, как посёлок рос вокруг дороги, холма и ключевых мест памяти.</p>
+        <h3>Историко-спортивная петля</h3>
+        <p>Начинаем с видовой станции, затем идём к кирхе и собору, после чего переходим к семейной локации и спортивному центру. Финал прогулки — у Токсовских высот и панорамы на озёрную долину.</p>
         <ol class="route-list" id="route1List"></ol>
       </article>
 
       <article class="panel route-route-card">
         <div class="route-subtitle">Прогулка № 2</div>
         <h3>Озёра и лесная сторона</h3>
-        <p>Вторая прогулка уводит к воде: старая булыжная дорога, берег Кавголовского озера, мыс Венеция, Изумрудное и Светлое озёра, деревянные мостики и тихие участки у Охты. Здесь больше природы и меньше городской ткани.</p>
+        <p>Вторая прогулка уводит к воде: Кавголовское озеро, Хепоярви, лесопарк, верёвочный парк, конный хутор и экотропы. Здесь больше природы и меньше городской ткани.</p>
         <ol class="route-list" id="route2List"></ol>
       </article>
     </section>
@@ -430,29 +430,36 @@
   </footer>
 
   <script>
+    const PLACE_INDEX = (typeof PLACES !== 'undefined' && Array.isArray(PLACES))
+      ? new Map(PLACES.map((place) => [place.slug, place]))
+      : new Map();
+
     const ROUTE_ONE = [
-      { title: 'Платформа Токсово', note: 'Старт прогулки и вход в исторический центр.', coords: [60.1547, 30.4684], route: 1 },
-      { title: 'Памятник «Токсово 1500»', note: 'Памятный знак у развилки шоссе.', coords: [60.1561, 30.4706], route: 1 },
-      { title: 'Памятник первым радарам', note: 'Локальная военная память и история обороны неба.', coords: [60.1568, 30.4717], route: 1 },
-      { title: 'Канал и Кривое озеро', note: 'Старая инженерная связь воды и рельефа.', coords: [60.159, 30.4765], route: 1 },
-      { title: 'Комендантская гора', note: 'Место, связанное с больницей и старой управой.', coords: [60.1595, 30.4838], route: 1 },
-      { title: 'Собор Архистратига Михаила', note: 'Купола храма видны со стороны шоссе.', coords: [60.1585, 30.541], route: 1 },
-      { title: 'Кирха святых апостолов Петра и Павла', note: 'Лютеранская церковь и один из исторических символов Токсово.', coords: [60.1596, 30.5008], route: 1 },
-      { title: 'УТЦ Кавголово', note: 'Спортивная база, трамплин и панорама на озёра.', coords: [60.176514, 30.5348935], route: 1 },
-      { title: 'Платформа Кавголово', note: 'Финальная видовая точка прогулки.', coords: [60.173, 30.53], route: 1 },
+      { title: 'Станция Кавголово (видовая)', slug: 'stantsiya-kavgolovo-vidovaya', note: 'Старт у платформы и первый вид на озёрную долину.', route: 1 },
+      { title: 'Кирха святых апостолов Петра и Павла', slug: 'kirha-petra-i-pavla', note: 'Исторический храм и тихая прогулка по старому Токсово.', route: 1 },
+      { title: 'Собор Архистратига Михаила', slug: 'tserkov-arkhangela-mikhaila', note: 'Заметный православный храм и культурная точка маршрута.', route: 1 },
+      { title: 'Ресторан и музей совушек «ФилоСовия»', slug: 'filosoviya', note: 'Семейная остановка у спортивного кластера.', route: 1 },
+      { title: 'УТЦ Кавголово', slug: 'utts-kavgolovo-2', note: 'Спорткомплекс, трассы и панорама на Кавголово.', route: 1 },
+      { title: 'Кавголовские / Токсовские высоты', slug: 'kavgolovskie-toksovskie-vysoty', note: 'Финальная видовая точка с камовым рельефом.', route: 1 },
     ];
 
     const ROUTE_TWO = [
-      { title: 'Старая булыжная дорога', note: 'Выход на тихую часть посёлка.', coords: [60.1549, 30.4687], route: 2 },
-      { title: 'Кавголовское озеро', note: 'Вид на берег и линию воды.', coords: [60.1735, 30.528], route: 2 },
-      { title: 'Мыс Венеция', note: 'Песчаный берег и одна из самых красивых остановок.', coords: [60.1741, 30.5272], route: 2 },
-      { title: 'Изумрудное озеро', note: 'Рукотворное озеро и зона отдыха.', coords: [60.1704, 30.5149], route: 2 },
-      { title: 'Чёртов мостик', note: 'Подвесной мост над оврагом.', coords: [60.1688, 30.5089], route: 2 },
-      { title: 'Светлое озеро', note: 'Спокойный участок у воды и леса.', coords: [60.1664, 30.5032], route: 2 },
-      { title: 'Берег Охты и Сярьги', note: 'Финишная лесная часть маршрута.', coords: [60.1615, 30.495], route: 2 },
+      { title: 'Кавголовское озеро', slug: 'kavgolovskoe-ozero', note: 'Вода, пляжи и прогулочный берег.', route: 2 },
+      { title: 'Озеро Хепоярви', slug: 'ozero-khepoyarvi', note: 'Лесное озеро для длинной прогулки.', route: 2 },
+      { title: 'Ново-Кавголовский лесопарк', slug: 'novokavgolovskiy-lesopark', note: 'Лес и берега озёр в одной петле.', route: 2 },
+      { title: 'Верёвочный парк Funtopia', slug: 'funtopia', note: 'Активная остановка для семей и детей.', route: 2 },
+      { title: 'Конно-сказочный хутор', slug: 'konno-skazochnyy-khutor', note: 'Конный центр и прогулки по лесным маршрутам.', route: 2 },
+      { title: 'Экотропы Токсово', slug: 'ekotropy-toksovo', note: 'Кольцевой маршрут по высотам и лесу.', route: 2 },
     ];
 
-    const ROUTES = [ROUTE_ONE, ROUTE_TWO];
+    const ROUTES = [ROUTE_ONE, ROUTE_TWO]
+      .map((route) => route.map((item) => {
+        const place = item.slug ? PLACE_INDEX.get(item.slug) : null;
+        const coords = place && Number.isFinite(place.lat) && Number.isFinite(place.lng)
+          ? [place.lat, place.lng]
+          : item.coords || null;
+        return coords ? { ...item, coords } : null;
+      }).filter(Boolean));
 
     function renderRouteList(rootId, items) {
       const root = document.getElementById(rootId);
@@ -488,19 +495,8 @@
         });
         map.behaviors.disable('scrollZoom');
 
-        const routeColors = {
-          1: '#4f8ed1',
-          2: '#618d48',
-        };
-
         const allBounds = [];
         ROUTES.forEach((route) => {
-          const polyline = new ymaps.Polyline(route.map((point) => point.coords), {}, {
-            strokeColor: routeColors[route[0].route],
-            strokeWidth: 4,
-            strokeOpacity: 0.85,
-          });
-          map.geoObjects.add(polyline);
           route.forEach((point) => {
             allBounds.push(point.coords);
             map.geoObjects.add(new ymaps.Placemark(point.coords, {
