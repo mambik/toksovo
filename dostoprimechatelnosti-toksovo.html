@@ -78,6 +78,7 @@
       color:var(--text);
       border-radius:28px;
       padding:14px;
+      height:100%;
       box-shadow:0 24px 54px rgba(0,0,0,.18);
     }
     .route-gallery-grid{
@@ -85,8 +86,14 @@
       grid-template-columns:1.2fr .8fr;
       gap:10px;
       min-height:100%;
+      height:100%;
     }
-    .route-gallery-main,.route-gallery-mini{display:grid;gap:10px}
+    .route-gallery-main,.route-gallery-mini{
+      display:grid;
+      gap:10px;
+      min-height:0;
+      height:100%;
+    }
     .route-gallery-main img,.route-gallery-mini img{
       width:100%;
       height:100%;
@@ -94,8 +101,8 @@
       display:block;
       border-radius:20px;
     }
-    .route-gallery-main img{min-height:308px}
-    .route-gallery-mini{grid-template-rows:repeat(2,1fr)}
+    .route-gallery-main img{min-height:0}
+    .route-gallery-mini{grid-template-rows:repeat(2,minmax(0,1fr))}
     .route-intro,.route-map-section,.route-routes,.route-tips{margin-top:24px}
     .route-card{padding:28px}
     .route-intro-grid{
@@ -462,10 +469,17 @@
     }
 
     function initRouteMap() {
-      if (typeof ymaps === 'undefined') return;
+      if (typeof ymaps === 'undefined') {
+        if (!window.__routeMapLoadBound) {
+          window.__routeMapLoadBound = true;
+          window.addEventListener('load', initRouteMap, { once: true });
+        }
+        return;
+      }
+      const mapNode = document.getElementById('routeMap');
+      if (!mapNode || mapNode.dataset.ready === '1') return;
       ymaps.ready(() => {
-        const mapNode = document.getElementById('routeMap');
-        if (!mapNode) return;
+        mapNode.dataset.ready = '1';
 
         const map = new ymaps.Map(mapNode, {
           center: [60.164, 30.505],
@@ -502,7 +516,7 @@
         if (allBounds.length) {
           map.setBounds(allBounds, { checkZoomRange: true, zoomMargin: 40 });
         }
-        map.container.fitToViewport();
+        requestAnimationFrame(() => map.container.fitToViewport());
         window.addEventListener('resize', () => map.container.fitToViewport());
       });
     }
