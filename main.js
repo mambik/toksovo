@@ -294,9 +294,22 @@ function initMaps() {
         controls: [],
       });
       previewMap.behaviors.disable('scrollZoom');
-      points.slice(0, 6).forEach(({ coords, place }) => {
-        previewMap.geoObjects.add(new ymaps.Placemark(coords, { hintContent: place.name }, { preset: 'islands#greenDotIcon' }));
+      const previewClusterer = new ymaps.Clusterer({
+        preset: 'islands#greenClusterIcons',
+        groupByCoordinates: false,
       });
+      const previewPlacemarks = points.map(({ coords, place }) => new ymaps.Placemark(coords, {
+        hintContent: place.name,
+      }, {
+        preset: 'islands#greenDotIcon',
+      }));
+
+      previewClusterer.add(previewPlacemarks);
+      previewMap.geoObjects.add(previewClusterer);
+
+      if (previewPlacemarks.length) {
+        previewMap.setBounds(previewClusterer.getBounds(), { checkZoomRange: true, zoomMargin: 20 });
+      }
       previewMap.container.fitToViewport();
       mapResizers.push(() => previewMap.container.fitToViewport());
     }
