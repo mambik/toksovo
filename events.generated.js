@@ -1,5 +1,5 @@
 window.CATALOG_EVENTS = {
-  "generatedAt": "2026-04-08",
+  "generatedAt": "2026-05-04",
   "windowDays": 180,
   "events": [
     {

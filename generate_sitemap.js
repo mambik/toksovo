@@ -2,7 +2,7 @@ const fs = require('fs');
 const vm = require('vm');
 
 const SITE_ORIGIN = 'https://toksovo.info';
-const TODAY = '2026-04-08';
+const TODAY = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Moscow' }).format(new Date());
 
 const code = fs.readFileSync('data.js', 'utf8') + '\nthis.__PLACES = PLACES;';
 const sandbox = {};

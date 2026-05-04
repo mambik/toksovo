@@ -4,19 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SUP — Токсово</title>
-  <meta name="description" id="metaDescription" content="Прокат и тренировки на сапах · озера Токсово · Токсово · Спорт" />
+  <meta name="description" id="metaDescription" content="Прокат и тренировки на сапах · озера Токсово. Парусная Станция «Кавголово» · Токсово · Спорт для взрослых" />
   <meta name="robots" id="robotsMeta" content="index,follow" />
   <link rel="canonical" id="canonicalLink" href="https://toksovo.info/place-sup.html" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Токсово" />
   <meta property="og:title" id="ogTitle" content="SUP — Токсово" />
-  <meta property="og:description" id="ogDescription" content="Прокат и тренировки на сапах · озера Токсово · Токсово · Спорт" />
+  <meta property="og:description" id="ogDescription" content="Прокат и тренировки на сапах · озера Токсово. Парусная Станция «Кавголово» · Токсово · Спорт для взрослых" />
   <meta property="og:url" id="ogUrl" content="https://toksovo.info/place-sup.html" />
-  <meta property="og:image" id="ogImage" content="https://toksovo.info/assets/ski.jpg" />
+  <meta property="og:image" id="ogImage" content="https://toksovo.info/assets/hero_lake.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" id="twitterTitle" content="SUP — Токсово" />
-  <meta name="twitter:description" id="twitterDescription" content="Прокат и тренировки на сапах · озера Токсово · Токсово · Спорт" />
-  <meta name="twitter:image" id="twitterImage" content="https://toksovo.info/assets/ski.jpg" />
+  <meta name="twitter:description" id="twitterDescription" content="Прокат и тренировки на сапах · озера Токсово. Парусная Станция «Кавголово» · Токсово · Спорт для взрослых" />
+  <meta name="twitter:image" id="twitterImage" content="https://toksovo.info/assets/hero_lake.jpg" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
@@ -24,10 +24,16 @@
   "@context": "https://schema.org",
   "@type": "Place",
   "name": "SUP",
-  "description": "Прокат и тренировки на сапах · озера Токсово · Токсово · Спорт",
+  "description": "Прокат и тренировки на сапах · озера Токсово. Парусная Станция «Кавголово» · Токсово · Спорт для взрослых",
   "url": "https://toksovo.info/place-sup.html",
-  "image": "https://toksovo.info/assets/ski.jpg",
-  "address": "озера Токсово"
+  "image": "https://toksovo.info/assets/hero_lake.jpg",
+  "address": "озера Токсово. Парусная Станция «Кавголово»",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 60.117064,
+    "longitude": 30.546136
+  },
+  "sameAs": "https://vk.com/windsurfspb"
 }</script>
   <style>
     :root {
@@ -667,14 +673,14 @@
       <div class="container hero-inner">
         <div>
           <div class="tags">
-            <span class="tag">Спорт</span>
+            <span class="tag">Спорт для взрослых</span>
             <span class="tag">Требует проверки</span>
           </div>
           <h1>SUP</h1>
           <div class="subtitle">Водный спорт · 16+ лет · Токсово</div>
           <div class="hero-actions">
             <a class="btn btn-primary" href="index.html#mapSection">Открыть карту</a>
-            
+            <a class="btn btn-secondary" href="https://vk.com/windsurfspb" target="_blank" rel="noopener">Перейти на сайт</a>
           </div>
         </div>
       </div>
@@ -682,37 +688,14 @@
 
     <div class="container place-main">
       
-    <section class="card gallery-card">
-      <div class="gallery-head">
-        <h2>Фото объекта</h2>
-        <span class="gallery-note">3-5 фото, главное фото выделено первым</span>
-      </div>
-      <div class="gallery-main">
-        <div class="gallery-hero">
-          <img src="assets/ski.jpg" alt="SUP - главное фото" />
-          <div class="gallery-caption">Главное фото</div>
-        </div>
-        <div class="gallery-thumbs">
-          
-            <div class="gallery-thumb">
-              <img src="assets/hero_bg.jpg" alt="SUP - фото 2" />
-            </div>
-          
-            <div class="gallery-thumb">
-              <img src="assets/lake1.jpg" alt="SUP - фото 3" />
-            </div>
-          
-            <div class="gallery-thumb">
-              <img src="assets/lake2.jpg" alt="SUP - фото 4" />
-            </div>
-          
-            <div class="gallery-thumb">
-              <img src="assets/hero_lake.jpg" alt="SUP - фото 5" />
-            </div>
-          
-        </div>
-      </div>
-    </section>
+    <div class="media-row">
+      
+      <section class="card map-sidebar">
+        <h2>Карта</h2>
+        <p>Расположение объекта и быстрый ориентир на местности.</p>
+        <div id="place-map"></div>
+      </section>
+    </div>
   
       
     <section class="card place-overview">
@@ -727,7 +710,7 @@
             
     <div class="snapshot-item">
       <div class="snapshot-label">Адрес</div>
-      <div class="snapshot-value">озера Токсово</div>
+      <div class="snapshot-value">озера Токсово. Парусная Станция «Кавголово»</div>
     </div>
   
             
@@ -738,6 +721,11 @@
   
             
             
+    <div class="snapshot-item">
+      <div class="snapshot-label">Сайт</div>
+      <div class="snapshot-value"><a href="https://vk.com/windsurfspb" target="_blank" rel="noopener">vk.com/windsurfspb</a></div>
+    </div>
+  
           </div>
         </aside>
       </div>
@@ -747,7 +735,7 @@
           
     <div class="info-card">
       <div class="info-label">Цена</div>
-      <div class="info-value">1000–3000 ₽</div>
+      <div class="info-value">1300–2000 ₽</div>
     </div>
   
           
@@ -770,6 +758,23 @@
     </div>
   
 
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=8e92e0f0-e860-4047-9d12-7a329837fd4e&lang=ru_RU&coordorder=latlong" type="text/javascript"></script>
+    <script>
+      ymaps.ready(() => {
+        const map = new ymaps.Map('place-map', {
+          center: [60.117064, 30.546136],
+          zoom: 15,
+          controls: ['zoomControl'],
+        }, { suppressMapOpenBlock: true });
+        map.geoObjects.add(new ymaps.Placemark([60.117064, 30.546136], {
+          balloonContent: "SUP",
+          hintContent: "SUP",
+        }, { preset: 'islands#darkGreenCircleDotIcon' }));
+        map.container.fitToViewport();
+        window.addEventListener('resize', () => map.container.fitToViewport());
+      });
+    </script>
+  
 
     <script>
       const burger = document.getElementById('burger');

@@ -20,6 +20,18 @@ const PHOTO_BY_CATEGORY = {
   hidden: 'assets/hero_bg.jpg',
 };
 
+const CATEGORY_THEME_BY_NAME = {
+  'Достопримечательности': 'attractions',
+  'Скрытые локации': 'hidden',
+  'Дети': 'children',
+  'Дети и взрослые': 'children',
+  'Танцы': 'children',
+  'Лыжная школа': 'sport',
+  'Спорт для взрослых': 'sport',
+  'Взрослые': 'sport',
+  'Студенты': 'sport',
+};
+
 const TAG_CLASS_BY_CATEGORY = {
   attractions: 'blue',
   children: 'green',
@@ -32,13 +44,6 @@ const LABEL_BY_CATEGORY = {
   children: 'Детям',
   sport: 'Спорт',
   hidden: 'Маршрут',
-};
-
-const CATEGORY_TITLES = {
-  attractions: 'Достопримечательности',
-  children: 'Детям',
-  sport: 'Спорт',
-  hidden: 'Скрытые места',
 };
 
 const HERO_DEFAULT = window?.CATALOG_DEFAULTS?.hero ?? {
@@ -73,6 +78,18 @@ const mapResizers = [];
 
 function normalizeSlug(value) {
   return String(value || '').replace(/-/g, '_');
+}
+
+function themeForCategory(category) {
+  return CATEGORY_THEME_BY_NAME[String(category || '').trim()] || 'hidden';
+}
+
+function placeImage(place) {
+  if (Array.isArray(place?.photos) && place.photos[0]) {
+    return place.photos[0];
+  }
+  const theme = themeForCategory(place?.category);
+  return PHOTO_BY_SLUG[normalizeSlug(place?.slug)] || PHOTO_BY_CATEGORY[theme] || 'assets/hero_lake.jpg';
 }
 
 function placePageUrl(slug) {
@@ -125,10 +142,10 @@ function renderPlaces() {
   if (!root) return;
 
   root.innerHTML = featuredPlaces(PLACES).map((place) => {
-    const slugKey = normalizeSlug(place.slug);
-    const image = PHOTO_BY_SLUG[slugKey] || PHOTO_BY_CATEGORY[place.categoryId] || 'assets/hero_lake.jpg';
-    const tagClass = TAG_CLASS_BY_CATEGORY[place.categoryId] || 'blue';
-    const tagLabel = place.subcategory || LABEL_BY_CATEGORY[place.categoryId] || place.category || 'Место';
+    const theme = themeForCategory(place.category);
+    const image = placeImage(place);
+    const tagClass = TAG_CLASS_BY_CATEGORY[theme] || 'blue';
+    const tagLabel = place.subcategory || LABEL_BY_CATEGORY[theme] || place.category || 'Место';
     const rating = place.rating ? `★ ${place.rating}` : 'Без рейтинга';
     const summary = trimCardText(place.description || 'Описание появится позже.');
 
@@ -163,24 +180,35 @@ function renderCategoryColumns() {
   if (!root) return;
 
   const displayLimit = 5;
-  const categoryOrder = ['attractions', 'children', 'sport', 'hidden'];
+  const categoryOrder = [];
+  const seenCategories = new Set();
 
-  root.innerHTML = categoryOrder.map((categoryId) => {
+  PLACES.forEach((place) => {
+    const category = String(place.category || '').trim() || 'Без категории';
+    if (!seenCategories.has(category)) {
+      seenCategories.add(category);
+      categoryOrder.push(category);
+    }
+  });
+
+  root.innerHTML = categoryOrder.map((categoryName, index) => {
     const places = PLACES
-      .filter((place) => place.categoryId === categoryId)
+      .filter((place) => String(place.category || '').trim() === categoryName)
       .sort((a, b) => (a.name || '').localeCompare(b.name || '', 'ru'));
+    const theme = themeForCategory(categoryName);
+    const categoryId = `cat-${index}`;
 
     const visible = places.slice(0, displayLimit);
     const hidden = places.slice(displayLimit);
 
     return `
-      <article class="category-list-card" id="cat-${categoryId}">
+      <article class="category-list-card" id="${categoryId}">
         <div class="category-list-head">
           <div>
-            <h3>${CATEGORY_TITLES[categoryId] || categoryId}</h3>
+            <h3>${categoryName}</h3>
             <div class="category-count">${places.length} объектов</div>
           </div>
-          <span class="category-badge ${categoryId}">${LABEL_BY_CATEGORY[categoryId] || 'Каталог'}</span>
+          <span class="category-badge ${theme}">${LABEL_BY_CATEGORY[theme] || 'Каталог'}</span>
         </div>
         <ul class="category-object-list">
           ${visible.map((place) => `

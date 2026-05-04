@@ -47,39 +47,7 @@ function slugToTitle(slug) {
 }
 
 function buildImages(place) {
-  const images = [];
-  const push = (value) => {
-    if (value && !images.includes(value)) images.push(value);
-  };
-
-  if (Array.isArray(place.photos)) {
-    place.photos.forEach(push);
-  }
-
-  const bySlug = {
-    kavgolovskoe_ozero: ['assets/lake1.jpg', 'assets/lake2.jpg', 'assets/hero_lake.jpg'],
-    ozero_khepoyarvi: ['assets/lake2.jpg', 'assets/lake1.jpg', 'assets/hero_lake.jpg'],
-    severnyy_sklon: ['assets/ski.jpg', 'assets/hero_bg.jpg', 'assets/hero_lake.jpg'],
-    zubrovnik: ['assets/hero_bg.jpg', 'assets/lake1.jpg', 'assets/lake2.jpg'],
-  };
-
-  const byCategory = {
-    attractions: ['assets/hero_lake.jpg', 'assets/lake1.jpg', 'assets/lake2.jpg', 'assets/hero_bg.jpg', 'assets/summer.jpg'],
-    children: ['assets/summer.jpg', 'assets/hero_bg.jpg', 'assets/lake1.jpg', 'assets/lake2.jpg', 'assets/hero_lake.jpg'],
-    sport: ['assets/ski.jpg', 'assets/hero_bg.jpg', 'assets/lake1.jpg', 'assets/lake2.jpg', 'assets/hero_lake.jpg'],
-    hidden: ['assets/hero_bg.jpg', 'assets/lake1.jpg', 'assets/lake2.jpg', 'assets/summer.jpg', 'assets/hero_lake.jpg'],
-  };
-
-  (bySlug[place.slug] || []).forEach(push);
-  (byCategory[place.categoryId] || byCategory.hidden).forEach(push);
-
-  while (images.length < 5) {
-    push('assets/hero_lake.jpg');
-    push('assets/lake1.jpg');
-    push('assets/lake2.jpg');
-  }
-
-  return images.slice(0, 5);
+  return [];
 }
 
 function photoAlt(place, index) {
@@ -87,31 +55,7 @@ function photoAlt(place, index) {
 }
 
 function renderGallery(place) {
-  const images = buildImages(place);
-  const [hero, ...rest] = images;
-  const thumbs = rest.slice(0, 4);
-
-  return `
-    <section class="card gallery-card">
-      <div class="gallery-head">
-        <h2>Фото объекта</h2>
-        <span class="gallery-note">3-5 фото, главное фото выделено первым</span>
-      </div>
-      <div class="gallery-main">
-        <div class="gallery-hero">
-          <img src="${escapeAttr(hero)}" alt="${escapeAttr(photoAlt(place, 0))}" />
-          <div class="gallery-caption">Главное фото</div>
-        </div>
-        <div class="gallery-thumbs">
-          ${thumbs.map((src, index) => `
-            <div class="gallery-thumb">
-              <img src="${escapeAttr(src)}" alt="${escapeAttr(photoAlt(place, index + 1))}" />
-            </div>
-          `).join('')}
-        </div>
-      </div>
-    </section>
-  `;
+  return '';
 }
 
 function infoCard(label, value, isLink = false) {
@@ -149,7 +93,7 @@ function buildMeta(place, images) {
     category,
   ]).slice(0, 180);
   const canonical = `${SITE_ORIGIN}/place-${place.slug}.html`;
-  const image = absoluteUrl(images[0]);
+  const image = absoluteUrl('assets/hero_lake.jpg');
   const title = `${place.name} — Токсово`;
 
   return { title, description, canonical, image };
@@ -302,13 +246,23 @@ function renderPlace(place) {
 }
 
 function main() {
+  const generatedFiles = new Set();
   let count = 0;
   for (const place of PLACES) {
     if (!place || !place.slug) continue;
     const fileName = `place-${place.slug}.html`;
     fs.writeFileSync(fileName, renderPlace(place));
+    generatedFiles.add(fileName);
     count += 1;
   }
+
+  for (const entry of fs.readdirSync('.')) {
+    if (!/^place-.*\.html$/i.test(entry) || entry === 'place.html') continue;
+    if (!generatedFiles.has(entry)) {
+      fs.unlinkSync(entry);
+    }
+  }
+
   console.log(`Generated ${count} place pages.`);
 }
 
